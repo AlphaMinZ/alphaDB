@@ -20,11 +20,11 @@ class Indexer {
 public:
     typedef::std::shared_ptr<Indexer> ptr;
 
-    virtual LogRecordPos::ptr Put(const std::vector<uint8_t> key, LogRecordPos::ptr pos) = 0;
+    virtual LogRecordPos::ptr Put(const std::vector<uint8_t> key, LogRecordPos::ptr pos, bool* isOk_) = 0;
 
     virtual LogRecordPos::ptr Get(const std::vector<uint8_t> key) = 0;
 
-    virtual LogRecordPos::ptr Delete(std::vector<uint8_t> key) = 0;
+    virtual LogRecordPos::ptr Delete(std::vector<uint8_t> key, bool* isOk_) = 0;
 };
 
 Indexer::ptr NewIndexer(IndexerType typ);

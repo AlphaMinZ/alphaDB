@@ -19,11 +19,11 @@ public:
     Map();
     ~Map() {}
 
-    LogRecordPos::ptr Put(const std::vector<uint8_t> key, LogRecordPos::ptr pos) override;
+    LogRecordPos::ptr Put(const std::vector<uint8_t> key, LogRecordPos::ptr pos, bool* isOk_) override;
 
     LogRecordPos::ptr Get(const std::vector<uint8_t> key) override;
 
-    LogRecordPos::ptr Delete(std::vector<uint8_t> key) override;
+    LogRecordPos::ptr Delete(std::vector<uint8_t> key, bool* isOk_) override;
 
     int size() const { return m_map.size();}
 private:

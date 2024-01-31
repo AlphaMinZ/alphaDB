@@ -55,7 +55,33 @@ void DB::Put(std::vector<uint8_t> key, std::vector<uint8_t> value) {
     LogRecordPos::ptr pos = appendLogRecord(logRecord);
 
     // 更新内存索引
-    m_index->Put(key, pos);
+    m_index->Put(key, pos, nullptr);
+}
+
+// Delete 根据 key 删除对应的数据
+void DB::Delete(std::vector<uint8_t> key) {
+    alphaMin::RWMutex::ReadLock lock(m_RWMutex);
+
+    // 判断 key 的有效性
+    if(key.size() == 0) {
+        lock.unlock();
+        throw MyErrors::ErrKeyIsEmpty;
+    }
+
+    // 先检查 key 是否存在，如果不存在的话直接返回
+    LogRecordPos::ptr pos = m_index->Get(key);
+    if(pos.get() == nullptr) {
+        return;
+    }
+
+    // 构造 LogRecord，标识其是被删除的
+    LogRecord logRecord;
+    logRecord.Key = key;
+    logRecord.Type = LogRecordDeleted;
+    appendLogRecord(&logRecord);
+
+    // 从内存索引中将对应的 key 删除
+    m_index->Delete(key, nullptr);
 }
 
 // Get 根据 key 读取数据
@@ -264,10 +290,14 @@ void DB::loadIndexFromDataFiles() {
 
             // 构造内存索引并保存
             LogRecordPos::ptr logRecordPos(new LogRecordPos(fileId, offset));
+            bool isOk = false;
             if(logRecord->Type == LogRecordDeleted) {
-                m_index->Delete(logRecord->Key);
+                m_index->Delete(logRecord->Key, &isOk);
             } else {
-                m_index->Put(logRecord->Key, logRecordPos);
+                m_index->Put(logRecord->Key, logRecordPos, &isOk);
+            }
+            if(!isOk) {
+                throw MyErrors::ErrIndexUpdateFailed;
             }
 
             // 递增 offset，下一次从新的位置开始读取

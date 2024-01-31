@@ -41,6 +41,9 @@ public:
     // Get 根据 key 读取数据
     std::vector<uint8_t> Get(std::vector<uint8_t> key);
 
+    // Delete 根据 key 删除对应的数据
+    void Delete(std::vector<uint8_t> key);
+
     // 追加写数据到活跃文件中
     LogRecordPos::ptr appendLogRecord(LogRecord* logRecord);
 
