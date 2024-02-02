@@ -4,6 +4,14 @@
 #include <stdint.h>
 #include <memory>
 #include <vector>
+#include <string>
+#include <limits>
+#include <cstdint>
+
+// crc type keySize valueSize
+// 4 +  1  +  5   +   5 = 15
+#define maxLogRecordHeaderSize          (std::numeric_limits<uint32_t>::digits + 6) / 7 * 2 + 5;
+#define CRC32_SIZE                      4
 
 namespace alphaDB {
     
@@ -17,12 +25,23 @@ enum LogRecordTypeEnum : LogRecordType {
     LogRecordTxnFinished   // 表示事务已完成的日志记录类型
 };
 
+// LogRecord 写入到数据文件的记录
+// 之所以叫日志，是因为数据文件中的数据是追加写入的，类似日志的格式
 typedef struct _LogRecord {
-    std::vector<uint8_t> Key;
-    std::vector<uint8_t> Value;
+    std::string Key;
+    std::string Value;
     LogRecordTypeEnum Type;
 }LogRecord;
 
+// LogRecord 的头部信息
+typedef struct _logRecordHeader {
+    uint32_t crc;                   // crc 校验值
+    LogRecordTypeEnum recordType;   // 标识 LogRecord 的类型
+    uint32_t keySize;               // key 的长度
+    uint32_t valueSize;             // value 的长度
+}logRecordHeader;
+
+// LogRecordPos 数据内存索引，主要是描述数据在磁盘上的位置
 class LogRecordPos {
 public:
     typedef std::shared_ptr<LogRecordPos> ptr;
@@ -38,7 +57,13 @@ public:
     LogRecordPos(uint32_t Fid, int64_t Offset); 
 }; 
 
-void EncodeLogRecord(LogRecord* logRecoed, std::vector<uint8_t>& str_, int64_t& len_);
+// EncodeLogRecord 对 LogRecord 进行编码，返回字节数组及长度
+std::string EncodeLogRecord(LogRecord* logRecoed, int64_t& len_);
+
+// 对字节数组中的 Header 信息进行解码
+logRecordHeader* decodeLogRecordheader(std::string buf, int64_t& headerSize_);
+
+uint32_t getLogRecordCRC(LogRecord* lr, std::string header);
 
 }
 

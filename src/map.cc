@@ -4,7 +4,7 @@ namespace alphaDB {
 
 Map::Map() {}
 
-LogRecordPos::ptr Map::Put(const std::vector<uint8_t> key, LogRecordPos::ptr pos, bool* isOk_) {
+LogRecordPos::ptr Map::Put(const std::string key, LogRecordPos::ptr pos, bool* isOk_) {
     alphaMin::RWMutex::WriteLock lock(m_mutex);
 
     LogRecordPos::ptr oldLogRecordPos(new LogRecordPos);
@@ -12,13 +12,14 @@ LogRecordPos::ptr Map::Put(const std::vector<uint8_t> key, LogRecordPos::ptr pos
     oldLogRecordPos = m_map[key];
 
     m_map[key] = pos;
-
+    
+    *isOk_ = true;
     lock.unlock();
 
     return oldLogRecordPos;
 }
 
-LogRecordPos::ptr Map::Get(const std::vector<uint8_t> key) {
+LogRecordPos::ptr Map::Get(const std::string key) {
     alphaMin::RWMutex::ReadLock lock(m_mutex);
     LogRecordPos::ptr pos(new LogRecordPos);
 
@@ -28,7 +29,7 @@ LogRecordPos::ptr Map::Get(const std::vector<uint8_t> key) {
     return pos;
 }
 
-LogRecordPos::ptr Map::Delete(const std::vector<uint8_t> key, bool* isOk_) {
+LogRecordPos::ptr Map::Delete(const std::string key, bool* isOk_) {
     alphaMin::RWMutex::WriteLock lock(m_mutex);
 
     LogRecordPos::ptr oldLogRecordPos(new LogRecordPos);
@@ -36,8 +37,9 @@ LogRecordPos::ptr Map::Delete(const std::vector<uint8_t> key, bool* isOk_) {
     oldLogRecordPos = m_map[key];
 
     m_map.erase(key);
+
+    *isOk_ = true;
     lock.unlock();
-    
     return oldLogRecordPos;
 }
 

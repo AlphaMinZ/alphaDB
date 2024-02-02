@@ -127,6 +127,296 @@ depend:
 	$(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
 .PHONY : depend
 
+#=============================================================================
+# Target rules for targets named test_data_file
+
+# Build rule for target.
+test_data_file: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 test_data_file
+.PHONY : test_data_file
+
+# fast build rule for target.
+test_data_file/fast:
+	$(MAKE) -f CMakeFiles/test_data_file.dir/build.make CMakeFiles/test_data_file.dir/build
+.PHONY : test_data_file/fast
+
+#=============================================================================
+# Target rules for targets named test_file_io
+
+# Build rule for target.
+test_file_io: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 test_file_io
+.PHONY : test_file_io
+
+# fast build rule for target.
+test_file_io/fast:
+	$(MAKE) -f CMakeFiles/test_file_io.dir/build.make CMakeFiles/test_file_io.dir/build
+.PHONY : test_file_io/fast
+
+src/data_file.o: src/data_file.cc.o
+
+.PHONY : src/data_file.o
+
+# target to build an object file
+src/data_file.cc.o:
+	$(MAKE) -f CMakeFiles/test_data_file.dir/build.make CMakeFiles/test_data_file.dir/src/data_file.cc.o
+	$(MAKE) -f CMakeFiles/test_file_io.dir/build.make CMakeFiles/test_file_io.dir/src/data_file.cc.o
+.PHONY : src/data_file.cc.o
+
+src/data_file.i: src/data_file.cc.i
+
+.PHONY : src/data_file.i
+
+# target to preprocess a source file
+src/data_file.cc.i:
+	$(MAKE) -f CMakeFiles/test_data_file.dir/build.make CMakeFiles/test_data_file.dir/src/data_file.cc.i
+	$(MAKE) -f CMakeFiles/test_file_io.dir/build.make CMakeFiles/test_file_io.dir/src/data_file.cc.i
+.PHONY : src/data_file.cc.i
+
+src/data_file.s: src/data_file.cc.s
+
+.PHONY : src/data_file.s
+
+# target to generate assembly for a file
+src/data_file.cc.s:
+	$(MAKE) -f CMakeFiles/test_data_file.dir/build.make CMakeFiles/test_data_file.dir/src/data_file.cc.s
+	$(MAKE) -f CMakeFiles/test_file_io.dir/build.make CMakeFiles/test_file_io.dir/src/data_file.cc.s
+.PHONY : src/data_file.cc.s
+
+src/db.o: src/db.cc.o
+
+.PHONY : src/db.o
+
+# target to build an object file
+src/db.cc.o:
+	$(MAKE) -f CMakeFiles/test_data_file.dir/build.make CMakeFiles/test_data_file.dir/src/db.cc.o
+	$(MAKE) -f CMakeFiles/test_file_io.dir/build.make CMakeFiles/test_file_io.dir/src/db.cc.o
+.PHONY : src/db.cc.o
+
+src/db.i: src/db.cc.i
+
+.PHONY : src/db.i
+
+# target to preprocess a source file
+src/db.cc.i:
+	$(MAKE) -f CMakeFiles/test_data_file.dir/build.make CMakeFiles/test_data_file.dir/src/db.cc.i
+	$(MAKE) -f CMakeFiles/test_file_io.dir/build.make CMakeFiles/test_file_io.dir/src/db.cc.i
+.PHONY : src/db.cc.i
+
+src/db.s: src/db.cc.s
+
+.PHONY : src/db.s
+
+# target to generate assembly for a file
+src/db.cc.s:
+	$(MAKE) -f CMakeFiles/test_data_file.dir/build.make CMakeFiles/test_data_file.dir/src/db.cc.s
+	$(MAKE) -f CMakeFiles/test_file_io.dir/build.make CMakeFiles/test_file_io.dir/src/db.cc.s
+.PHONY : src/db.cc.s
+
+src/errors.o: src/errors.cc.o
+
+.PHONY : src/errors.o
+
+# target to build an object file
+src/errors.cc.o:
+	$(MAKE) -f CMakeFiles/test_data_file.dir/build.make CMakeFiles/test_data_file.dir/src/errors.cc.o
+	$(MAKE) -f CMakeFiles/test_file_io.dir/build.make CMakeFiles/test_file_io.dir/src/errors.cc.o
+.PHONY : src/errors.cc.o
+
+src/errors.i: src/errors.cc.i
+
+.PHONY : src/errors.i
+
+# target to preprocess a source file
+src/errors.cc.i:
+	$(MAKE) -f CMakeFiles/test_data_file.dir/build.make CMakeFiles/test_data_file.dir/src/errors.cc.i
+	$(MAKE) -f CMakeFiles/test_file_io.dir/build.make CMakeFiles/test_file_io.dir/src/errors.cc.i
+.PHONY : src/errors.cc.i
+
+src/errors.s: src/errors.cc.s
+
+.PHONY : src/errors.s
+
+# target to generate assembly for a file
+src/errors.cc.s:
+	$(MAKE) -f CMakeFiles/test_data_file.dir/build.make CMakeFiles/test_data_file.dir/src/errors.cc.s
+	$(MAKE) -f CMakeFiles/test_file_io.dir/build.make CMakeFiles/test_file_io.dir/src/errors.cc.s
+.PHONY : src/errors.cc.s
+
+src/file_io.o: src/file_io.cc.o
+
+.PHONY : src/file_io.o
+
+# target to build an object file
+src/file_io.cc.o:
+	$(MAKE) -f CMakeFiles/test_data_file.dir/build.make CMakeFiles/test_data_file.dir/src/file_io.cc.o
+	$(MAKE) -f CMakeFiles/test_file_io.dir/build.make CMakeFiles/test_file_io.dir/src/file_io.cc.o
+.PHONY : src/file_io.cc.o
+
+src/file_io.i: src/file_io.cc.i
+
+.PHONY : src/file_io.i
+
+# target to preprocess a source file
+src/file_io.cc.i:
+	$(MAKE) -f CMakeFiles/test_data_file.dir/build.make CMakeFiles/test_data_file.dir/src/file_io.cc.i
+	$(MAKE) -f CMakeFiles/test_file_io.dir/build.make CMakeFiles/test_file_io.dir/src/file_io.cc.i
+.PHONY : src/file_io.cc.i
+
+src/file_io.s: src/file_io.cc.s
+
+.PHONY : src/file_io.s
+
+# target to generate assembly for a file
+src/file_io.cc.s:
+	$(MAKE) -f CMakeFiles/test_data_file.dir/build.make CMakeFiles/test_data_file.dir/src/file_io.cc.s
+	$(MAKE) -f CMakeFiles/test_file_io.dir/build.make CMakeFiles/test_file_io.dir/src/file_io.cc.s
+.PHONY : src/file_io.cc.s
+
+src/index.o: src/index.cc.o
+
+.PHONY : src/index.o
+
+# target to build an object file
+src/index.cc.o:
+	$(MAKE) -f CMakeFiles/test_data_file.dir/build.make CMakeFiles/test_data_file.dir/src/index.cc.o
+	$(MAKE) -f CMakeFiles/test_file_io.dir/build.make CMakeFiles/test_file_io.dir/src/index.cc.o
+.PHONY : src/index.cc.o
+
+src/index.i: src/index.cc.i
+
+.PHONY : src/index.i
+
+# target to preprocess a source file
+src/index.cc.i:
+	$(MAKE) -f CMakeFiles/test_data_file.dir/build.make CMakeFiles/test_data_file.dir/src/index.cc.i
+	$(MAKE) -f CMakeFiles/test_file_io.dir/build.make CMakeFiles/test_file_io.dir/src/index.cc.i
+.PHONY : src/index.cc.i
+
+src/index.s: src/index.cc.s
+
+.PHONY : src/index.s
+
+# target to generate assembly for a file
+src/index.cc.s:
+	$(MAKE) -f CMakeFiles/test_data_file.dir/build.make CMakeFiles/test_data_file.dir/src/index.cc.s
+	$(MAKE) -f CMakeFiles/test_file_io.dir/build.make CMakeFiles/test_file_io.dir/src/index.cc.s
+.PHONY : src/index.cc.s
+
+src/log_record.o: src/log_record.cc.o
+
+.PHONY : src/log_record.o
+
+# target to build an object file
+src/log_record.cc.o:
+	$(MAKE) -f CMakeFiles/test_data_file.dir/build.make CMakeFiles/test_data_file.dir/src/log_record.cc.o
+	$(MAKE) -f CMakeFiles/test_file_io.dir/build.make CMakeFiles/test_file_io.dir/src/log_record.cc.o
+.PHONY : src/log_record.cc.o
+
+src/log_record.i: src/log_record.cc.i
+
+.PHONY : src/log_record.i
+
+# target to preprocess a source file
+src/log_record.cc.i:
+	$(MAKE) -f CMakeFiles/test_data_file.dir/build.make CMakeFiles/test_data_file.dir/src/log_record.cc.i
+	$(MAKE) -f CMakeFiles/test_file_io.dir/build.make CMakeFiles/test_file_io.dir/src/log_record.cc.i
+.PHONY : src/log_record.cc.i
+
+src/log_record.s: src/log_record.cc.s
+
+.PHONY : src/log_record.s
+
+# target to generate assembly for a file
+src/log_record.cc.s:
+	$(MAKE) -f CMakeFiles/test_data_file.dir/build.make CMakeFiles/test_data_file.dir/src/log_record.cc.s
+	$(MAKE) -f CMakeFiles/test_file_io.dir/build.make CMakeFiles/test_file_io.dir/src/log_record.cc.s
+.PHONY : src/log_record.cc.s
+
+src/map.o: src/map.cc.o
+
+.PHONY : src/map.o
+
+# target to build an object file
+src/map.cc.o:
+	$(MAKE) -f CMakeFiles/test_data_file.dir/build.make CMakeFiles/test_data_file.dir/src/map.cc.o
+	$(MAKE) -f CMakeFiles/test_file_io.dir/build.make CMakeFiles/test_file_io.dir/src/map.cc.o
+.PHONY : src/map.cc.o
+
+src/map.i: src/map.cc.i
+
+.PHONY : src/map.i
+
+# target to preprocess a source file
+src/map.cc.i:
+	$(MAKE) -f CMakeFiles/test_data_file.dir/build.make CMakeFiles/test_data_file.dir/src/map.cc.i
+	$(MAKE) -f CMakeFiles/test_file_io.dir/build.make CMakeFiles/test_file_io.dir/src/map.cc.i
+.PHONY : src/map.cc.i
+
+src/map.s: src/map.cc.s
+
+.PHONY : src/map.s
+
+# target to generate assembly for a file
+src/map.cc.s:
+	$(MAKE) -f CMakeFiles/test_data_file.dir/build.make CMakeFiles/test_data_file.dir/src/map.cc.s
+	$(MAKE) -f CMakeFiles/test_file_io.dir/build.make CMakeFiles/test_file_io.dir/src/map.cc.s
+.PHONY : src/map.cc.s
+
+tests/test_data_file.o: tests/test_data_file.cc.o
+
+.PHONY : tests/test_data_file.o
+
+# target to build an object file
+tests/test_data_file.cc.o:
+	$(MAKE) -f CMakeFiles/test_data_file.dir/build.make CMakeFiles/test_data_file.dir/tests/test_data_file.cc.o
+.PHONY : tests/test_data_file.cc.o
+
+tests/test_data_file.i: tests/test_data_file.cc.i
+
+.PHONY : tests/test_data_file.i
+
+# target to preprocess a source file
+tests/test_data_file.cc.i:
+	$(MAKE) -f CMakeFiles/test_data_file.dir/build.make CMakeFiles/test_data_file.dir/tests/test_data_file.cc.i
+.PHONY : tests/test_data_file.cc.i
+
+tests/test_data_file.s: tests/test_data_file.cc.s
+
+.PHONY : tests/test_data_file.s
+
+# target to generate assembly for a file
+tests/test_data_file.cc.s:
+	$(MAKE) -f CMakeFiles/test_data_file.dir/build.make CMakeFiles/test_data_file.dir/tests/test_data_file.cc.s
+.PHONY : tests/test_data_file.cc.s
+
+tests/test_file_io.o: tests/test_file_io.cc.o
+
+.PHONY : tests/test_file_io.o
+
+# target to build an object file
+tests/test_file_io.cc.o:
+	$(MAKE) -f CMakeFiles/test_file_io.dir/build.make CMakeFiles/test_file_io.dir/tests/test_file_io.cc.o
+.PHONY : tests/test_file_io.cc.o
+
+tests/test_file_io.i: tests/test_file_io.cc.i
+
+.PHONY : tests/test_file_io.i
+
+# target to preprocess a source file
+tests/test_file_io.cc.i:
+	$(MAKE) -f CMakeFiles/test_file_io.dir/build.make CMakeFiles/test_file_io.dir/tests/test_file_io.cc.i
+.PHONY : tests/test_file_io.cc.i
+
+tests/test_file_io.s: tests/test_file_io.cc.s
+
+.PHONY : tests/test_file_io.s
+
+# target to generate assembly for a file
+tests/test_file_io.cc.s:
+	$(MAKE) -f CMakeFiles/test_file_io.dir/build.make CMakeFiles/test_file_io.dir/tests/test_file_io.cc.s
+.PHONY : tests/test_file_io.cc.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -135,6 +425,35 @@ help:
 	@echo "... depend"
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
+	@echo "... test_data_file"
+	@echo "... test_file_io"
+	@echo "... src/data_file.o"
+	@echo "... src/data_file.i"
+	@echo "... src/data_file.s"
+	@echo "... src/db.o"
+	@echo "... src/db.i"
+	@echo "... src/db.s"
+	@echo "... src/errors.o"
+	@echo "... src/errors.i"
+	@echo "... src/errors.s"
+	@echo "... src/file_io.o"
+	@echo "... src/file_io.i"
+	@echo "... src/file_io.s"
+	@echo "... src/index.o"
+	@echo "... src/index.i"
+	@echo "... src/index.s"
+	@echo "... src/log_record.o"
+	@echo "... src/log_record.i"
+	@echo "... src/log_record.s"
+	@echo "... src/map.o"
+	@echo "... src/map.i"
+	@echo "... src/map.s"
+	@echo "... tests/test_data_file.o"
+	@echo "... tests/test_data_file.i"
+	@echo "... tests/test_data_file.s"
+	@echo "... tests/test_file_io.o"
+	@echo "... tests/test_file_io.i"
+	@echo "... tests/test_file_io.s"
 .PHONY : help
 
 

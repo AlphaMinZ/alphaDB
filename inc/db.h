@@ -25,7 +25,7 @@ public:
 
     std::map<uint32_t, DataFile::ptr> getOlderFiles() const { return m_olderFiles;}
 
-    Indexer::ptr getIndex() const const { return m_index;}
+    Indexer::ptr getIndex() const { return m_index;}
 
     void setOptions(Options options) { m_options = options;}
 
@@ -36,13 +36,13 @@ public:
     void setIndex(Indexer::ptr index) { m_index = index;}
 
     // Put 写入 Key/Value 数据，key 不能为空
-    void Put(std::vector<uint8_t> key, std::vector<uint8_t> value);
+    void Put(std::string key, std::string value);
 
     // Get 根据 key 读取数据
-    std::vector<uint8_t> Get(std::vector<uint8_t> key);
+    std::string Get(std::string key);
 
     // Delete 根据 key 删除对应的数据
-    void Delete(std::vector<uint8_t> key);
+    void Delete(std::string key);
 
     // 追加写数据到活跃文件中
     LogRecordPos::ptr appendLogRecord(LogRecord* logRecord);

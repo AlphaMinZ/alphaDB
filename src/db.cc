@@ -42,7 +42,7 @@ DB::ptr Open(Options options) {
 }
 
 // Put 写入 Key/Value 数据，key 不能为空
-void DB::Put(std::vector<uint8_t> key, std::vector<uint8_t> value) {
+void DB::Put(std::string key, std::string value) {
     // 判断 key 是否有效
     if(key.size() == 0) {
         throw MyErrors::ErrKeyIsEmpty;
@@ -59,7 +59,7 @@ void DB::Put(std::vector<uint8_t> key, std::vector<uint8_t> value) {
 }
 
 // Delete 根据 key 删除对应的数据
-void DB::Delete(std::vector<uint8_t> key) {
+void DB::Delete(std::string key) {
     alphaMin::RWMutex::ReadLock lock(m_RWMutex);
 
     // 判断 key 的有效性
@@ -85,7 +85,7 @@ void DB::Delete(std::vector<uint8_t> key) {
 }
 
 // Get 根据 key 读取数据
-std::vector<uint8_t> DB::Get(std::vector<uint8_t> key) {
+std::string DB::Get(std::string key) {
     alphaMin::RWMutex::ReadLock lock(m_RWMutex);
 
     // 判断 key 的有效性
@@ -139,9 +139,9 @@ LogRecordPos::ptr DB::appendLogRecord(LogRecord* logRecord) {
     }
 
     // 写入数据编码
-    std::vector<uint8_t> encRecord;
+    std::string encRecord;
     int64_t size;
-    EncodeLogRecord(logRecord, encRecord, size);
+    encRecord= EncodeLogRecord(logRecord, size);
     // 如果写入的数据已经到达了活跃文件的阈值，则关闭活跃文件，并打开新的文件
     if((m_activeFile->getWriteOff() + size) > m_options.DataFileSize) {
         // 先持久化数据文件，保证已有的数据持久到磁盘当中
@@ -177,7 +177,8 @@ void DB::setActiveDataFileLocked() {
         initialFileId = m_activeFile->getFileId() + 1;
     }
     // 打开新的数据文件
-    DataFile::ptr dataFile(new DataFile(m_options.DirPath, initialFileId));
+    // DataFile::ptr dataFile(new DataFile(m_options.DirPath, initialFileId));
+    DataFile::ptr dataFile = OpenDataFile(m_options.DirPath, initialFileId);
     m_activeFile = dataFile;
 }
 
@@ -250,7 +251,8 @@ void DB::loadDataFiles() {
     for(int i = 0; i < fileIds.size(); ++i) {
         int fid = fileIds[i];
 
-        DataFile::ptr dataFile(new DataFile(m_options.DirPath, (uint32_t)fid));
+        // DataFile::ptr dataFile(new DataFile(m_options.DirPath, (uint32_t)fid));
+        DataFile::ptr dataFile = OpenDataFile(m_options.DirPath, (uint32_t)fid);
         if(i == fileIds.size() - 1) {
             // 最后一个，id是最大的，说明是当前活跃文件
             m_activeFile = dataFile;

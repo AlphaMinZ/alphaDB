@@ -70,7 +70,8 @@ CMAKE_BINARY_DIR = /home/mz/workspace/alphaDB/build
 # Directory level rules for the build root directory
 
 # The main recursive "all" target.
-all:
+all: CMakeFiles/test_data_file.dir/all
+all: CMakeFiles/test_file_io.dir/all
 
 .PHONY : all
 
@@ -80,9 +81,64 @@ preinstall:
 .PHONY : preinstall
 
 # The main recursive "clean" target.
-clean:
+clean: CMakeFiles/test_data_file.dir/clean
+clean: CMakeFiles/test_file_io.dir/clean
 
 .PHONY : clean
+
+#=============================================================================
+# Target rules for target CMakeFiles/test_data_file.dir
+
+# All Build rule for target.
+CMakeFiles/test_data_file.dir/all:
+	$(MAKE) -f CMakeFiles/test_data_file.dir/build.make CMakeFiles/test_data_file.dir/depend
+	$(MAKE) -f CMakeFiles/test_data_file.dir/build.make CMakeFiles/test_data_file.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/mz/workspace/alphaDB/build/CMakeFiles --progress-num=1,2,3,4,5,6,7,8,9 "Built target test_data_file"
+.PHONY : CMakeFiles/test_data_file.dir/all
+
+# Build rule for subdir invocation for target.
+CMakeFiles/test_data_file.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/mz/workspace/alphaDB/build/CMakeFiles 9
+	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/test_data_file.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/mz/workspace/alphaDB/build/CMakeFiles 0
+.PHONY : CMakeFiles/test_data_file.dir/rule
+
+# Convenience name for target.
+test_data_file: CMakeFiles/test_data_file.dir/rule
+
+.PHONY : test_data_file
+
+# clean rule for target.
+CMakeFiles/test_data_file.dir/clean:
+	$(MAKE) -f CMakeFiles/test_data_file.dir/build.make CMakeFiles/test_data_file.dir/clean
+.PHONY : CMakeFiles/test_data_file.dir/clean
+
+#=============================================================================
+# Target rules for target CMakeFiles/test_file_io.dir
+
+# All Build rule for target.
+CMakeFiles/test_file_io.dir/all:
+	$(MAKE) -f CMakeFiles/test_file_io.dir/build.make CMakeFiles/test_file_io.dir/depend
+	$(MAKE) -f CMakeFiles/test_file_io.dir/build.make CMakeFiles/test_file_io.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/mz/workspace/alphaDB/build/CMakeFiles --progress-num=10,11,12,13,14,15,16,17,18 "Built target test_file_io"
+.PHONY : CMakeFiles/test_file_io.dir/all
+
+# Build rule for subdir invocation for target.
+CMakeFiles/test_file_io.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/mz/workspace/alphaDB/build/CMakeFiles 9
+	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/test_file_io.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/mz/workspace/alphaDB/build/CMakeFiles 0
+.PHONY : CMakeFiles/test_file_io.dir/rule
+
+# Convenience name for target.
+test_file_io: CMakeFiles/test_file_io.dir/rule
+
+.PHONY : test_file_io
+
+# clean rule for target.
+CMakeFiles/test_file_io.dir/clean:
+	$(MAKE) -f CMakeFiles/test_file_io.dir/build.make CMakeFiles/test_file_io.dir/clean
+.PHONY : CMakeFiles/test_file_io.dir/clean
 
 #=============================================================================
 # Special targets to cleanup operation of make.

@@ -15,8 +15,17 @@ LogRecordPos::LogRecordPos(uint32_t Fid, int64_t Offset) {
     offset = Offset;
 }
 
-void EncodeLogRecord(LogRecord* logRecoed, std::vector<uint8_t>& str_, int64_t& len_) {
+std::string EncodeLogRecord(LogRecord* logRecoed, int64_t& len_) {
     
+}
+
+// 对字节数组中的 Header 信息进行解码
+logRecordHeader* decodeLogRecordheader(std::string buf, int64_t& headerSize_) {
+
+}
+
+uint32_t getLogRecordCRC(LogRecord* lr, std::string header) {
+
 }
 
 }

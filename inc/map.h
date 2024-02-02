@@ -19,15 +19,15 @@ public:
     Map();
     ~Map() {}
 
-    LogRecordPos::ptr Put(const std::vector<uint8_t> key, LogRecordPos::ptr pos, bool* isOk_) override;
+    LogRecordPos::ptr Put(const std::string key, LogRecordPos::ptr pos, bool* isOk_) override;
 
-    LogRecordPos::ptr Get(const std::vector<uint8_t> key) override;
+    LogRecordPos::ptr Get(const std::string key) override;
 
-    LogRecordPos::ptr Delete(std::vector<uint8_t> key, bool* isOk_) override;
+    LogRecordPos::ptr Delete(std::string key, bool* isOk_) override;
 
     int size() const { return m_map.size();}
 private:
-    std::map<std::vector<uint8_t>, LogRecordPos::ptr> m_map;
+    std::map<std::string, LogRecordPos::ptr> m_map;
     alphaMin::RWMutex m_mutex;
 };
 
