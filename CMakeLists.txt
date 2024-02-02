@@ -10,10 +10,13 @@ file(GLOB SRC ${CMAKE_CURRENT_SOURCE_DIR}/src/*.cc)
 
 link_directories(${CMAKE_CURRENT_SOURCE_DIR}/lib)
 
+find_package(ZLIB REQUIRED)
+
 set(
     LIB_LIB
     pthread
     alpha
+    ZLIB::ZLIB    
 )
 
 add_executable(test_file_io tests/test_file_io.cc ${SRC})
@@ -21,6 +24,9 @@ target_link_libraries(test_file_io ${LIB_LIB})
 
 add_executable(test_data_file tests/test_data_file.cc ${SRC})
 target_link_libraries(test_data_file ${LIB_LIB}) 
+
+add_executable(test_log_record tests/test_log_record.cc ${SRC})
+target_link_libraries(test_log_record ${LIB_LIB}) 
 
 SET(EXECUTABLE_OUTPUT_PATH ${CMAKE_CURRENT_SOURCE_DIR}/bin)
 SET(CMAKE_BUILD_TYPE "Debug")  # 定义编译类型

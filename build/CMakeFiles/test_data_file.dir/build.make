@@ -201,6 +201,7 @@ test_data_file_EXTERNAL_OBJECTS =
 ../bin/test_data_file: CMakeFiles/test_data_file.dir/src/log_record.cc.o
 ../bin/test_data_file: CMakeFiles/test_data_file.dir/src/map.cc.o
 ../bin/test_data_file: CMakeFiles/test_data_file.dir/build.make
+../bin/test_data_file: /usr/lib64/libz.so
 ../bin/test_data_file: CMakeFiles/test_data_file.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/mz/workspace/alphaDB/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Linking CXX executable ../bin/test_data_file"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/test_data_file.dir/link.txt --verbose=$(VERBOSE)

@@ -9,8 +9,8 @@
 #include <cstdint>
 
 // crc type keySize valueSize
-// 4 +  1  +  5   +   5 = 15
-#define maxLogRecordHeaderSize          (std::numeric_limits<uint32_t>::digits + 6) / 7 * 2 + 5;
+// 4 +  1  +  4   +   4 = 13
+#define maxLogRecordHeaderSize          13
 #define CRC32_SIZE                      4
 
 namespace alphaDB {
@@ -34,12 +34,12 @@ typedef struct _LogRecord {
 }LogRecord;
 
 // LogRecord 的头部信息
-typedef struct _logRecordHeader {
+typedef struct _LogRecordHeader {
     uint32_t crc;                   // crc 校验值
     LogRecordTypeEnum recordType;   // 标识 LogRecord 的类型
     uint32_t keySize;               // key 的长度
     uint32_t valueSize;             // value 的长度
-}logRecordHeader;
+}LogRecordHeader;
 
 // LogRecordPos 数据内存索引，主要是描述数据在磁盘上的位置
 class LogRecordPos {
@@ -61,7 +61,7 @@ public:
 std::string EncodeLogRecord(LogRecord* logRecoed, int64_t& len_);
 
 // 对字节数组中的 Header 信息进行解码
-logRecordHeader* decodeLogRecordheader(std::string buf, int64_t& headerSize_);
+LogRecordHeader* decodeLogRecordheader(std::string buf, int64_t& headerSize_);
 
 uint32_t getLogRecordCRC(LogRecord* lr, std::string header);
 

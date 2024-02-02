@@ -41,7 +41,7 @@ LogRecord* DataFile::ReadLogRecord(int64_t offset, uint32_t& size_, bool* isEOF_
     std::string headerBuf = readNBytes(headerBytes, offset);
 
     int64_t headerSize = 0;
-    logRecordHeader* header = decodeLogRecordheader(headerBuf, headerSize);
+    LogRecordHeader* header = decodeLogRecordheader(headerBuf, headerSize);
     // 下面的两个条件表示读取到了文件末尾，直接返回 EOF 错误
     if(header == nullptr) {
         *isEOF_ = true;
@@ -76,7 +76,7 @@ LogRecord* DataFile::ReadLogRecord(int64_t offset, uint32_t& size_, bool* isEOF_
     return logRecord;
 }
 
-void DataFile::Write(std::string& buf) {
+void DataFile::Write(std::string buf) {
     int n = m_ioManager->Write(buf.c_str());
     m_writeOff += (int64_t)n;
 }

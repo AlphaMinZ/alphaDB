@@ -23,7 +23,7 @@ public:
 
     LogRecord* ReadLogRecord(int64_t offset, uint32_t& size_, bool* isEOF_);
 
-    void Write(std::string& buf);
+    void Write(std::string buf);
 
     void Sync();
 

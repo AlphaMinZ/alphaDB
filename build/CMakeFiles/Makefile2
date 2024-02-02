@@ -70,6 +70,7 @@ CMAKE_BINARY_DIR = /home/mz/workspace/alphaDB/build
 # Directory level rules for the build root directory
 
 # The main recursive "all" target.
+all: CMakeFiles/test_log_record.dir/all
 all: CMakeFiles/test_data_file.dir/all
 all: CMakeFiles/test_file_io.dir/all
 
@@ -81,10 +82,38 @@ preinstall:
 .PHONY : preinstall
 
 # The main recursive "clean" target.
+clean: CMakeFiles/test_log_record.dir/clean
 clean: CMakeFiles/test_data_file.dir/clean
 clean: CMakeFiles/test_file_io.dir/clean
 
 .PHONY : clean
+
+#=============================================================================
+# Target rules for target CMakeFiles/test_log_record.dir
+
+# All Build rule for target.
+CMakeFiles/test_log_record.dir/all:
+	$(MAKE) -f CMakeFiles/test_log_record.dir/build.make CMakeFiles/test_log_record.dir/depend
+	$(MAKE) -f CMakeFiles/test_log_record.dir/build.make CMakeFiles/test_log_record.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/mz/workspace/alphaDB/build/CMakeFiles --progress-num=19,20,21,22,23,24,25,26,27 "Built target test_log_record"
+.PHONY : CMakeFiles/test_log_record.dir/all
+
+# Build rule for subdir invocation for target.
+CMakeFiles/test_log_record.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/mz/workspace/alphaDB/build/CMakeFiles 9
+	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/test_log_record.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/mz/workspace/alphaDB/build/CMakeFiles 0
+.PHONY : CMakeFiles/test_log_record.dir/rule
+
+# Convenience name for target.
+test_log_record: CMakeFiles/test_log_record.dir/rule
+
+.PHONY : test_log_record
+
+# clean rule for target.
+CMakeFiles/test_log_record.dir/clean:
+	$(MAKE) -f CMakeFiles/test_log_record.dir/build.make CMakeFiles/test_log_record.dir/clean
+.PHONY : CMakeFiles/test_log_record.dir/clean
 
 #=============================================================================
 # Target rules for target CMakeFiles/test_data_file.dir

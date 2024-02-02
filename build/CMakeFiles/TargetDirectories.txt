@@ -1,4 +1,5 @@
 /home/mz/workspace/alphaDB/build/CMakeFiles/rebuild_cache.dir
 /home/mz/workspace/alphaDB/build/CMakeFiles/edit_cache.dir
+/home/mz/workspace/alphaDB/build/CMakeFiles/test_log_record.dir
 /home/mz/workspace/alphaDB/build/CMakeFiles/test_data_file.dir
 /home/mz/workspace/alphaDB/build/CMakeFiles/test_file_io.dir
