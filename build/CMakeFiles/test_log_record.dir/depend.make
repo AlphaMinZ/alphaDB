@@ -41,6 +41,11 @@ CMakeFiles/test_log_record.dir/src/map.cc.o: ../lib/inc/mutex.h
 CMakeFiles/test_log_record.dir/src/map.cc.o: ../lib/inc/noncopyable.h
 CMakeFiles/test_log_record.dir/src/map.cc.o: ../src/map.cc
 
+CMakeFiles/test_log_record.dir/src/options.cc.o: ../inc/index.h
+CMakeFiles/test_log_record.dir/src/options.cc.o: ../inc/log_record.h
+CMakeFiles/test_log_record.dir/src/options.cc.o: ../inc/options.h
+CMakeFiles/test_log_record.dir/src/options.cc.o: ../src/options.cc
+
 CMakeFiles/test_log_record.dir/tests/test_log_record.cc.o: ../inc/log_record.h
 CMakeFiles/test_log_record.dir/tests/test_log_record.cc.o: ../lib/inc/log.h
 CMakeFiles/test_log_record.dir/tests/test_log_record.cc.o: ../lib/inc/mutex.h

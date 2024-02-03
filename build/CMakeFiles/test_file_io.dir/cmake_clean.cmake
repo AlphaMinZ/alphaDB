@@ -8,6 +8,7 @@ file(REMOVE_RECURSE
   "CMakeFiles/test_file_io.dir/src/index.cc.o"
   "CMakeFiles/test_file_io.dir/src/log_record.cc.o"
   "CMakeFiles/test_file_io.dir/src/map.cc.o"
+  "CMakeFiles/test_file_io.dir/src/options.cc.o"
   "CMakeFiles/test_file_io.dir/tests/test_file_io.cc.o"
 )
 

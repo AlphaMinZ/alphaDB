@@ -11,6 +11,7 @@ set(CMAKE_DEPENDS_CHECK_CXX
   "/home/mz/workspace/alphaDB/src/index.cc" "/home/mz/workspace/alphaDB/build/CMakeFiles/test_file_io.dir/src/index.cc.o"
   "/home/mz/workspace/alphaDB/src/log_record.cc" "/home/mz/workspace/alphaDB/build/CMakeFiles/test_file_io.dir/src/log_record.cc.o"
   "/home/mz/workspace/alphaDB/src/map.cc" "/home/mz/workspace/alphaDB/build/CMakeFiles/test_file_io.dir/src/map.cc.o"
+  "/home/mz/workspace/alphaDB/src/options.cc" "/home/mz/workspace/alphaDB/build/CMakeFiles/test_file_io.dir/src/options.cc.o"
   "/home/mz/workspace/alphaDB/tests/test_file_io.cc" "/home/mz/workspace/alphaDB/build/CMakeFiles/test_file_io.dir/tests/test_file_io.cc.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")

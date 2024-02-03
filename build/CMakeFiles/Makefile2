@@ -70,6 +70,7 @@ CMAKE_BINARY_DIR = /home/mz/workspace/alphaDB/build
 # Directory level rules for the build root directory
 
 # The main recursive "all" target.
+all: CMakeFiles/test_db.dir/all
 all: CMakeFiles/test_log_record.dir/all
 all: CMakeFiles/test_data_file.dir/all
 all: CMakeFiles/test_file_io.dir/all
@@ -82,11 +83,39 @@ preinstall:
 .PHONY : preinstall
 
 # The main recursive "clean" target.
+clean: CMakeFiles/test_db.dir/clean
 clean: CMakeFiles/test_log_record.dir/clean
 clean: CMakeFiles/test_data_file.dir/clean
 clean: CMakeFiles/test_file_io.dir/clean
 
 .PHONY : clean
+
+#=============================================================================
+# Target rules for target CMakeFiles/test_db.dir
+
+# All Build rule for target.
+CMakeFiles/test_db.dir/all:
+	$(MAKE) -f CMakeFiles/test_db.dir/build.make CMakeFiles/test_db.dir/depend
+	$(MAKE) -f CMakeFiles/test_db.dir/build.make CMakeFiles/test_db.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/mz/workspace/alphaDB/build/CMakeFiles --progress-num=11,12,13,14,15,16,17,18,19,20 "Built target test_db"
+.PHONY : CMakeFiles/test_db.dir/all
+
+# Build rule for subdir invocation for target.
+CMakeFiles/test_db.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/mz/workspace/alphaDB/build/CMakeFiles 10
+	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/test_db.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/mz/workspace/alphaDB/build/CMakeFiles 0
+.PHONY : CMakeFiles/test_db.dir/rule
+
+# Convenience name for target.
+test_db: CMakeFiles/test_db.dir/rule
+
+.PHONY : test_db
+
+# clean rule for target.
+CMakeFiles/test_db.dir/clean:
+	$(MAKE) -f CMakeFiles/test_db.dir/build.make CMakeFiles/test_db.dir/clean
+.PHONY : CMakeFiles/test_db.dir/clean
 
 #=============================================================================
 # Target rules for target CMakeFiles/test_log_record.dir
@@ -95,12 +124,12 @@ clean: CMakeFiles/test_file_io.dir/clean
 CMakeFiles/test_log_record.dir/all:
 	$(MAKE) -f CMakeFiles/test_log_record.dir/build.make CMakeFiles/test_log_record.dir/depend
 	$(MAKE) -f CMakeFiles/test_log_record.dir/build.make CMakeFiles/test_log_record.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/mz/workspace/alphaDB/build/CMakeFiles --progress-num=19,20,21,22,23,24,25,26,27 "Built target test_log_record"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/mz/workspace/alphaDB/build/CMakeFiles --progress-num=31,32,33,34,35,36,37,38,39,40 "Built target test_log_record"
 .PHONY : CMakeFiles/test_log_record.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/test_log_record.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/mz/workspace/alphaDB/build/CMakeFiles 9
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/mz/workspace/alphaDB/build/CMakeFiles 10
 	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/test_log_record.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/mz/workspace/alphaDB/build/CMakeFiles 0
 .PHONY : CMakeFiles/test_log_record.dir/rule
@@ -122,12 +151,12 @@ CMakeFiles/test_log_record.dir/clean:
 CMakeFiles/test_data_file.dir/all:
 	$(MAKE) -f CMakeFiles/test_data_file.dir/build.make CMakeFiles/test_data_file.dir/depend
 	$(MAKE) -f CMakeFiles/test_data_file.dir/build.make CMakeFiles/test_data_file.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/mz/workspace/alphaDB/build/CMakeFiles --progress-num=1,2,3,4,5,6,7,8,9 "Built target test_data_file"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/mz/workspace/alphaDB/build/CMakeFiles --progress-num=1,2,3,4,5,6,7,8,9,10 "Built target test_data_file"
 .PHONY : CMakeFiles/test_data_file.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/test_data_file.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/mz/workspace/alphaDB/build/CMakeFiles 9
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/mz/workspace/alphaDB/build/CMakeFiles 10
 	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/test_data_file.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/mz/workspace/alphaDB/build/CMakeFiles 0
 .PHONY : CMakeFiles/test_data_file.dir/rule
@@ -149,12 +178,12 @@ CMakeFiles/test_data_file.dir/clean:
 CMakeFiles/test_file_io.dir/all:
 	$(MAKE) -f CMakeFiles/test_file_io.dir/build.make CMakeFiles/test_file_io.dir/depend
 	$(MAKE) -f CMakeFiles/test_file_io.dir/build.make CMakeFiles/test_file_io.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/mz/workspace/alphaDB/build/CMakeFiles --progress-num=10,11,12,13,14,15,16,17,18 "Built target test_file_io"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/mz/workspace/alphaDB/build/CMakeFiles --progress-num=21,22,23,24,25,26,27,28,29,30 "Built target test_file_io"
 .PHONY : CMakeFiles/test_file_io.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/test_file_io.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/mz/workspace/alphaDB/build/CMakeFiles 9
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/mz/workspace/alphaDB/build/CMakeFiles 10
 	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/test_file_io.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/mz/workspace/alphaDB/build/CMakeFiles 0
 .PHONY : CMakeFiles/test_file_io.dir/rule

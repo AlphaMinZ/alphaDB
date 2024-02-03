@@ -41,6 +41,11 @@ CMakeFiles/test_file_io.dir/src/map.cc.o
  /home/mz/workspace/alphaDB/lib/inc/mutex.h
  /home/mz/workspace/alphaDB/lib/inc/noncopyable.h
  /home/mz/workspace/alphaDB/src/map.cc
+CMakeFiles/test_file_io.dir/src/options.cc.o
+ /home/mz/workspace/alphaDB/inc/index.h
+ /home/mz/workspace/alphaDB/inc/log_record.h
+ /home/mz/workspace/alphaDB/inc/options.h
+ /home/mz/workspace/alphaDB/src/options.cc
 CMakeFiles/test_file_io.dir/tests/test_file_io.cc.o
  /home/mz/workspace/alphaDB/inc/file_io.h
  /home/mz/workspace/alphaDB/lib/inc/log.h

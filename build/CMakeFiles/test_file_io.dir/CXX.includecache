@@ -90,22 +90,6 @@ limits
 cstdint
 -
 
-/home/mz/workspace/alphaDB/inc/map.h
-index.h
-/home/mz/workspace/alphaDB/inc/index.h
-log_record.h
-/home/mz/workspace/alphaDB/inc/log_record.h
-../lib/inc/mutex.h
-/home/mz/workspace/alphaDB/lib/inc/mutex.h
-map
--
-vector
--
-memory
--
-stdint.h
--
-
 /home/mz/workspace/alphaDB/inc/options.h
 memory
 -
@@ -136,16 +120,6 @@ noncopyable.h
 
 /home/mz/workspace/alphaDB/lib/inc/noncopyable.h
 
-/home/mz/workspace/alphaDB/src/data_file.cc
-../inc/data_file.h
-/home/mz/workspace/alphaDB/inc/data_file.h
-iostream
--
-iomanip
--
-sstream
--
-
 /home/mz/workspace/alphaDB/src/db.cc
 stdio.h
 -
@@ -165,30 +139,4 @@ algorithm
 /home/mz/workspace/alphaDB/inc/db.h
 ../lib/inc/mutex.h
 /home/mz/workspace/alphaDB/lib/inc/mutex.h
-
-/home/mz/workspace/alphaDB/src/index.cc
-../inc/index.h
-/home/mz/workspace/alphaDB/inc/index.h
-../inc/map.h
-/home/mz/workspace/alphaDB/inc/map.h
-
-/home/mz/workspace/alphaDB/src/log_record.cc
-../inc/log_record.h
-/home/mz/workspace/alphaDB/inc/log_record.h
-stdint.h
--
-iostream
--
-string
--
-cstring
--
-zlib.h
--
-algorithm
--
-
-/home/mz/workspace/alphaDB/src/map.cc
-../inc/map.h
-/home/mz/workspace/alphaDB/inc/map.h
 
