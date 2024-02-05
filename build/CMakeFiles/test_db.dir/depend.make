@@ -31,6 +31,18 @@ CMakeFiles/test_db.dir/src/index.cc.o: ../lib/inc/mutex.h
 CMakeFiles/test_db.dir/src/index.cc.o: ../lib/inc/noncopyable.h
 CMakeFiles/test_db.dir/src/index.cc.o: ../src/index.cc
 
+CMakeFiles/test_db.dir/src/iterator.cc.o: ../inc/data_file.h
+CMakeFiles/test_db.dir/src/iterator.cc.o: ../inc/db.h
+CMakeFiles/test_db.dir/src/iterator.cc.o: ../inc/errors.h
+CMakeFiles/test_db.dir/src/iterator.cc.o: ../inc/file_io.h
+CMakeFiles/test_db.dir/src/iterator.cc.o: ../inc/index.h
+CMakeFiles/test_db.dir/src/iterator.cc.o: ../inc/iterator.h
+CMakeFiles/test_db.dir/src/iterator.cc.o: ../inc/log_record.h
+CMakeFiles/test_db.dir/src/iterator.cc.o: ../inc/options.h
+CMakeFiles/test_db.dir/src/iterator.cc.o: ../lib/inc/mutex.h
+CMakeFiles/test_db.dir/src/iterator.cc.o: ../lib/inc/noncopyable.h
+CMakeFiles/test_db.dir/src/iterator.cc.o: ../src/iterator.cc
+
 CMakeFiles/test_db.dir/src/log_record.cc.o: ../inc/log_record.h
 CMakeFiles/test_db.dir/src/log_record.cc.o: ../src/log_record.cc
 

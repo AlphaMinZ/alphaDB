@@ -26,7 +26,7 @@ LogRecordPos::LogRecordPos(uint32_t Fid, int64_t Offset) {
 //	+-------------+-------------+-------------+--------------+-------------+--------------+
 //	    4字节          1字节          4字节          4字节           变长           变长
 std::string EncodeLogRecord(LogRecord* logRecoed, int64_t& len_) {
-    std::string header(maxLogRecordHeaderSize, ' ');
+    std::string header(maxLogRecordHeaderSize, '\0');
 
     // 第五个字节存储 Type
 	header[4] = logRecoed->Type;
@@ -34,21 +34,19 @@ std::string EncodeLogRecord(LogRecord* logRecoed, int64_t& len_) {
     // 5 字节之后，存储的是 key 和 value 的长度信息
     int32_t keyLength = static_cast<int32_t>(logRecoed->Key.size());
     int32_t valueLength = static_cast<int32_t>(logRecoed->Value.size());
-    // header.insert(index, reinterpret_cast<const char*>(&keyLength), sizeof(uint64_t));
     std::memcpy(&header[index], &keyLength, sizeof(uint32_t));
     index += sizeof(uint32_t);
-    // header.insert(index, reinterpret_cast<const char*>(&valueLength), sizeof(uint64_t));
     std::memcpy(&header[index], &valueLength, sizeof(uint32_t));
     index += sizeof(uint32_t);
 
     int64_t size = index + keyLength + valueLength;
-    std::string encBytes(size, ' ');
+    std::string encBytes(size, '\0');
 
     // 将 header 部分的内容拷贝过来
     std::copy(header.begin(), header.begin() + index, encBytes.begin());
     // 将 key 和 value 数据拷贝到字节数组中
     std::copy(logRecoed->Key.begin(), logRecoed->Key.end(), encBytes.begin() + index);
-    std::copy(logRecoed->Value.begin(), logRecoed->Value.end(), encBytes.begin() + index + keyLength);
+    std::copy(logRecoed->Value.begin(), logRecoed->Value.end(), encBytes.begin() + index + logRecoed->Key.size());
 
     // 对整个 LogRecord 的数据进行 crc 校验
     size_t crcStartIndex = 4;

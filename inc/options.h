@@ -15,6 +15,13 @@ typedef struct _Options {
     IndexerType IndexType;  // 索引类型
 }Options;
 
+typedef struct _IteratorOption {
+    // 遍历前缀为指定值的 Key，默认为空
+    std::string Prefix;
+    // 是否反向遍历，默认 false 是正向
+    bool Reverse;
+}IteratorOption;
+
 }
 
 #endif

@@ -359,6 +359,42 @@ src/index.cc.s:
 	$(MAKE) -f CMakeFiles/test_file_io.dir/build.make CMakeFiles/test_file_io.dir/src/index.cc.s
 .PHONY : src/index.cc.s
 
+src/iterator.o: src/iterator.cc.o
+
+.PHONY : src/iterator.o
+
+# target to build an object file
+src/iterator.cc.o:
+	$(MAKE) -f CMakeFiles/test_db.dir/build.make CMakeFiles/test_db.dir/src/iterator.cc.o
+	$(MAKE) -f CMakeFiles/test_log_record.dir/build.make CMakeFiles/test_log_record.dir/src/iterator.cc.o
+	$(MAKE) -f CMakeFiles/test_data_file.dir/build.make CMakeFiles/test_data_file.dir/src/iterator.cc.o
+	$(MAKE) -f CMakeFiles/test_file_io.dir/build.make CMakeFiles/test_file_io.dir/src/iterator.cc.o
+.PHONY : src/iterator.cc.o
+
+src/iterator.i: src/iterator.cc.i
+
+.PHONY : src/iterator.i
+
+# target to preprocess a source file
+src/iterator.cc.i:
+	$(MAKE) -f CMakeFiles/test_db.dir/build.make CMakeFiles/test_db.dir/src/iterator.cc.i
+	$(MAKE) -f CMakeFiles/test_log_record.dir/build.make CMakeFiles/test_log_record.dir/src/iterator.cc.i
+	$(MAKE) -f CMakeFiles/test_data_file.dir/build.make CMakeFiles/test_data_file.dir/src/iterator.cc.i
+	$(MAKE) -f CMakeFiles/test_file_io.dir/build.make CMakeFiles/test_file_io.dir/src/iterator.cc.i
+.PHONY : src/iterator.cc.i
+
+src/iterator.s: src/iterator.cc.s
+
+.PHONY : src/iterator.s
+
+# target to generate assembly for a file
+src/iterator.cc.s:
+	$(MAKE) -f CMakeFiles/test_db.dir/build.make CMakeFiles/test_db.dir/src/iterator.cc.s
+	$(MAKE) -f CMakeFiles/test_log_record.dir/build.make CMakeFiles/test_log_record.dir/src/iterator.cc.s
+	$(MAKE) -f CMakeFiles/test_data_file.dir/build.make CMakeFiles/test_data_file.dir/src/iterator.cc.s
+	$(MAKE) -f CMakeFiles/test_file_io.dir/build.make CMakeFiles/test_file_io.dir/src/iterator.cc.s
+.PHONY : src/iterator.cc.s
+
 src/log_record.o: src/log_record.cc.o
 
 .PHONY : src/log_record.o
@@ -602,6 +638,9 @@ help:
 	@echo "... src/index.o"
 	@echo "... src/index.i"
 	@echo "... src/index.s"
+	@echo "... src/iterator.o"
+	@echo "... src/iterator.i"
+	@echo "... src/iterator.s"
 	@echo "... src/log_record.o"
 	@echo "... src/log_record.i"
 	@echo "... src/log_record.s"

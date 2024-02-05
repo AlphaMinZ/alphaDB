@@ -46,6 +46,12 @@ public:
         m_locked = true;
     }
 
+    // ScopedLockImpl(const T& mutex)
+    //     :m_mutex(mutex) {
+    //     m_mutex.lock();
+    //     m_locked = true;
+    // }
+
     /**
      * @brief 析构函数,自动释放锁
      */

@@ -12,7 +12,7 @@
 namespace alphaDB {
 
 // Open 打开 bitcask 存储引擎实例
-DB::ptr Open(Options options) {
+DB::ptr Open(Options& options) {
     // 对用户传入的配置项进行校验
     checkOptions(options);
 
@@ -26,7 +26,7 @@ DB::ptr Open(Options options) {
     }
 
     // 初始化 DB 实体
-    DB::ptr db;
+    DB::ptr db(new DB);
     {
         db->setOptions(options);
         db->setIndex(NewIndexer(options.IndexType));
@@ -39,6 +39,36 @@ DB::ptr Open(Options options) {
     db->loadIndexFromDataFiles();
 
     return db;
+}
+
+// Close 关闭数据库
+void DB::Close() {
+    if(m_activeFile.get() == nullptr) {
+        return;
+    }
+    alphaMin::Mutex::Lock lock(m_mutex);
+
+    // 关闭活跃文件
+    m_activeFile->Close();
+
+    // 关闭旧的数据文件
+    for(const auto& pair : m_olderFiles) {
+        m_olderFiles[pair.first]->Close();
+    }
+
+    lock.unlock();
+}
+
+// Sync 持久化数据文件
+void DB::Sync() {
+    if(m_activeFile.get() == nullptr) {
+        return;
+    }
+    alphaMin::Mutex::Lock lock(m_mutex);
+
+    m_activeFile->Sync();
+
+    lock.unlock();
 }
 
 // Put 写入 Key/Value 数据，key 不能为空
@@ -99,9 +129,47 @@ std::string DB::Get(std::string key) {
     // 如果 key 不在内存索引中，说明 key 不存在
     if(logRecordPos.get() == nullptr) {
         lock.unlock();
+        std::cout << "-------------\n";
         throw MyErrors::ErrKeyNotFound;
+        std::cout << "-------------\n";
     }
 
+    std::string value = getValueByPosition(logRecordPos); 
+
+    lock.unlock();
+    return value;
+}
+
+// ListKeys 获取数据库中所有的 key
+std::vector<std::string> DB::ListKeys() {
+    IteratorInterFace::ptr iterator = m_index->Iterator(false);
+    std::vector<std::string> keys(m_index->Size());
+
+    int idx = 0;
+    for(iterator->Rewind(); iterator->Valid(); iterator->Next()) {
+        keys[idx] = iterator->Key();
+        idx++;
+    }
+
+    return keys;
+}
+
+// Fold 获取所有的数据，并执行用户指定的操作，函数返回 false 时终止遍历
+void DB::Fold(std::function<bool (std::string key, std::string value)> f) {
+    alphaMin::Mutex::Lock lock(m_mutex);
+
+    IteratorInterFace::ptr iterator = m_index->Iterator(false);
+    for(iterator->Rewind(); iterator->Valid(); iterator->Next()) {
+        std::string value = getValueByPosition(iterator->Value());
+
+        if(!f(iterator->Key(), value)) {
+            break;
+        }
+    }
+}
+
+// 根据索引信息获取对应的 value
+std::string DB::getValueByPosition(LogRecordPos::ptr logRecordPos) {
     // 根据文件 id 找到对应的数据文件
     DataFile::ptr dataFile;
     if(m_activeFile->getFileId() == logRecordPos->fId) {
@@ -111,7 +179,6 @@ std::string DB::Get(std::string key) {
     }
     // 数据文件为空
     if(dataFile.get() == nullptr) {
-        lock.unlock();
         throw MyErrors::ErrDataFileNotFound;
     }
 
@@ -120,11 +187,9 @@ std::string DB::Get(std::string key) {
     LogRecord* logRecord = dataFile->ReadLogRecord(logRecordPos->offset, size, nullptr);
 
     if(logRecord->Type == LogRecordDeleted) {
-        lock.unlock();
         throw MyErrors::ErrKeyNotFound;
     }
 
-    lock.unlock();
     return logRecord->Value;
 }
 
@@ -284,9 +349,13 @@ void DB::loadIndexFromDataFiles() {
         LogRecord* logRecord;
         while(true) {
             uint32_t size = 0;
-            bool isEOF;
+            bool isEOF = false;
             logRecord = dataFile->ReadLogRecord(offset, size, &isEOF);
             if(isEOF) {
+                break;
+            }
+
+            if(logRecord == nullptr) {
                 break;
             }
 

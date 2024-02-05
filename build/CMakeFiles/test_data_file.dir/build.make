@@ -152,9 +152,22 @@ CMakeFiles/test_data_file.dir/src/index.cc.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/test_data_file.dir/src/index.cc.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/mz/workspace/alphaDB/src/index.cc -o CMakeFiles/test_data_file.dir/src/index.cc.s
 
+CMakeFiles/test_data_file.dir/src/iterator.cc.o: CMakeFiles/test_data_file.dir/flags.make
+CMakeFiles/test_data_file.dir/src/iterator.cc.o: ../src/iterator.cc
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/mz/workspace/alphaDB/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/test_data_file.dir/src/iterator.cc.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/test_data_file.dir/src/iterator.cc.o -c /home/mz/workspace/alphaDB/src/iterator.cc
+
+CMakeFiles/test_data_file.dir/src/iterator.cc.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/test_data_file.dir/src/iterator.cc.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/mz/workspace/alphaDB/src/iterator.cc > CMakeFiles/test_data_file.dir/src/iterator.cc.i
+
+CMakeFiles/test_data_file.dir/src/iterator.cc.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/test_data_file.dir/src/iterator.cc.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/mz/workspace/alphaDB/src/iterator.cc -o CMakeFiles/test_data_file.dir/src/iterator.cc.s
+
 CMakeFiles/test_data_file.dir/src/log_record.cc.o: CMakeFiles/test_data_file.dir/flags.make
 CMakeFiles/test_data_file.dir/src/log_record.cc.o: ../src/log_record.cc
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/mz/workspace/alphaDB/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/test_data_file.dir/src/log_record.cc.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/mz/workspace/alphaDB/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/test_data_file.dir/src/log_record.cc.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/test_data_file.dir/src/log_record.cc.o -c /home/mz/workspace/alphaDB/src/log_record.cc
 
 CMakeFiles/test_data_file.dir/src/log_record.cc.i: cmake_force
@@ -167,7 +180,7 @@ CMakeFiles/test_data_file.dir/src/log_record.cc.s: cmake_force
 
 CMakeFiles/test_data_file.dir/src/map.cc.o: CMakeFiles/test_data_file.dir/flags.make
 CMakeFiles/test_data_file.dir/src/map.cc.o: ../src/map.cc
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/mz/workspace/alphaDB/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/test_data_file.dir/src/map.cc.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/mz/workspace/alphaDB/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/test_data_file.dir/src/map.cc.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/test_data_file.dir/src/map.cc.o -c /home/mz/workspace/alphaDB/src/map.cc
 
 CMakeFiles/test_data_file.dir/src/map.cc.i: cmake_force
@@ -180,7 +193,7 @@ CMakeFiles/test_data_file.dir/src/map.cc.s: cmake_force
 
 CMakeFiles/test_data_file.dir/src/options.cc.o: CMakeFiles/test_data_file.dir/flags.make
 CMakeFiles/test_data_file.dir/src/options.cc.o: ../src/options.cc
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/mz/workspace/alphaDB/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/test_data_file.dir/src/options.cc.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/mz/workspace/alphaDB/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object CMakeFiles/test_data_file.dir/src/options.cc.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/test_data_file.dir/src/options.cc.o -c /home/mz/workspace/alphaDB/src/options.cc
 
 CMakeFiles/test_data_file.dir/src/options.cc.i: cmake_force
@@ -199,6 +212,7 @@ test_data_file_OBJECTS = \
 "CMakeFiles/test_data_file.dir/src/errors.cc.o" \
 "CMakeFiles/test_data_file.dir/src/file_io.cc.o" \
 "CMakeFiles/test_data_file.dir/src/index.cc.o" \
+"CMakeFiles/test_data_file.dir/src/iterator.cc.o" \
 "CMakeFiles/test_data_file.dir/src/log_record.cc.o" \
 "CMakeFiles/test_data_file.dir/src/map.cc.o" \
 "CMakeFiles/test_data_file.dir/src/options.cc.o"
@@ -212,13 +226,14 @@ test_data_file_EXTERNAL_OBJECTS =
 ../bin/test_data_file: CMakeFiles/test_data_file.dir/src/errors.cc.o
 ../bin/test_data_file: CMakeFiles/test_data_file.dir/src/file_io.cc.o
 ../bin/test_data_file: CMakeFiles/test_data_file.dir/src/index.cc.o
+../bin/test_data_file: CMakeFiles/test_data_file.dir/src/iterator.cc.o
 ../bin/test_data_file: CMakeFiles/test_data_file.dir/src/log_record.cc.o
 ../bin/test_data_file: CMakeFiles/test_data_file.dir/src/map.cc.o
 ../bin/test_data_file: CMakeFiles/test_data_file.dir/src/options.cc.o
 ../bin/test_data_file: CMakeFiles/test_data_file.dir/build.make
 ../bin/test_data_file: /usr/lib64/libz.so
 ../bin/test_data_file: CMakeFiles/test_data_file.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/mz/workspace/alphaDB/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Linking CXX executable ../bin/test_data_file"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/mz/workspace/alphaDB/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Linking CXX executable ../bin/test_data_file"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/test_data_file.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

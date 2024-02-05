@@ -6,6 +6,7 @@ file(REMOVE_RECURSE
   "CMakeFiles/test_db.dir/src/errors.cc.o"
   "CMakeFiles/test_db.dir/src/file_io.cc.o"
   "CMakeFiles/test_db.dir/src/index.cc.o"
+  "CMakeFiles/test_db.dir/src/iterator.cc.o"
   "CMakeFiles/test_db.dir/src/log_record.cc.o"
   "CMakeFiles/test_db.dir/src/map.cc.o"
   "CMakeFiles/test_db.dir/src/options.cc.o"

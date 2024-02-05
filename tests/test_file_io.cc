@@ -11,7 +11,7 @@ int main(int argc, char** argv) {
     try {
         alphaDB::FileIO file(std::string("/home/mz/workspace/alphaDB/bin/example.txt"));
 
-        int ret = file.Write("Hello");
+        int ret = file.Write("Hello", 5);
 
 
 

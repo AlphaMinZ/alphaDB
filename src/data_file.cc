@@ -56,6 +56,7 @@ LogRecord* DataFile::ReadLogRecord(int64_t offset, uint32_t& size_, bool* isEOF_
     int64_t keySize = (int64_t)header->keySize;
     int64_t valueSize = (int64_t)header->valueSize;
     int recordSize = headerSize + keySize + valueSize;
+    size_ = recordSize;
 
     LogRecord* logRecord = new LogRecord;
     logRecord->Type = header->recordType;
@@ -77,8 +78,9 @@ LogRecord* DataFile::ReadLogRecord(int64_t offset, uint32_t& size_, bool* isEOF_
 }
 
 void DataFile::Write(std::string buf) {
-    int n = m_ioManager->Write(buf.c_str());
-    m_writeOff += (int64_t)n;
+    int n = m_ioManager->Write(buf.c_str(), buf.size());
+    
+    m_writeOff += (int64_t)buf.size();
 }
 
 void DataFile::Sync() {
@@ -95,6 +97,9 @@ std::string DataFile::readNBytes(int64_t n, int64_t offset) {
     std::string ret(ch, ch + n);
 
     return ret;
+    // std::string ret(n, '\0');
+    // m_ioManager->Read(ret, n, offset);
+    // return ret;
 }
 
 }

@@ -11,7 +11,7 @@ IOMgr::ptr NewIOManager(std::string fileName) {
 }
 
 FileIO::FileIO(const std::string& fileName) {
-    m_file.open(fileName, std::ios::in | std::ios::out | std::ios::app);
+    m_file.open(fileName, std::ios::binary | std::ios::in | std::ios::out | std::ios::app);
     if(!m_file.is_open()) {
         throw std::runtime_error("Failed to open file");
     }
@@ -28,9 +28,15 @@ int FileIO::Read(char* buffer, std::streamsize size, std::streampos offset) {
     m_file.read(buffer, size);
     return m_file.gcount();
 }
+// int FileIO::Read(std::string& buffer, std::streamsize size, std::streampos offset) {
+//     m_file.seekg(offset);
+//     m_file.read(&buffer[0], size);
+//     return m_file.gcount();
+// }
 
-int FileIO::Write(const char* buffer) {
-    m_file.write(buffer, strlen(buffer));
+int FileIO::Write(const char* buffer, int size) {
+    // m_file.write(buffer, strlen(buffer));
+    m_file.write(buffer, size); 
     return m_file.good() ? strlen(buffer) : -1;
 }
 

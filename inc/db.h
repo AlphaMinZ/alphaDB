@@ -13,7 +13,9 @@
 
 namespace alphaDB {
 
-class DB {
+class Iterator;
+
+class DB : public std::enable_shared_from_this<DB> {
 public:
     typedef std::shared_ptr<DB> ptr;
 
@@ -27,7 +29,7 @@ public:
 
     Indexer::ptr getIndex() const { return m_index;}
 
-    void setOptions(Options options) { m_options = options;}
+    void setOptions(Options& options) { m_options = options;}
 
     void setFileIds(std::vector<int> fileIds) { m_fileIds = fileIds;}
 
@@ -44,6 +46,12 @@ public:
     // Delete 根据 key 删除对应的数据
     void Delete(std::string key);
 
+    // Close 关闭数据库
+    void Close();
+
+    // Sync 持久化数据文件
+    void Sync();
+
     // 追加写数据到活跃文件中
     LogRecordPos::ptr appendLogRecord(LogRecord* logRecord);
 
@@ -58,6 +66,20 @@ public:
     // 遍历文件中的所有记录，并更新到内存索引中
     void loadIndexFromDataFiles();
 
+    // ListKeys 获取数据库中所有的 key
+    std::vector<std::string> ListKeys();
+
+    // Fold 获取所有的数据，并执行用户指定的操作，函数返回 false 时终止遍历
+    void Fold(std::function<bool (std::string key, std::string value)> f);
+
+    // 根据索引信息获取对应的 value
+    std::string getValueByPosition(LogRecordPos::ptr logRecordPos);
+
+    // NewIterator 初始化迭代器
+    std::shared_ptr<Iterator> Newiterator(IteratorOption opts); 
+
+    alphaMin::Mutex& getMutex() { return m_mutex;}
+
 private:
     Options m_options;
     alphaMin::RWMutex m_RWMutex;
@@ -68,7 +90,7 @@ private:
     Indexer::ptr m_index;                               // 内存索引
 };
 
-DB::ptr Open(Options options);
+DB::ptr Open(Options& options);
 
 void checkOptions(Options options);
 

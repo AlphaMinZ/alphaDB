@@ -14,8 +14,9 @@ public:
     typedef std::shared_ptr<IOMgr> ptr;
 
     virtual int Read(char* buffer, std::streamsize size, std::streampos offset) = 0;
+    // virtual int Read(std::string& buffer, std::streamsize size, std::streampos offset) = 0;
 
-    virtual int Write(const char* buffer) = 0;
+    virtual int Write(const char* buffer, int size) = 0;
 
     virtual int Sync() = 0;
 
@@ -35,8 +36,9 @@ public:
     ~FileIO();
 
     int Read(char* buffer, std::streamsize size, std::streampos offset) override;
+    // int Read(std::string& buffer, std::streamsize size, std::streampos offset) override;
 
-    int Write(const char* buffer) override;
+    int Write(const char* buffer, int size) override;
 
     int Sync() override;
 
