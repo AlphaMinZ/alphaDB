@@ -60,13 +60,18 @@ public:
     virtual IteratorInterFace::ptr Iterator(bool reverse) = 0;
 };
 
-typedef struct Item {
+class Item {
+public:
     typedef std::shared_ptr<Item> ptr;
-    std::string key;
-    LogRecordPos::ptr pos;
+
+    Item() {}
 
     Item(const std::string& key, LogRecordPos::ptr pos) : key(key), pos(pos) {}
-}Item;
+
+    std::string key;
+
+    LogRecordPos::ptr pos;
+};
 
 Indexer::ptr NewIndexer(IndexerType typ);
 

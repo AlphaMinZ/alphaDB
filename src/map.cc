@@ -57,7 +57,9 @@ int Map::Size() {
 
 IteratorInterFace::ptr Map::Iterator(bool reverse) {
     if(m_map.empty()) {
-        return std::shared_ptr<IteratorInterFace>(); 
+        // return std::shared_ptr<IteratorInterFace>(); 
+        IteratorInterFace::ptr iter(new mapIterator); 
+        return iter;
     }
     alphaMin::Mutex::Lock lock(m_mutex);
 
@@ -80,15 +82,15 @@ mapIterator::ptr newMapIterator(std::map<std::string, LogRecordPos::ptr>& map, b
         idx++;
     }
 
-    // auto compareFunction = [](std::map<std::string, LogRecordPos::ptr>& a, std::map<std::string, LogRecordPos::ptr>& b){
-    //     return a.begin()->first < b.begin()->first;
-    // };
+    auto compareFunction = [](const Item::ptr& a, const Item::ptr& b){
+        return a->key < b->key;
+    };
 
-    // if(reverse) {
-    //     std::sort(values.begin(), values.end(), compareFunction);
-    // } else {
-    //     std::sort(values.begin(), values.end(), !compareFunction);
-    // }
+    if(reverse) {
+        std::sort(values.begin(), values.end(), std::greater<decltype(values)::value_type>{});
+    } else {
+        std::sort(values.begin(), values.end(), compareFunction);
+    }
 
     mapIterator::ptr item(new mapIterator);
     item->setCurrIndex(0);
@@ -107,12 +109,12 @@ void mapIterator::Rewind() {
 void mapIterator::Seek(std::string key) {
     for(int i = 0; i < m_values.size(); ++i) {
         if(m_reveser) {
-            if(m_values[i]->key >= key) {
+            if(m_values[i]->key <= key) {
                 m_currIndex = i;
                 return;
             }
         } else {
-            if(m_values[i]->key <= key) {
+            if(m_values[i]->key >= key) {
                 m_currIndex = i;
                 return;
             }

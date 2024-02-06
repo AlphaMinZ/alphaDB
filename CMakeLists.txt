@@ -31,6 +31,12 @@ target_link_libraries(test_log_record ${LIB_LIB})
 add_executable(test_db tests/test_db.cc ${SRC})
 target_link_libraries(test_db ${LIB_LIB}) 
 
+add_executable(test_map tests/test_map.cc ${SRC})
+target_link_libraries(test_map ${LIB_LIB}) 
+
+add_executable(test_iterator tests/test_iterator.cc ${SRC})
+target_link_libraries(test_iterator ${LIB_LIB}) 
+
 SET(EXECUTABLE_OUTPUT_PATH ${CMAKE_CURRENT_SOURCE_DIR}/bin)
 SET(CMAKE_BUILD_TYPE "Debug")  # 定义编译类型
 SET(CMAKE_CXX_FLAGS_DEBUG "$ENV{CXXFLAGS} -O0 -g2 -ggdb") # 定义Debug编译参数

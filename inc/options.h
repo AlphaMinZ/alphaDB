@@ -22,6 +22,9 @@ typedef struct _IteratorOption {
     bool Reverse;
 }IteratorOption;
 
+extern Options DefaultOptions;
+extern IteratorOption DefaultIteratorOptions;
+
 }
 
 #endif

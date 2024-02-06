@@ -34,8 +34,9 @@ void Iterator::Next() {
 
 // Valid 是否有效，即是否已经遍历完了所有的 key，用于退出遍历
 bool Iterator::Valid() {
-    m_indexIter->Valid();
+    bool isValid =  m_indexIter->Valid();
     skipToNext();
+    return isValid;
 }
 
 // Key 当前遍历位置的 Key 数据
