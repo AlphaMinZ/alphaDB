@@ -43,14 +43,14 @@ public:
 
     void setIndexIter(IteratorInterFace::ptr indexIter) { m_indexIter = indexIter;}
 
-    void setOptions(IteratorOption options) { m_options = options;}
+    void setOptions(IteratorOptions options) { m_options = options;}
 
     DB::ptr& getDB() { return m_db;}
     
 private:
     IteratorInterFace::ptr m_indexIter;           // 索引迭代器
     DB::ptr m_db;
-    IteratorOption m_options;
+    IteratorOptions m_options;
 };
 
 }

@@ -66,7 +66,7 @@ void TestDB_Iterator_Multi_Values() {
 
     // 反向迭代
     std::cout << "==========================\n";
-    alphaDB::IteratorOption iterOpts1 = alphaDB::DefaultIteratorOptions;
+    alphaDB::IteratorOptions iterOpts1 = alphaDB::DefaultIteratorOptions;
     iterOpts1.Reverse = true;
     alphaDB::Iterator::ptr iter2(db->Newiterator(iterOpts1));
     for(iter2->Rewind(); iter2->Valid(); iter2->Next()) {
@@ -80,7 +80,7 @@ void TestDB_Iterator_Multi_Values() {
 
     // 指定的 Prefix
     std::cout << "==========================\n";
-    alphaDB::IteratorOption iterOpts2 = alphaDB::DefaultIteratorOptions;
+    alphaDB::IteratorOptions iterOpts2 = alphaDB::DefaultIteratorOptions;
     iterOpts2.Prefix = "a";
     alphaDB::Iterator::ptr iter3(db->Newiterator(iterOpts2));
     for(iter3->Rewind(); iter3->Valid(); iter3->Next()) {

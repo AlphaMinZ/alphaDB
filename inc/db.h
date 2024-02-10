@@ -4,6 +4,7 @@
 #include <memory>
 #include <map>
 #include <vector>
+#include <atomic>
 
 #include "../lib/inc/mutex.h"
 #include "errors.h"
@@ -16,6 +17,7 @@
 namespace alphaDB {
 
 class Iterator;
+class WriteBatch;
 
 class DB : public std::enable_shared_from_this<DB> {
 public:
@@ -54,6 +56,8 @@ public:
     // Sync 持久化数据文件
     void Sync();
 
+    LogRecordPos::ptr appendLogRecordWithLock(LogRecord* logRecord);
+
     // 追加写数据到活跃文件中
     LogRecordPos::ptr appendLogRecord(LogRecord* logRecord);
 
@@ -78,9 +82,14 @@ public:
     std::string getValueByPosition(LogRecordPos::ptr logRecordPos);
 
     // NewIterator 初始化迭代器
-    std::shared_ptr<Iterator> Newiterator(IteratorOption opts); 
+    std::shared_ptr<Iterator> Newiterator(IteratorOptions opts); 
+
+    // NewWriteBatch 初始化 WriteBatch
+    std::shared_ptr<WriteBatch> NewWriteBatch(WriteBatchOptions opts);
 
     alphaMin::Mutex& getMutex() { return m_mutex;}
+
+    std::atomic<uint64_t>& getSeqNo() { return m_seqNo;}
 
 private:
     Options m_options;
@@ -89,7 +98,8 @@ private:
     std::vector<int> m_fileIds;                     // 文件 id，只能在加载索引的时候使用，不能在其他的地方更新和使用
     DataFile::ptr m_activeFile;                     // 当前活跃数据文件 可以用于写入
     std::map<uint32_t, DataFile::ptr> m_olderFiles; // 旧的数据文件 只能进行读
-    Indexer::ptr m_index;                               // 内存索引
+    Indexer::ptr m_index;                           // 内存索引
+    std::atomic<uint64_t> m_seqNo;                                 // 事务序列号，全局递增
 };
 
 DB::ptr Open(Options& options);

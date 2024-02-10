@@ -4,6 +4,7 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
+  "/home/mz/workspace/alphaDB/src/batch.cc" "/home/mz/workspace/alphaDB/build/CMakeFiles/test_map.dir/src/batch.cc.o"
   "/home/mz/workspace/alphaDB/src/data_file.cc" "/home/mz/workspace/alphaDB/build/CMakeFiles/test_map.dir/src/data_file.cc.o"
   "/home/mz/workspace/alphaDB/src/db.cc" "/home/mz/workspace/alphaDB/build/CMakeFiles/test_map.dir/src/db.cc.o"
   "/home/mz/workspace/alphaDB/src/errors.cc" "/home/mz/workspace/alphaDB/build/CMakeFiles/test_map.dir/src/errors.cc.o"

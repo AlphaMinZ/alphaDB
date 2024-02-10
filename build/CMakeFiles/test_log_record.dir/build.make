@@ -87,9 +87,22 @@ CMakeFiles/test_log_record.dir/tests/test_log_record.cc.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/test_log_record.dir/tests/test_log_record.cc.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/mz/workspace/alphaDB/tests/test_log_record.cc -o CMakeFiles/test_log_record.dir/tests/test_log_record.cc.s
 
+CMakeFiles/test_log_record.dir/src/batch.cc.o: CMakeFiles/test_log_record.dir/flags.make
+CMakeFiles/test_log_record.dir/src/batch.cc.o: ../src/batch.cc
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/mz/workspace/alphaDB/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/test_log_record.dir/src/batch.cc.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/test_log_record.dir/src/batch.cc.o -c /home/mz/workspace/alphaDB/src/batch.cc
+
+CMakeFiles/test_log_record.dir/src/batch.cc.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/test_log_record.dir/src/batch.cc.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/mz/workspace/alphaDB/src/batch.cc > CMakeFiles/test_log_record.dir/src/batch.cc.i
+
+CMakeFiles/test_log_record.dir/src/batch.cc.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/test_log_record.dir/src/batch.cc.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/mz/workspace/alphaDB/src/batch.cc -o CMakeFiles/test_log_record.dir/src/batch.cc.s
+
 CMakeFiles/test_log_record.dir/src/data_file.cc.o: CMakeFiles/test_log_record.dir/flags.make
 CMakeFiles/test_log_record.dir/src/data_file.cc.o: ../src/data_file.cc
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/mz/workspace/alphaDB/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/test_log_record.dir/src/data_file.cc.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/mz/workspace/alphaDB/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/test_log_record.dir/src/data_file.cc.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/test_log_record.dir/src/data_file.cc.o -c /home/mz/workspace/alphaDB/src/data_file.cc
 
 CMakeFiles/test_log_record.dir/src/data_file.cc.i: cmake_force
@@ -102,7 +115,7 @@ CMakeFiles/test_log_record.dir/src/data_file.cc.s: cmake_force
 
 CMakeFiles/test_log_record.dir/src/db.cc.o: CMakeFiles/test_log_record.dir/flags.make
 CMakeFiles/test_log_record.dir/src/db.cc.o: ../src/db.cc
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/mz/workspace/alphaDB/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/test_log_record.dir/src/db.cc.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/mz/workspace/alphaDB/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/test_log_record.dir/src/db.cc.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/test_log_record.dir/src/db.cc.o -c /home/mz/workspace/alphaDB/src/db.cc
 
 CMakeFiles/test_log_record.dir/src/db.cc.i: cmake_force
@@ -115,7 +128,7 @@ CMakeFiles/test_log_record.dir/src/db.cc.s: cmake_force
 
 CMakeFiles/test_log_record.dir/src/errors.cc.o: CMakeFiles/test_log_record.dir/flags.make
 CMakeFiles/test_log_record.dir/src/errors.cc.o: ../src/errors.cc
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/mz/workspace/alphaDB/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/test_log_record.dir/src/errors.cc.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/mz/workspace/alphaDB/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/test_log_record.dir/src/errors.cc.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/test_log_record.dir/src/errors.cc.o -c /home/mz/workspace/alphaDB/src/errors.cc
 
 CMakeFiles/test_log_record.dir/src/errors.cc.i: cmake_force
@@ -128,7 +141,7 @@ CMakeFiles/test_log_record.dir/src/errors.cc.s: cmake_force
 
 CMakeFiles/test_log_record.dir/src/file_io.cc.o: CMakeFiles/test_log_record.dir/flags.make
 CMakeFiles/test_log_record.dir/src/file_io.cc.o: ../src/file_io.cc
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/mz/workspace/alphaDB/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/test_log_record.dir/src/file_io.cc.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/mz/workspace/alphaDB/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/test_log_record.dir/src/file_io.cc.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/test_log_record.dir/src/file_io.cc.o -c /home/mz/workspace/alphaDB/src/file_io.cc
 
 CMakeFiles/test_log_record.dir/src/file_io.cc.i: cmake_force
@@ -141,7 +154,7 @@ CMakeFiles/test_log_record.dir/src/file_io.cc.s: cmake_force
 
 CMakeFiles/test_log_record.dir/src/index.cc.o: CMakeFiles/test_log_record.dir/flags.make
 CMakeFiles/test_log_record.dir/src/index.cc.o: ../src/index.cc
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/mz/workspace/alphaDB/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/test_log_record.dir/src/index.cc.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/mz/workspace/alphaDB/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/test_log_record.dir/src/index.cc.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/test_log_record.dir/src/index.cc.o -c /home/mz/workspace/alphaDB/src/index.cc
 
 CMakeFiles/test_log_record.dir/src/index.cc.i: cmake_force
@@ -154,7 +167,7 @@ CMakeFiles/test_log_record.dir/src/index.cc.s: cmake_force
 
 CMakeFiles/test_log_record.dir/src/iterator.cc.o: CMakeFiles/test_log_record.dir/flags.make
 CMakeFiles/test_log_record.dir/src/iterator.cc.o: ../src/iterator.cc
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/mz/workspace/alphaDB/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/test_log_record.dir/src/iterator.cc.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/mz/workspace/alphaDB/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/test_log_record.dir/src/iterator.cc.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/test_log_record.dir/src/iterator.cc.o -c /home/mz/workspace/alphaDB/src/iterator.cc
 
 CMakeFiles/test_log_record.dir/src/iterator.cc.i: cmake_force
@@ -167,7 +180,7 @@ CMakeFiles/test_log_record.dir/src/iterator.cc.s: cmake_force
 
 CMakeFiles/test_log_record.dir/src/log_record.cc.o: CMakeFiles/test_log_record.dir/flags.make
 CMakeFiles/test_log_record.dir/src/log_record.cc.o: ../src/log_record.cc
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/mz/workspace/alphaDB/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/test_log_record.dir/src/log_record.cc.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/mz/workspace/alphaDB/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/test_log_record.dir/src/log_record.cc.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/test_log_record.dir/src/log_record.cc.o -c /home/mz/workspace/alphaDB/src/log_record.cc
 
 CMakeFiles/test_log_record.dir/src/log_record.cc.i: cmake_force
@@ -180,7 +193,7 @@ CMakeFiles/test_log_record.dir/src/log_record.cc.s: cmake_force
 
 CMakeFiles/test_log_record.dir/src/map.cc.o: CMakeFiles/test_log_record.dir/flags.make
 CMakeFiles/test_log_record.dir/src/map.cc.o: ../src/map.cc
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/mz/workspace/alphaDB/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/test_log_record.dir/src/map.cc.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/mz/workspace/alphaDB/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object CMakeFiles/test_log_record.dir/src/map.cc.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/test_log_record.dir/src/map.cc.o -c /home/mz/workspace/alphaDB/src/map.cc
 
 CMakeFiles/test_log_record.dir/src/map.cc.i: cmake_force
@@ -193,7 +206,7 @@ CMakeFiles/test_log_record.dir/src/map.cc.s: cmake_force
 
 CMakeFiles/test_log_record.dir/src/options.cc.o: CMakeFiles/test_log_record.dir/flags.make
 CMakeFiles/test_log_record.dir/src/options.cc.o: ../src/options.cc
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/mz/workspace/alphaDB/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object CMakeFiles/test_log_record.dir/src/options.cc.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/mz/workspace/alphaDB/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Building CXX object CMakeFiles/test_log_record.dir/src/options.cc.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/test_log_record.dir/src/options.cc.o -c /home/mz/workspace/alphaDB/src/options.cc
 
 CMakeFiles/test_log_record.dir/src/options.cc.i: cmake_force
@@ -207,6 +220,7 @@ CMakeFiles/test_log_record.dir/src/options.cc.s: cmake_force
 # Object files for target test_log_record
 test_log_record_OBJECTS = \
 "CMakeFiles/test_log_record.dir/tests/test_log_record.cc.o" \
+"CMakeFiles/test_log_record.dir/src/batch.cc.o" \
 "CMakeFiles/test_log_record.dir/src/data_file.cc.o" \
 "CMakeFiles/test_log_record.dir/src/db.cc.o" \
 "CMakeFiles/test_log_record.dir/src/errors.cc.o" \
@@ -221,6 +235,7 @@ test_log_record_OBJECTS = \
 test_log_record_EXTERNAL_OBJECTS =
 
 ../bin/test_log_record: CMakeFiles/test_log_record.dir/tests/test_log_record.cc.o
+../bin/test_log_record: CMakeFiles/test_log_record.dir/src/batch.cc.o
 ../bin/test_log_record: CMakeFiles/test_log_record.dir/src/data_file.cc.o
 ../bin/test_log_record: CMakeFiles/test_log_record.dir/src/db.cc.o
 ../bin/test_log_record: CMakeFiles/test_log_record.dir/src/errors.cc.o
@@ -233,7 +248,7 @@ test_log_record_EXTERNAL_OBJECTS =
 ../bin/test_log_record: CMakeFiles/test_log_record.dir/build.make
 ../bin/test_log_record: /usr/lib64/libz.so
 ../bin/test_log_record: CMakeFiles/test_log_record.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/mz/workspace/alphaDB/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Linking CXX executable ../bin/test_log_record"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/mz/workspace/alphaDB/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Linking CXX executable ../bin/test_log_record"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/test_log_record.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

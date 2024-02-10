@@ -9,4 +9,6 @@ namespace alphaDB {
     const std::runtime_error MyErrors::ErrDataDirectoryCorrupted("the database directory maybe corrupted");
 
     const std::runtime_error MyErrors::ErrInvalidCRC("invalid crc value, log record maybe corrupted");
+
+    const std::runtime_error MyErrors::ErrExceedMaxBatchNum("exceed the max batch num");
 }

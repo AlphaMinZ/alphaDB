@@ -3,7 +3,7 @@
 namespace alphaDB {
 
 // NewIterator 初始化迭代器
-Iterator::ptr DB::Newiterator(IteratorOption opts) {
+Iterator::ptr DB::Newiterator(IteratorOptions opts) {
     IteratorInterFace::ptr indexIter = m_index->Iterator(opts.Reverse);
 
     Iterator::ptr iterator(new Iterator);

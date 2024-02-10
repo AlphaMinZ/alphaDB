@@ -1,6 +1,7 @@
 file(REMOVE_RECURSE
   "../bin/test_file_io"
   "../bin/test_file_io.pdb"
+  "CMakeFiles/test_file_io.dir/src/batch.cc.o"
   "CMakeFiles/test_file_io.dir/src/data_file.cc.o"
   "CMakeFiles/test_file_io.dir/src/db.cc.o"
   "CMakeFiles/test_file_io.dir/src/errors.cc.o"

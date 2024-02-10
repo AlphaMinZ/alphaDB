@@ -20,10 +20,19 @@ typedef struct _IteratorOption {
     std::string Prefix;
     // 是否反向遍历，默认 false 是正向
     bool Reverse;
-}IteratorOption;
+}IteratorOptions;
+
+class WriteBatchOptions {
+public:
+    // 一个批次当中最大的数据量
+    uint32_t MaxBatchNum;
+    // 提交时是否 sync 持久化
+    bool SyncWrites;
+};
 
 extern Options DefaultOptions;
-extern IteratorOption DefaultIteratorOptions;
+extern IteratorOptions DefaultIteratorOptions;
+extern WriteBatchOptions DefaultWriteBatchOption;
 
 }
 

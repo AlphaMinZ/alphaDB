@@ -4,6 +4,8 @@ namespace alphaDB {
 
 Options DefaultOptions = {"/tmp", 256 * 1024 * 1024, false, IndexerType::Map};
 
-IteratorOption DefaultIteratorOptions = {"", false};
+IteratorOptions DefaultIteratorOptions = {"", false};
+
+WriteBatchOptions DefaultWriteBatchOptions = {10000, true};
 
 }

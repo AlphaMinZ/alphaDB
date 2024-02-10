@@ -1,6 +1,7 @@
 file(REMOVE_RECURSE
   "../bin/test_map"
   "../bin/test_map.pdb"
+  "CMakeFiles/test_map.dir/src/batch.cc.o"
   "CMakeFiles/test_map.dir/src/data_file.cc.o"
   "CMakeFiles/test_map.dir/src/db.cc.o"
   "CMakeFiles/test_map.dir/src/errors.cc.o"

@@ -7,6 +7,7 @@
 #include <algorithm>
 
 #include "../inc/db.h"
+#include "../inc/batch.h"
 #include "../lib/inc/mutex.h"
 
 namespace alphaDB {
@@ -79,10 +80,11 @@ void DB::Put(std::string key, std::string value) {
     }
 
     // 构造 LogRecord 结构体
-    LogRecord* logRecord = new LogRecord{key, value, LogRecordNormal};
+    // LogRecord* logRecord = new LogRecord{key, value, LogRecordNormal};
+    LogRecord* logRecord = new LogRecord{logRecordKeyWithSeq(key, nonTransactionSeqNo), value, LogRecordNormal};
 
     // 追加写入到当前数据活跃文件当中
-    LogRecordPos::ptr pos = appendLogRecord(logRecord);
+    LogRecordPos::ptr pos = appendLogRecordWithLock(logRecord);
 
     // 更新内存索引
     m_index->Put(key, pos, nullptr);
@@ -105,10 +107,11 @@ void DB::Delete(std::string key) {
     }
 
     // 构造 LogRecord，标识其是被删除的
-    LogRecord logRecord;
-    logRecord.Key = key;
-    logRecord.Type = LogRecordDeleted;
-    appendLogRecord(&logRecord);
+    LogRecord* logRecord = new LogRecord;
+    // logRecord->Key = key;
+    logRecord->Key = logRecordKeyWithSeq(key, nonTransactionSeqNo);
+    logRecord->Type = LogRecordDeleted;
+    appendLogRecordWithLock(logRecord);
 
     // 从内存索引中将对应的 key 删除
     m_index->Delete(key, nullptr);
@@ -193,10 +196,17 @@ std::string DB::getValueByPosition(LogRecordPos::ptr logRecordPos) {
     return logRecord->Value;
 }
 
-// 追加写数据到活跃文件中
-LogRecordPos::ptr DB::appendLogRecord(LogRecord* logRecord) {
+LogRecordPos::ptr DB::appendLogRecordWithLock(LogRecord* logRecord) {
     alphaMin::Mutex::Lock lock(m_mutex);
 
+    LogRecordPos::ptr logRecordPos = appendLogRecord(logRecord);
+
+    lock.unlock();
+    return logRecordPos;
+}
+
+// 追加写数据到活跃文件中
+LogRecordPos::ptr DB::appendLogRecord(LogRecord* logRecord) {
     // 判断当前活跃数据文件是否存在，因为数据库在没有写入的时候是没有文件生成的
 	// 如果为空则初始化数据文件
     if(m_activeFile.get() == nullptr) {
@@ -230,7 +240,6 @@ LogRecordPos::ptr DB::appendLogRecord(LogRecord* logRecord) {
     // 构建内存索引信息
     LogRecordPos::ptr pos(new LogRecordPos(m_activeFile->getFileId(), writeOff));
 
-    lock.unlock();
     return pos; 
 }
 
@@ -335,6 +344,24 @@ void DB::loadIndexFromDataFiles() {
         return;
     }
 
+    auto sharedPtr = shared_from_this();
+
+    auto updateIndex = [sharedPtr](std::string key, LogRecordType typ, LogRecordPos::ptr pos){
+        bool ok;
+        if(typ == LogRecordDeleted) {
+            sharedPtr->getIndex()->Delete(key, &ok);
+        } else {
+            sharedPtr->getIndex()->Put(key, pos, &ok);
+        }
+        if(!ok) {
+            perror("failed to update index at startup");
+        }
+    };
+
+    // 暂存事务数据
+    std::map<uint64_t, TransactionRecord::ptr> transactionRecords;
+    uint64_t currentSeqNo =  nonTransactionSeqNo;
+
     // 遍历所有文件id，处理文件中的记录
     for(int i = 0; i < m_fileIds.size(); ++i) {
         uint32_t fileId = (uint32_t)m_fileIds[i];
@@ -361,14 +388,41 @@ void DB::loadIndexFromDataFiles() {
 
             // 构造内存索引并保存
             LogRecordPos::ptr logRecordPos(new LogRecordPos(fileId, offset));
-            bool isOk = false;
-            if(logRecord->Type == LogRecordDeleted) {
-                m_index->Delete(logRecord->Key, &isOk);
+            // bool isOk = false;
+            // if(logRecord->Type == LogRecordDeleted) {
+            //     m_index->Delete(logRecord->Key, &isOk);
+            // } else {
+            //     m_index->Put(logRecord->Key, logRecordPos, &isOk);
+            // }
+            // if(!isOk) {
+            //     throw MyErrors::ErrIndexUpdateFailed;
+            // }
+
+            // 解析 key，拿到事务序列号
+            uint64_t seqNo;
+            std::string realKey = parseLogRecordKey(logRecord->Key, seqNo);
+            if(seqNo == nonTransactionSeqNo) {
+                // 非事务操作，直接更新内存索引
+                updateIndex(realKey, logRecord->Type, logRecordPos);
             } else {
-                m_index->Put(logRecord->Key, logRecordPos, &isOk);
+                // 事务完成，对应的 seq no 的数据可以更新到内存索引中
+                if(logRecord->Type == LogRecordTxnFinished) {
+                    for(const auto& pair : transactionRecords) {
+                        updateIndex(pair.second->Record->Key, pair.second->Record->Type, pair.second->Pos);
+                    }
+                    transactionRecords.erase(seqNo);
+                } else {
+                    logRecord->Key = realKey;
+                    TransactionRecord::ptr transactionRecord(new TransactionRecord);
+                    transactionRecord->Record = logRecord;
+                    transactionRecord->Pos = logRecordPos;
+                    transactionRecords[seqNo] = transactionRecord;
+                }
             }
-            if(!isOk) {
-                throw MyErrors::ErrIndexUpdateFailed;
+
+            // 更新事务序列号
+            if(seqNo > currentSeqNo) {
+                currentSeqNo = seqNo;
             }
 
             // 递增 offset，下一次从新的位置开始读取
@@ -380,6 +434,10 @@ void DB::loadIndexFromDataFiles() {
             m_activeFile->setWriteOff(offset);
         }
     }
+
+    // 更新事物序列号
+    m_seqNo = currentSeqNo;
+    return;
 }
 
 void checkOptions(Options options) {

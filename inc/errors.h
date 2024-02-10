@@ -16,6 +16,8 @@ public:
     static const std::runtime_error ErrDataDirectoryCorrupted;
 
     static const std::runtime_error ErrInvalidCRC;
+
+    static const std::runtime_error ErrExceedMaxBatchNum;
 };
 
 }
