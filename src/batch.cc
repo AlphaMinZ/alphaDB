@@ -1,6 +1,4 @@
 #include "../inc/batch.h"
-#include "../inc/db.h"
-#include "../inc/errors.h"
 
 #include <atomic>
 #include <iostream>
@@ -50,6 +48,8 @@ void WriteBatch::Delete(std::string key) {
         if(m_pendingWrites[key]!= nullptr) {
             m_pendingWrites.erase(key);
         }
+        m_pendingWrites.erase(key);
+
         lock.unlock();
         return;
     }
@@ -129,7 +129,7 @@ std::string logRecordKeyWithSeq(std::string key, uint64_t seqNo) {
     std::memcpy(&seq[0], &seqNo, sizeof(uint64_t));
 
     std::string enKey(sizeof(uint64_t) + key.size(), '\0');
-    std::copy(seq.begin(), seq.begin() + sizeof(uint64_t), enKey);
+    std::copy(seq.begin(), seq.begin() + sizeof(uint64_t), enKey.begin());
     std::copy(key.begin(), key.end(), enKey.begin() + sizeof(uint64_t));
 
     return enKey;

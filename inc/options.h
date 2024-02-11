@@ -30,6 +30,13 @@ public:
     bool SyncWrites;
 };
 
+// typedef struct _WriteBatchOptions {
+//     // 一个批次当中最大的数据量
+//     uint32_t MaxBatchNum;
+//     // 提交时是否 sync 持久化
+//     bool SyncWrites;
+// }WriteBatchOptions;
+
 extern Options DefaultOptions;
 extern IteratorOptions DefaultIteratorOptions;
 extern WriteBatchOptions DefaultWriteBatchOption;

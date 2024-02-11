@@ -122,10 +122,5 @@ set(CMAKE_MAKEFILE_PRODUCTS
 
 # Dependency information for all targets:
 set(CMAKE_DEPEND_INFO_FILES
-  "CMakeFiles/test_iterator.dir/DependInfo.cmake"
-  "CMakeFiles/test_map.dir/DependInfo.cmake"
-  "CMakeFiles/test_db.dir/DependInfo.cmake"
-  "CMakeFiles/test_log_record.dir/DependInfo.cmake"
-  "CMakeFiles/test_data_file.dir/DependInfo.cmake"
-  "CMakeFiles/test_file_io.dir/DependInfo.cmake"
+  "CMakeFiles/test_batch.dir/DependInfo.cmake"
   )

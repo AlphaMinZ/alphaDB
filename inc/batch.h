@@ -8,6 +8,7 @@
 #include "options.h"
 #include "db.h"
 #include "log_record.h"
+#include "errors.h"
 #include "../lib/inc/mutex.h"
 
 namespace alphaDB {

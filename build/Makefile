@@ -73,17 +73,6 @@ CMAKE_BINARY_DIR = /home/mz/workspace/alphaDB/build
 #=============================================================================
 # Targets provided globally by CMake.
 
-# Special rule for the target edit_cache
-edit_cache:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "No interactive CMake dialog available..."
-	/usr/local/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
-.PHONY : edit_cache
-
-# Special rule for the target edit_cache
-edit_cache/fast: edit_cache
-
-.PHONY : edit_cache/fast
-
 # Special rule for the target rebuild_cache
 rebuild_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
@@ -94,6 +83,17 @@ rebuild_cache:
 rebuild_cache/fast: rebuild_cache
 
 .PHONY : rebuild_cache/fast
+
+# Special rule for the target edit_cache
+edit_cache:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "No interactive CMake dialog available..."
+	/usr/local/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
+.PHONY : edit_cache
+
+# Special rule for the target edit_cache
+edit_cache/fast: edit_cache
+
+.PHONY : edit_cache/fast
 
 # The main all target
 all: cmake_check_build_system
@@ -128,82 +128,17 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named test_iterator
+# Target rules for targets named test_batch
 
 # Build rule for target.
-test_iterator: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 test_iterator
-.PHONY : test_iterator
+test_batch: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 test_batch
+.PHONY : test_batch
 
 # fast build rule for target.
-test_iterator/fast:
-	$(MAKE) -f CMakeFiles/test_iterator.dir/build.make CMakeFiles/test_iterator.dir/build
-.PHONY : test_iterator/fast
-
-#=============================================================================
-# Target rules for targets named test_map
-
-# Build rule for target.
-test_map: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 test_map
-.PHONY : test_map
-
-# fast build rule for target.
-test_map/fast:
-	$(MAKE) -f CMakeFiles/test_map.dir/build.make CMakeFiles/test_map.dir/build
-.PHONY : test_map/fast
-
-#=============================================================================
-# Target rules for targets named test_db
-
-# Build rule for target.
-test_db: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 test_db
-.PHONY : test_db
-
-# fast build rule for target.
-test_db/fast:
-	$(MAKE) -f CMakeFiles/test_db.dir/build.make CMakeFiles/test_db.dir/build
-.PHONY : test_db/fast
-
-#=============================================================================
-# Target rules for targets named test_log_record
-
-# Build rule for target.
-test_log_record: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 test_log_record
-.PHONY : test_log_record
-
-# fast build rule for target.
-test_log_record/fast:
-	$(MAKE) -f CMakeFiles/test_log_record.dir/build.make CMakeFiles/test_log_record.dir/build
-.PHONY : test_log_record/fast
-
-#=============================================================================
-# Target rules for targets named test_data_file
-
-# Build rule for target.
-test_data_file: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 test_data_file
-.PHONY : test_data_file
-
-# fast build rule for target.
-test_data_file/fast:
-	$(MAKE) -f CMakeFiles/test_data_file.dir/build.make CMakeFiles/test_data_file.dir/build
-.PHONY : test_data_file/fast
-
-#=============================================================================
-# Target rules for targets named test_file_io
-
-# Build rule for target.
-test_file_io: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 test_file_io
-.PHONY : test_file_io
-
-# fast build rule for target.
-test_file_io/fast:
-	$(MAKE) -f CMakeFiles/test_file_io.dir/build.make CMakeFiles/test_file_io.dir/build
-.PHONY : test_file_io/fast
+test_batch/fast:
+	$(MAKE) -f CMakeFiles/test_batch.dir/build.make CMakeFiles/test_batch.dir/build
+.PHONY : test_batch/fast
 
 src/batch.o: src/batch.cc.o
 
@@ -211,12 +146,7 @@ src/batch.o: src/batch.cc.o
 
 # target to build an object file
 src/batch.cc.o:
-	$(MAKE) -f CMakeFiles/test_iterator.dir/build.make CMakeFiles/test_iterator.dir/src/batch.cc.o
-	$(MAKE) -f CMakeFiles/test_map.dir/build.make CMakeFiles/test_map.dir/src/batch.cc.o
-	$(MAKE) -f CMakeFiles/test_db.dir/build.make CMakeFiles/test_db.dir/src/batch.cc.o
-	$(MAKE) -f CMakeFiles/test_log_record.dir/build.make CMakeFiles/test_log_record.dir/src/batch.cc.o
-	$(MAKE) -f CMakeFiles/test_data_file.dir/build.make CMakeFiles/test_data_file.dir/src/batch.cc.o
-	$(MAKE) -f CMakeFiles/test_file_io.dir/build.make CMakeFiles/test_file_io.dir/src/batch.cc.o
+	$(MAKE) -f CMakeFiles/test_batch.dir/build.make CMakeFiles/test_batch.dir/src/batch.cc.o
 .PHONY : src/batch.cc.o
 
 src/batch.i: src/batch.cc.i
@@ -225,12 +155,7 @@ src/batch.i: src/batch.cc.i
 
 # target to preprocess a source file
 src/batch.cc.i:
-	$(MAKE) -f CMakeFiles/test_iterator.dir/build.make CMakeFiles/test_iterator.dir/src/batch.cc.i
-	$(MAKE) -f CMakeFiles/test_map.dir/build.make CMakeFiles/test_map.dir/src/batch.cc.i
-	$(MAKE) -f CMakeFiles/test_db.dir/build.make CMakeFiles/test_db.dir/src/batch.cc.i
-	$(MAKE) -f CMakeFiles/test_log_record.dir/build.make CMakeFiles/test_log_record.dir/src/batch.cc.i
-	$(MAKE) -f CMakeFiles/test_data_file.dir/build.make CMakeFiles/test_data_file.dir/src/batch.cc.i
-	$(MAKE) -f CMakeFiles/test_file_io.dir/build.make CMakeFiles/test_file_io.dir/src/batch.cc.i
+	$(MAKE) -f CMakeFiles/test_batch.dir/build.make CMakeFiles/test_batch.dir/src/batch.cc.i
 .PHONY : src/batch.cc.i
 
 src/batch.s: src/batch.cc.s
@@ -239,12 +164,7 @@ src/batch.s: src/batch.cc.s
 
 # target to generate assembly for a file
 src/batch.cc.s:
-	$(MAKE) -f CMakeFiles/test_iterator.dir/build.make CMakeFiles/test_iterator.dir/src/batch.cc.s
-	$(MAKE) -f CMakeFiles/test_map.dir/build.make CMakeFiles/test_map.dir/src/batch.cc.s
-	$(MAKE) -f CMakeFiles/test_db.dir/build.make CMakeFiles/test_db.dir/src/batch.cc.s
-	$(MAKE) -f CMakeFiles/test_log_record.dir/build.make CMakeFiles/test_log_record.dir/src/batch.cc.s
-	$(MAKE) -f CMakeFiles/test_data_file.dir/build.make CMakeFiles/test_data_file.dir/src/batch.cc.s
-	$(MAKE) -f CMakeFiles/test_file_io.dir/build.make CMakeFiles/test_file_io.dir/src/batch.cc.s
+	$(MAKE) -f CMakeFiles/test_batch.dir/build.make CMakeFiles/test_batch.dir/src/batch.cc.s
 .PHONY : src/batch.cc.s
 
 src/data_file.o: src/data_file.cc.o
@@ -253,12 +173,7 @@ src/data_file.o: src/data_file.cc.o
 
 # target to build an object file
 src/data_file.cc.o:
-	$(MAKE) -f CMakeFiles/test_iterator.dir/build.make CMakeFiles/test_iterator.dir/src/data_file.cc.o
-	$(MAKE) -f CMakeFiles/test_map.dir/build.make CMakeFiles/test_map.dir/src/data_file.cc.o
-	$(MAKE) -f CMakeFiles/test_db.dir/build.make CMakeFiles/test_db.dir/src/data_file.cc.o
-	$(MAKE) -f CMakeFiles/test_log_record.dir/build.make CMakeFiles/test_log_record.dir/src/data_file.cc.o
-	$(MAKE) -f CMakeFiles/test_data_file.dir/build.make CMakeFiles/test_data_file.dir/src/data_file.cc.o
-	$(MAKE) -f CMakeFiles/test_file_io.dir/build.make CMakeFiles/test_file_io.dir/src/data_file.cc.o
+	$(MAKE) -f CMakeFiles/test_batch.dir/build.make CMakeFiles/test_batch.dir/src/data_file.cc.o
 .PHONY : src/data_file.cc.o
 
 src/data_file.i: src/data_file.cc.i
@@ -267,12 +182,7 @@ src/data_file.i: src/data_file.cc.i
 
 # target to preprocess a source file
 src/data_file.cc.i:
-	$(MAKE) -f CMakeFiles/test_iterator.dir/build.make CMakeFiles/test_iterator.dir/src/data_file.cc.i
-	$(MAKE) -f CMakeFiles/test_map.dir/build.make CMakeFiles/test_map.dir/src/data_file.cc.i
-	$(MAKE) -f CMakeFiles/test_db.dir/build.make CMakeFiles/test_db.dir/src/data_file.cc.i
-	$(MAKE) -f CMakeFiles/test_log_record.dir/build.make CMakeFiles/test_log_record.dir/src/data_file.cc.i
-	$(MAKE) -f CMakeFiles/test_data_file.dir/build.make CMakeFiles/test_data_file.dir/src/data_file.cc.i
-	$(MAKE) -f CMakeFiles/test_file_io.dir/build.make CMakeFiles/test_file_io.dir/src/data_file.cc.i
+	$(MAKE) -f CMakeFiles/test_batch.dir/build.make CMakeFiles/test_batch.dir/src/data_file.cc.i
 .PHONY : src/data_file.cc.i
 
 src/data_file.s: src/data_file.cc.s
@@ -281,12 +191,7 @@ src/data_file.s: src/data_file.cc.s
 
 # target to generate assembly for a file
 src/data_file.cc.s:
-	$(MAKE) -f CMakeFiles/test_iterator.dir/build.make CMakeFiles/test_iterator.dir/src/data_file.cc.s
-	$(MAKE) -f CMakeFiles/test_map.dir/build.make CMakeFiles/test_map.dir/src/data_file.cc.s
-	$(MAKE) -f CMakeFiles/test_db.dir/build.make CMakeFiles/test_db.dir/src/data_file.cc.s
-	$(MAKE) -f CMakeFiles/test_log_record.dir/build.make CMakeFiles/test_log_record.dir/src/data_file.cc.s
-	$(MAKE) -f CMakeFiles/test_data_file.dir/build.make CMakeFiles/test_data_file.dir/src/data_file.cc.s
-	$(MAKE) -f CMakeFiles/test_file_io.dir/build.make CMakeFiles/test_file_io.dir/src/data_file.cc.s
+	$(MAKE) -f CMakeFiles/test_batch.dir/build.make CMakeFiles/test_batch.dir/src/data_file.cc.s
 .PHONY : src/data_file.cc.s
 
 src/db.o: src/db.cc.o
@@ -295,12 +200,7 @@ src/db.o: src/db.cc.o
 
 # target to build an object file
 src/db.cc.o:
-	$(MAKE) -f CMakeFiles/test_iterator.dir/build.make CMakeFiles/test_iterator.dir/src/db.cc.o
-	$(MAKE) -f CMakeFiles/test_map.dir/build.make CMakeFiles/test_map.dir/src/db.cc.o
-	$(MAKE) -f CMakeFiles/test_db.dir/build.make CMakeFiles/test_db.dir/src/db.cc.o
-	$(MAKE) -f CMakeFiles/test_log_record.dir/build.make CMakeFiles/test_log_record.dir/src/db.cc.o
-	$(MAKE) -f CMakeFiles/test_data_file.dir/build.make CMakeFiles/test_data_file.dir/src/db.cc.o
-	$(MAKE) -f CMakeFiles/test_file_io.dir/build.make CMakeFiles/test_file_io.dir/src/db.cc.o
+	$(MAKE) -f CMakeFiles/test_batch.dir/build.make CMakeFiles/test_batch.dir/src/db.cc.o
 .PHONY : src/db.cc.o
 
 src/db.i: src/db.cc.i
@@ -309,12 +209,7 @@ src/db.i: src/db.cc.i
 
 # target to preprocess a source file
 src/db.cc.i:
-	$(MAKE) -f CMakeFiles/test_iterator.dir/build.make CMakeFiles/test_iterator.dir/src/db.cc.i
-	$(MAKE) -f CMakeFiles/test_map.dir/build.make CMakeFiles/test_map.dir/src/db.cc.i
-	$(MAKE) -f CMakeFiles/test_db.dir/build.make CMakeFiles/test_db.dir/src/db.cc.i
-	$(MAKE) -f CMakeFiles/test_log_record.dir/build.make CMakeFiles/test_log_record.dir/src/db.cc.i
-	$(MAKE) -f CMakeFiles/test_data_file.dir/build.make CMakeFiles/test_data_file.dir/src/db.cc.i
-	$(MAKE) -f CMakeFiles/test_file_io.dir/build.make CMakeFiles/test_file_io.dir/src/db.cc.i
+	$(MAKE) -f CMakeFiles/test_batch.dir/build.make CMakeFiles/test_batch.dir/src/db.cc.i
 .PHONY : src/db.cc.i
 
 src/db.s: src/db.cc.s
@@ -323,12 +218,7 @@ src/db.s: src/db.cc.s
 
 # target to generate assembly for a file
 src/db.cc.s:
-	$(MAKE) -f CMakeFiles/test_iterator.dir/build.make CMakeFiles/test_iterator.dir/src/db.cc.s
-	$(MAKE) -f CMakeFiles/test_map.dir/build.make CMakeFiles/test_map.dir/src/db.cc.s
-	$(MAKE) -f CMakeFiles/test_db.dir/build.make CMakeFiles/test_db.dir/src/db.cc.s
-	$(MAKE) -f CMakeFiles/test_log_record.dir/build.make CMakeFiles/test_log_record.dir/src/db.cc.s
-	$(MAKE) -f CMakeFiles/test_data_file.dir/build.make CMakeFiles/test_data_file.dir/src/db.cc.s
-	$(MAKE) -f CMakeFiles/test_file_io.dir/build.make CMakeFiles/test_file_io.dir/src/db.cc.s
+	$(MAKE) -f CMakeFiles/test_batch.dir/build.make CMakeFiles/test_batch.dir/src/db.cc.s
 .PHONY : src/db.cc.s
 
 src/errors.o: src/errors.cc.o
@@ -337,12 +227,7 @@ src/errors.o: src/errors.cc.o
 
 # target to build an object file
 src/errors.cc.o:
-	$(MAKE) -f CMakeFiles/test_iterator.dir/build.make CMakeFiles/test_iterator.dir/src/errors.cc.o
-	$(MAKE) -f CMakeFiles/test_map.dir/build.make CMakeFiles/test_map.dir/src/errors.cc.o
-	$(MAKE) -f CMakeFiles/test_db.dir/build.make CMakeFiles/test_db.dir/src/errors.cc.o
-	$(MAKE) -f CMakeFiles/test_log_record.dir/build.make CMakeFiles/test_log_record.dir/src/errors.cc.o
-	$(MAKE) -f CMakeFiles/test_data_file.dir/build.make CMakeFiles/test_data_file.dir/src/errors.cc.o
-	$(MAKE) -f CMakeFiles/test_file_io.dir/build.make CMakeFiles/test_file_io.dir/src/errors.cc.o
+	$(MAKE) -f CMakeFiles/test_batch.dir/build.make CMakeFiles/test_batch.dir/src/errors.cc.o
 .PHONY : src/errors.cc.o
 
 src/errors.i: src/errors.cc.i
@@ -351,12 +236,7 @@ src/errors.i: src/errors.cc.i
 
 # target to preprocess a source file
 src/errors.cc.i:
-	$(MAKE) -f CMakeFiles/test_iterator.dir/build.make CMakeFiles/test_iterator.dir/src/errors.cc.i
-	$(MAKE) -f CMakeFiles/test_map.dir/build.make CMakeFiles/test_map.dir/src/errors.cc.i
-	$(MAKE) -f CMakeFiles/test_db.dir/build.make CMakeFiles/test_db.dir/src/errors.cc.i
-	$(MAKE) -f CMakeFiles/test_log_record.dir/build.make CMakeFiles/test_log_record.dir/src/errors.cc.i
-	$(MAKE) -f CMakeFiles/test_data_file.dir/build.make CMakeFiles/test_data_file.dir/src/errors.cc.i
-	$(MAKE) -f CMakeFiles/test_file_io.dir/build.make CMakeFiles/test_file_io.dir/src/errors.cc.i
+	$(MAKE) -f CMakeFiles/test_batch.dir/build.make CMakeFiles/test_batch.dir/src/errors.cc.i
 .PHONY : src/errors.cc.i
 
 src/errors.s: src/errors.cc.s
@@ -365,12 +245,7 @@ src/errors.s: src/errors.cc.s
 
 # target to generate assembly for a file
 src/errors.cc.s:
-	$(MAKE) -f CMakeFiles/test_iterator.dir/build.make CMakeFiles/test_iterator.dir/src/errors.cc.s
-	$(MAKE) -f CMakeFiles/test_map.dir/build.make CMakeFiles/test_map.dir/src/errors.cc.s
-	$(MAKE) -f CMakeFiles/test_db.dir/build.make CMakeFiles/test_db.dir/src/errors.cc.s
-	$(MAKE) -f CMakeFiles/test_log_record.dir/build.make CMakeFiles/test_log_record.dir/src/errors.cc.s
-	$(MAKE) -f CMakeFiles/test_data_file.dir/build.make CMakeFiles/test_data_file.dir/src/errors.cc.s
-	$(MAKE) -f CMakeFiles/test_file_io.dir/build.make CMakeFiles/test_file_io.dir/src/errors.cc.s
+	$(MAKE) -f CMakeFiles/test_batch.dir/build.make CMakeFiles/test_batch.dir/src/errors.cc.s
 .PHONY : src/errors.cc.s
 
 src/file_io.o: src/file_io.cc.o
@@ -379,12 +254,7 @@ src/file_io.o: src/file_io.cc.o
 
 # target to build an object file
 src/file_io.cc.o:
-	$(MAKE) -f CMakeFiles/test_iterator.dir/build.make CMakeFiles/test_iterator.dir/src/file_io.cc.o
-	$(MAKE) -f CMakeFiles/test_map.dir/build.make CMakeFiles/test_map.dir/src/file_io.cc.o
-	$(MAKE) -f CMakeFiles/test_db.dir/build.make CMakeFiles/test_db.dir/src/file_io.cc.o
-	$(MAKE) -f CMakeFiles/test_log_record.dir/build.make CMakeFiles/test_log_record.dir/src/file_io.cc.o
-	$(MAKE) -f CMakeFiles/test_data_file.dir/build.make CMakeFiles/test_data_file.dir/src/file_io.cc.o
-	$(MAKE) -f CMakeFiles/test_file_io.dir/build.make CMakeFiles/test_file_io.dir/src/file_io.cc.o
+	$(MAKE) -f CMakeFiles/test_batch.dir/build.make CMakeFiles/test_batch.dir/src/file_io.cc.o
 .PHONY : src/file_io.cc.o
 
 src/file_io.i: src/file_io.cc.i
@@ -393,12 +263,7 @@ src/file_io.i: src/file_io.cc.i
 
 # target to preprocess a source file
 src/file_io.cc.i:
-	$(MAKE) -f CMakeFiles/test_iterator.dir/build.make CMakeFiles/test_iterator.dir/src/file_io.cc.i
-	$(MAKE) -f CMakeFiles/test_map.dir/build.make CMakeFiles/test_map.dir/src/file_io.cc.i
-	$(MAKE) -f CMakeFiles/test_db.dir/build.make CMakeFiles/test_db.dir/src/file_io.cc.i
-	$(MAKE) -f CMakeFiles/test_log_record.dir/build.make CMakeFiles/test_log_record.dir/src/file_io.cc.i
-	$(MAKE) -f CMakeFiles/test_data_file.dir/build.make CMakeFiles/test_data_file.dir/src/file_io.cc.i
-	$(MAKE) -f CMakeFiles/test_file_io.dir/build.make CMakeFiles/test_file_io.dir/src/file_io.cc.i
+	$(MAKE) -f CMakeFiles/test_batch.dir/build.make CMakeFiles/test_batch.dir/src/file_io.cc.i
 .PHONY : src/file_io.cc.i
 
 src/file_io.s: src/file_io.cc.s
@@ -407,12 +272,7 @@ src/file_io.s: src/file_io.cc.s
 
 # target to generate assembly for a file
 src/file_io.cc.s:
-	$(MAKE) -f CMakeFiles/test_iterator.dir/build.make CMakeFiles/test_iterator.dir/src/file_io.cc.s
-	$(MAKE) -f CMakeFiles/test_map.dir/build.make CMakeFiles/test_map.dir/src/file_io.cc.s
-	$(MAKE) -f CMakeFiles/test_db.dir/build.make CMakeFiles/test_db.dir/src/file_io.cc.s
-	$(MAKE) -f CMakeFiles/test_log_record.dir/build.make CMakeFiles/test_log_record.dir/src/file_io.cc.s
-	$(MAKE) -f CMakeFiles/test_data_file.dir/build.make CMakeFiles/test_data_file.dir/src/file_io.cc.s
-	$(MAKE) -f CMakeFiles/test_file_io.dir/build.make CMakeFiles/test_file_io.dir/src/file_io.cc.s
+	$(MAKE) -f CMakeFiles/test_batch.dir/build.make CMakeFiles/test_batch.dir/src/file_io.cc.s
 .PHONY : src/file_io.cc.s
 
 src/index.o: src/index.cc.o
@@ -421,12 +281,7 @@ src/index.o: src/index.cc.o
 
 # target to build an object file
 src/index.cc.o:
-	$(MAKE) -f CMakeFiles/test_iterator.dir/build.make CMakeFiles/test_iterator.dir/src/index.cc.o
-	$(MAKE) -f CMakeFiles/test_map.dir/build.make CMakeFiles/test_map.dir/src/index.cc.o
-	$(MAKE) -f CMakeFiles/test_db.dir/build.make CMakeFiles/test_db.dir/src/index.cc.o
-	$(MAKE) -f CMakeFiles/test_log_record.dir/build.make CMakeFiles/test_log_record.dir/src/index.cc.o
-	$(MAKE) -f CMakeFiles/test_data_file.dir/build.make CMakeFiles/test_data_file.dir/src/index.cc.o
-	$(MAKE) -f CMakeFiles/test_file_io.dir/build.make CMakeFiles/test_file_io.dir/src/index.cc.o
+	$(MAKE) -f CMakeFiles/test_batch.dir/build.make CMakeFiles/test_batch.dir/src/index.cc.o
 .PHONY : src/index.cc.o
 
 src/index.i: src/index.cc.i
@@ -435,12 +290,7 @@ src/index.i: src/index.cc.i
 
 # target to preprocess a source file
 src/index.cc.i:
-	$(MAKE) -f CMakeFiles/test_iterator.dir/build.make CMakeFiles/test_iterator.dir/src/index.cc.i
-	$(MAKE) -f CMakeFiles/test_map.dir/build.make CMakeFiles/test_map.dir/src/index.cc.i
-	$(MAKE) -f CMakeFiles/test_db.dir/build.make CMakeFiles/test_db.dir/src/index.cc.i
-	$(MAKE) -f CMakeFiles/test_log_record.dir/build.make CMakeFiles/test_log_record.dir/src/index.cc.i
-	$(MAKE) -f CMakeFiles/test_data_file.dir/build.make CMakeFiles/test_data_file.dir/src/index.cc.i
-	$(MAKE) -f CMakeFiles/test_file_io.dir/build.make CMakeFiles/test_file_io.dir/src/index.cc.i
+	$(MAKE) -f CMakeFiles/test_batch.dir/build.make CMakeFiles/test_batch.dir/src/index.cc.i
 .PHONY : src/index.cc.i
 
 src/index.s: src/index.cc.s
@@ -449,12 +299,7 @@ src/index.s: src/index.cc.s
 
 # target to generate assembly for a file
 src/index.cc.s:
-	$(MAKE) -f CMakeFiles/test_iterator.dir/build.make CMakeFiles/test_iterator.dir/src/index.cc.s
-	$(MAKE) -f CMakeFiles/test_map.dir/build.make CMakeFiles/test_map.dir/src/index.cc.s
-	$(MAKE) -f CMakeFiles/test_db.dir/build.make CMakeFiles/test_db.dir/src/index.cc.s
-	$(MAKE) -f CMakeFiles/test_log_record.dir/build.make CMakeFiles/test_log_record.dir/src/index.cc.s
-	$(MAKE) -f CMakeFiles/test_data_file.dir/build.make CMakeFiles/test_data_file.dir/src/index.cc.s
-	$(MAKE) -f CMakeFiles/test_file_io.dir/build.make CMakeFiles/test_file_io.dir/src/index.cc.s
+	$(MAKE) -f CMakeFiles/test_batch.dir/build.make CMakeFiles/test_batch.dir/src/index.cc.s
 .PHONY : src/index.cc.s
 
 src/iterator.o: src/iterator.cc.o
@@ -463,12 +308,7 @@ src/iterator.o: src/iterator.cc.o
 
 # target to build an object file
 src/iterator.cc.o:
-	$(MAKE) -f CMakeFiles/test_iterator.dir/build.make CMakeFiles/test_iterator.dir/src/iterator.cc.o
-	$(MAKE) -f CMakeFiles/test_map.dir/build.make CMakeFiles/test_map.dir/src/iterator.cc.o
-	$(MAKE) -f CMakeFiles/test_db.dir/build.make CMakeFiles/test_db.dir/src/iterator.cc.o
-	$(MAKE) -f CMakeFiles/test_log_record.dir/build.make CMakeFiles/test_log_record.dir/src/iterator.cc.o
-	$(MAKE) -f CMakeFiles/test_data_file.dir/build.make CMakeFiles/test_data_file.dir/src/iterator.cc.o
-	$(MAKE) -f CMakeFiles/test_file_io.dir/build.make CMakeFiles/test_file_io.dir/src/iterator.cc.o
+	$(MAKE) -f CMakeFiles/test_batch.dir/build.make CMakeFiles/test_batch.dir/src/iterator.cc.o
 .PHONY : src/iterator.cc.o
 
 src/iterator.i: src/iterator.cc.i
@@ -477,12 +317,7 @@ src/iterator.i: src/iterator.cc.i
 
 # target to preprocess a source file
 src/iterator.cc.i:
-	$(MAKE) -f CMakeFiles/test_iterator.dir/build.make CMakeFiles/test_iterator.dir/src/iterator.cc.i
-	$(MAKE) -f CMakeFiles/test_map.dir/build.make CMakeFiles/test_map.dir/src/iterator.cc.i
-	$(MAKE) -f CMakeFiles/test_db.dir/build.make CMakeFiles/test_db.dir/src/iterator.cc.i
-	$(MAKE) -f CMakeFiles/test_log_record.dir/build.make CMakeFiles/test_log_record.dir/src/iterator.cc.i
-	$(MAKE) -f CMakeFiles/test_data_file.dir/build.make CMakeFiles/test_data_file.dir/src/iterator.cc.i
-	$(MAKE) -f CMakeFiles/test_file_io.dir/build.make CMakeFiles/test_file_io.dir/src/iterator.cc.i
+	$(MAKE) -f CMakeFiles/test_batch.dir/build.make CMakeFiles/test_batch.dir/src/iterator.cc.i
 .PHONY : src/iterator.cc.i
 
 src/iterator.s: src/iterator.cc.s
@@ -491,12 +326,7 @@ src/iterator.s: src/iterator.cc.s
 
 # target to generate assembly for a file
 src/iterator.cc.s:
-	$(MAKE) -f CMakeFiles/test_iterator.dir/build.make CMakeFiles/test_iterator.dir/src/iterator.cc.s
-	$(MAKE) -f CMakeFiles/test_map.dir/build.make CMakeFiles/test_map.dir/src/iterator.cc.s
-	$(MAKE) -f CMakeFiles/test_db.dir/build.make CMakeFiles/test_db.dir/src/iterator.cc.s
-	$(MAKE) -f CMakeFiles/test_log_record.dir/build.make CMakeFiles/test_log_record.dir/src/iterator.cc.s
-	$(MAKE) -f CMakeFiles/test_data_file.dir/build.make CMakeFiles/test_data_file.dir/src/iterator.cc.s
-	$(MAKE) -f CMakeFiles/test_file_io.dir/build.make CMakeFiles/test_file_io.dir/src/iterator.cc.s
+	$(MAKE) -f CMakeFiles/test_batch.dir/build.make CMakeFiles/test_batch.dir/src/iterator.cc.s
 .PHONY : src/iterator.cc.s
 
 src/log_record.o: src/log_record.cc.o
@@ -505,12 +335,7 @@ src/log_record.o: src/log_record.cc.o
 
 # target to build an object file
 src/log_record.cc.o:
-	$(MAKE) -f CMakeFiles/test_iterator.dir/build.make CMakeFiles/test_iterator.dir/src/log_record.cc.o
-	$(MAKE) -f CMakeFiles/test_map.dir/build.make CMakeFiles/test_map.dir/src/log_record.cc.o
-	$(MAKE) -f CMakeFiles/test_db.dir/build.make CMakeFiles/test_db.dir/src/log_record.cc.o
-	$(MAKE) -f CMakeFiles/test_log_record.dir/build.make CMakeFiles/test_log_record.dir/src/log_record.cc.o
-	$(MAKE) -f CMakeFiles/test_data_file.dir/build.make CMakeFiles/test_data_file.dir/src/log_record.cc.o
-	$(MAKE) -f CMakeFiles/test_file_io.dir/build.make CMakeFiles/test_file_io.dir/src/log_record.cc.o
+	$(MAKE) -f CMakeFiles/test_batch.dir/build.make CMakeFiles/test_batch.dir/src/log_record.cc.o
 .PHONY : src/log_record.cc.o
 
 src/log_record.i: src/log_record.cc.i
@@ -519,12 +344,7 @@ src/log_record.i: src/log_record.cc.i
 
 # target to preprocess a source file
 src/log_record.cc.i:
-	$(MAKE) -f CMakeFiles/test_iterator.dir/build.make CMakeFiles/test_iterator.dir/src/log_record.cc.i
-	$(MAKE) -f CMakeFiles/test_map.dir/build.make CMakeFiles/test_map.dir/src/log_record.cc.i
-	$(MAKE) -f CMakeFiles/test_db.dir/build.make CMakeFiles/test_db.dir/src/log_record.cc.i
-	$(MAKE) -f CMakeFiles/test_log_record.dir/build.make CMakeFiles/test_log_record.dir/src/log_record.cc.i
-	$(MAKE) -f CMakeFiles/test_data_file.dir/build.make CMakeFiles/test_data_file.dir/src/log_record.cc.i
-	$(MAKE) -f CMakeFiles/test_file_io.dir/build.make CMakeFiles/test_file_io.dir/src/log_record.cc.i
+	$(MAKE) -f CMakeFiles/test_batch.dir/build.make CMakeFiles/test_batch.dir/src/log_record.cc.i
 .PHONY : src/log_record.cc.i
 
 src/log_record.s: src/log_record.cc.s
@@ -533,12 +353,7 @@ src/log_record.s: src/log_record.cc.s
 
 # target to generate assembly for a file
 src/log_record.cc.s:
-	$(MAKE) -f CMakeFiles/test_iterator.dir/build.make CMakeFiles/test_iterator.dir/src/log_record.cc.s
-	$(MAKE) -f CMakeFiles/test_map.dir/build.make CMakeFiles/test_map.dir/src/log_record.cc.s
-	$(MAKE) -f CMakeFiles/test_db.dir/build.make CMakeFiles/test_db.dir/src/log_record.cc.s
-	$(MAKE) -f CMakeFiles/test_log_record.dir/build.make CMakeFiles/test_log_record.dir/src/log_record.cc.s
-	$(MAKE) -f CMakeFiles/test_data_file.dir/build.make CMakeFiles/test_data_file.dir/src/log_record.cc.s
-	$(MAKE) -f CMakeFiles/test_file_io.dir/build.make CMakeFiles/test_file_io.dir/src/log_record.cc.s
+	$(MAKE) -f CMakeFiles/test_batch.dir/build.make CMakeFiles/test_batch.dir/src/log_record.cc.s
 .PHONY : src/log_record.cc.s
 
 src/map.o: src/map.cc.o
@@ -547,12 +362,7 @@ src/map.o: src/map.cc.o
 
 # target to build an object file
 src/map.cc.o:
-	$(MAKE) -f CMakeFiles/test_iterator.dir/build.make CMakeFiles/test_iterator.dir/src/map.cc.o
-	$(MAKE) -f CMakeFiles/test_map.dir/build.make CMakeFiles/test_map.dir/src/map.cc.o
-	$(MAKE) -f CMakeFiles/test_db.dir/build.make CMakeFiles/test_db.dir/src/map.cc.o
-	$(MAKE) -f CMakeFiles/test_log_record.dir/build.make CMakeFiles/test_log_record.dir/src/map.cc.o
-	$(MAKE) -f CMakeFiles/test_data_file.dir/build.make CMakeFiles/test_data_file.dir/src/map.cc.o
-	$(MAKE) -f CMakeFiles/test_file_io.dir/build.make CMakeFiles/test_file_io.dir/src/map.cc.o
+	$(MAKE) -f CMakeFiles/test_batch.dir/build.make CMakeFiles/test_batch.dir/src/map.cc.o
 .PHONY : src/map.cc.o
 
 src/map.i: src/map.cc.i
@@ -561,12 +371,7 @@ src/map.i: src/map.cc.i
 
 # target to preprocess a source file
 src/map.cc.i:
-	$(MAKE) -f CMakeFiles/test_iterator.dir/build.make CMakeFiles/test_iterator.dir/src/map.cc.i
-	$(MAKE) -f CMakeFiles/test_map.dir/build.make CMakeFiles/test_map.dir/src/map.cc.i
-	$(MAKE) -f CMakeFiles/test_db.dir/build.make CMakeFiles/test_db.dir/src/map.cc.i
-	$(MAKE) -f CMakeFiles/test_log_record.dir/build.make CMakeFiles/test_log_record.dir/src/map.cc.i
-	$(MAKE) -f CMakeFiles/test_data_file.dir/build.make CMakeFiles/test_data_file.dir/src/map.cc.i
-	$(MAKE) -f CMakeFiles/test_file_io.dir/build.make CMakeFiles/test_file_io.dir/src/map.cc.i
+	$(MAKE) -f CMakeFiles/test_batch.dir/build.make CMakeFiles/test_batch.dir/src/map.cc.i
 .PHONY : src/map.cc.i
 
 src/map.s: src/map.cc.s
@@ -575,12 +380,7 @@ src/map.s: src/map.cc.s
 
 # target to generate assembly for a file
 src/map.cc.s:
-	$(MAKE) -f CMakeFiles/test_iterator.dir/build.make CMakeFiles/test_iterator.dir/src/map.cc.s
-	$(MAKE) -f CMakeFiles/test_map.dir/build.make CMakeFiles/test_map.dir/src/map.cc.s
-	$(MAKE) -f CMakeFiles/test_db.dir/build.make CMakeFiles/test_db.dir/src/map.cc.s
-	$(MAKE) -f CMakeFiles/test_log_record.dir/build.make CMakeFiles/test_log_record.dir/src/map.cc.s
-	$(MAKE) -f CMakeFiles/test_data_file.dir/build.make CMakeFiles/test_data_file.dir/src/map.cc.s
-	$(MAKE) -f CMakeFiles/test_file_io.dir/build.make CMakeFiles/test_file_io.dir/src/map.cc.s
+	$(MAKE) -f CMakeFiles/test_batch.dir/build.make CMakeFiles/test_batch.dir/src/map.cc.s
 .PHONY : src/map.cc.s
 
 src/options.o: src/options.cc.o
@@ -589,12 +389,7 @@ src/options.o: src/options.cc.o
 
 # target to build an object file
 src/options.cc.o:
-	$(MAKE) -f CMakeFiles/test_iterator.dir/build.make CMakeFiles/test_iterator.dir/src/options.cc.o
-	$(MAKE) -f CMakeFiles/test_map.dir/build.make CMakeFiles/test_map.dir/src/options.cc.o
-	$(MAKE) -f CMakeFiles/test_db.dir/build.make CMakeFiles/test_db.dir/src/options.cc.o
-	$(MAKE) -f CMakeFiles/test_log_record.dir/build.make CMakeFiles/test_log_record.dir/src/options.cc.o
-	$(MAKE) -f CMakeFiles/test_data_file.dir/build.make CMakeFiles/test_data_file.dir/src/options.cc.o
-	$(MAKE) -f CMakeFiles/test_file_io.dir/build.make CMakeFiles/test_file_io.dir/src/options.cc.o
+	$(MAKE) -f CMakeFiles/test_batch.dir/build.make CMakeFiles/test_batch.dir/src/options.cc.o
 .PHONY : src/options.cc.o
 
 src/options.i: src/options.cc.i
@@ -603,12 +398,7 @@ src/options.i: src/options.cc.i
 
 # target to preprocess a source file
 src/options.cc.i:
-	$(MAKE) -f CMakeFiles/test_iterator.dir/build.make CMakeFiles/test_iterator.dir/src/options.cc.i
-	$(MAKE) -f CMakeFiles/test_map.dir/build.make CMakeFiles/test_map.dir/src/options.cc.i
-	$(MAKE) -f CMakeFiles/test_db.dir/build.make CMakeFiles/test_db.dir/src/options.cc.i
-	$(MAKE) -f CMakeFiles/test_log_record.dir/build.make CMakeFiles/test_log_record.dir/src/options.cc.i
-	$(MAKE) -f CMakeFiles/test_data_file.dir/build.make CMakeFiles/test_data_file.dir/src/options.cc.i
-	$(MAKE) -f CMakeFiles/test_file_io.dir/build.make CMakeFiles/test_file_io.dir/src/options.cc.i
+	$(MAKE) -f CMakeFiles/test_batch.dir/build.make CMakeFiles/test_batch.dir/src/options.cc.i
 .PHONY : src/options.cc.i
 
 src/options.s: src/options.cc.s
@@ -617,175 +407,35 @@ src/options.s: src/options.cc.s
 
 # target to generate assembly for a file
 src/options.cc.s:
-	$(MAKE) -f CMakeFiles/test_iterator.dir/build.make CMakeFiles/test_iterator.dir/src/options.cc.s
-	$(MAKE) -f CMakeFiles/test_map.dir/build.make CMakeFiles/test_map.dir/src/options.cc.s
-	$(MAKE) -f CMakeFiles/test_db.dir/build.make CMakeFiles/test_db.dir/src/options.cc.s
-	$(MAKE) -f CMakeFiles/test_log_record.dir/build.make CMakeFiles/test_log_record.dir/src/options.cc.s
-	$(MAKE) -f CMakeFiles/test_data_file.dir/build.make CMakeFiles/test_data_file.dir/src/options.cc.s
-	$(MAKE) -f CMakeFiles/test_file_io.dir/build.make CMakeFiles/test_file_io.dir/src/options.cc.s
+	$(MAKE) -f CMakeFiles/test_batch.dir/build.make CMakeFiles/test_batch.dir/src/options.cc.s
 .PHONY : src/options.cc.s
 
-tests/test_data_file.o: tests/test_data_file.cc.o
+tests/test_batch.o: tests/test_batch.cc.o
 
-.PHONY : tests/test_data_file.o
-
-# target to build an object file
-tests/test_data_file.cc.o:
-	$(MAKE) -f CMakeFiles/test_data_file.dir/build.make CMakeFiles/test_data_file.dir/tests/test_data_file.cc.o
-.PHONY : tests/test_data_file.cc.o
-
-tests/test_data_file.i: tests/test_data_file.cc.i
-
-.PHONY : tests/test_data_file.i
-
-# target to preprocess a source file
-tests/test_data_file.cc.i:
-	$(MAKE) -f CMakeFiles/test_data_file.dir/build.make CMakeFiles/test_data_file.dir/tests/test_data_file.cc.i
-.PHONY : tests/test_data_file.cc.i
-
-tests/test_data_file.s: tests/test_data_file.cc.s
-
-.PHONY : tests/test_data_file.s
-
-# target to generate assembly for a file
-tests/test_data_file.cc.s:
-	$(MAKE) -f CMakeFiles/test_data_file.dir/build.make CMakeFiles/test_data_file.dir/tests/test_data_file.cc.s
-.PHONY : tests/test_data_file.cc.s
-
-tests/test_db.o: tests/test_db.cc.o
-
-.PHONY : tests/test_db.o
+.PHONY : tests/test_batch.o
 
 # target to build an object file
-tests/test_db.cc.o:
-	$(MAKE) -f CMakeFiles/test_db.dir/build.make CMakeFiles/test_db.dir/tests/test_db.cc.o
-.PHONY : tests/test_db.cc.o
+tests/test_batch.cc.o:
+	$(MAKE) -f CMakeFiles/test_batch.dir/build.make CMakeFiles/test_batch.dir/tests/test_batch.cc.o
+.PHONY : tests/test_batch.cc.o
 
-tests/test_db.i: tests/test_db.cc.i
+tests/test_batch.i: tests/test_batch.cc.i
 
-.PHONY : tests/test_db.i
-
-# target to preprocess a source file
-tests/test_db.cc.i:
-	$(MAKE) -f CMakeFiles/test_db.dir/build.make CMakeFiles/test_db.dir/tests/test_db.cc.i
-.PHONY : tests/test_db.cc.i
-
-tests/test_db.s: tests/test_db.cc.s
-
-.PHONY : tests/test_db.s
-
-# target to generate assembly for a file
-tests/test_db.cc.s:
-	$(MAKE) -f CMakeFiles/test_db.dir/build.make CMakeFiles/test_db.dir/tests/test_db.cc.s
-.PHONY : tests/test_db.cc.s
-
-tests/test_file_io.o: tests/test_file_io.cc.o
-
-.PHONY : tests/test_file_io.o
-
-# target to build an object file
-tests/test_file_io.cc.o:
-	$(MAKE) -f CMakeFiles/test_file_io.dir/build.make CMakeFiles/test_file_io.dir/tests/test_file_io.cc.o
-.PHONY : tests/test_file_io.cc.o
-
-tests/test_file_io.i: tests/test_file_io.cc.i
-
-.PHONY : tests/test_file_io.i
+.PHONY : tests/test_batch.i
 
 # target to preprocess a source file
-tests/test_file_io.cc.i:
-	$(MAKE) -f CMakeFiles/test_file_io.dir/build.make CMakeFiles/test_file_io.dir/tests/test_file_io.cc.i
-.PHONY : tests/test_file_io.cc.i
+tests/test_batch.cc.i:
+	$(MAKE) -f CMakeFiles/test_batch.dir/build.make CMakeFiles/test_batch.dir/tests/test_batch.cc.i
+.PHONY : tests/test_batch.cc.i
 
-tests/test_file_io.s: tests/test_file_io.cc.s
+tests/test_batch.s: tests/test_batch.cc.s
 
-.PHONY : tests/test_file_io.s
-
-# target to generate assembly for a file
-tests/test_file_io.cc.s:
-	$(MAKE) -f CMakeFiles/test_file_io.dir/build.make CMakeFiles/test_file_io.dir/tests/test_file_io.cc.s
-.PHONY : tests/test_file_io.cc.s
-
-tests/test_iterator.o: tests/test_iterator.cc.o
-
-.PHONY : tests/test_iterator.o
-
-# target to build an object file
-tests/test_iterator.cc.o:
-	$(MAKE) -f CMakeFiles/test_iterator.dir/build.make CMakeFiles/test_iterator.dir/tests/test_iterator.cc.o
-.PHONY : tests/test_iterator.cc.o
-
-tests/test_iterator.i: tests/test_iterator.cc.i
-
-.PHONY : tests/test_iterator.i
-
-# target to preprocess a source file
-tests/test_iterator.cc.i:
-	$(MAKE) -f CMakeFiles/test_iterator.dir/build.make CMakeFiles/test_iterator.dir/tests/test_iterator.cc.i
-.PHONY : tests/test_iterator.cc.i
-
-tests/test_iterator.s: tests/test_iterator.cc.s
-
-.PHONY : tests/test_iterator.s
+.PHONY : tests/test_batch.s
 
 # target to generate assembly for a file
-tests/test_iterator.cc.s:
-	$(MAKE) -f CMakeFiles/test_iterator.dir/build.make CMakeFiles/test_iterator.dir/tests/test_iterator.cc.s
-.PHONY : tests/test_iterator.cc.s
-
-tests/test_log_record.o: tests/test_log_record.cc.o
-
-.PHONY : tests/test_log_record.o
-
-# target to build an object file
-tests/test_log_record.cc.o:
-	$(MAKE) -f CMakeFiles/test_log_record.dir/build.make CMakeFiles/test_log_record.dir/tests/test_log_record.cc.o
-.PHONY : tests/test_log_record.cc.o
-
-tests/test_log_record.i: tests/test_log_record.cc.i
-
-.PHONY : tests/test_log_record.i
-
-# target to preprocess a source file
-tests/test_log_record.cc.i:
-	$(MAKE) -f CMakeFiles/test_log_record.dir/build.make CMakeFiles/test_log_record.dir/tests/test_log_record.cc.i
-.PHONY : tests/test_log_record.cc.i
-
-tests/test_log_record.s: tests/test_log_record.cc.s
-
-.PHONY : tests/test_log_record.s
-
-# target to generate assembly for a file
-tests/test_log_record.cc.s:
-	$(MAKE) -f CMakeFiles/test_log_record.dir/build.make CMakeFiles/test_log_record.dir/tests/test_log_record.cc.s
-.PHONY : tests/test_log_record.cc.s
-
-tests/test_map.o: tests/test_map.cc.o
-
-.PHONY : tests/test_map.o
-
-# target to build an object file
-tests/test_map.cc.o:
-	$(MAKE) -f CMakeFiles/test_map.dir/build.make CMakeFiles/test_map.dir/tests/test_map.cc.o
-.PHONY : tests/test_map.cc.o
-
-tests/test_map.i: tests/test_map.cc.i
-
-.PHONY : tests/test_map.i
-
-# target to preprocess a source file
-tests/test_map.cc.i:
-	$(MAKE) -f CMakeFiles/test_map.dir/build.make CMakeFiles/test_map.dir/tests/test_map.cc.i
-.PHONY : tests/test_map.cc.i
-
-tests/test_map.s: tests/test_map.cc.s
-
-.PHONY : tests/test_map.s
-
-# target to generate assembly for a file
-tests/test_map.cc.s:
-	$(MAKE) -f CMakeFiles/test_map.dir/build.make CMakeFiles/test_map.dir/tests/test_map.cc.s
-.PHONY : tests/test_map.cc.s
+tests/test_batch.cc.s:
+	$(MAKE) -f CMakeFiles/test_batch.dir/build.make CMakeFiles/test_batch.dir/tests/test_batch.cc.s
+.PHONY : tests/test_batch.cc.s
 
 # Help Target
 help:
@@ -795,12 +445,7 @@ help:
 	@echo "... depend"
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
-	@echo "... test_data_file"
-	@echo "... test_db"
-	@echo "... test_file_io"
-	@echo "... test_iterator"
-	@echo "... test_log_record"
-	@echo "... test_map"
+	@echo "... test_batch"
 	@echo "... src/batch.o"
 	@echo "... src/batch.i"
 	@echo "... src/batch.s"
@@ -831,24 +476,9 @@ help:
 	@echo "... src/options.o"
 	@echo "... src/options.i"
 	@echo "... src/options.s"
-	@echo "... tests/test_data_file.o"
-	@echo "... tests/test_data_file.i"
-	@echo "... tests/test_data_file.s"
-	@echo "... tests/test_db.o"
-	@echo "... tests/test_db.i"
-	@echo "... tests/test_db.s"
-	@echo "... tests/test_file_io.o"
-	@echo "... tests/test_file_io.i"
-	@echo "... tests/test_file_io.s"
-	@echo "... tests/test_iterator.o"
-	@echo "... tests/test_iterator.i"
-	@echo "... tests/test_iterator.s"
-	@echo "... tests/test_log_record.o"
-	@echo "... tests/test_log_record.i"
-	@echo "... tests/test_log_record.s"
-	@echo "... tests/test_map.o"
-	@echo "... tests/test_map.i"
-	@echo "... tests/test_map.s"
+	@echo "... tests/test_batch.o"
+	@echo "... tests/test_batch.i"
+	@echo "... tests/test_batch.s"
 .PHONY : help
 
 
