@@ -9,6 +9,7 @@
 #include "../inc/db.h"
 #include "../inc/batch.h"
 #include "../lib/inc/mutex.h"
+#include "../inc/utils.h"
 
 namespace alphaDB {
 
@@ -17,13 +18,20 @@ DB::ptr Open(Options& options) {
     // 对用户传入的配置项进行校验
     checkOptions(options);
 
+    bool isInitial;
     // 判断数据目录是否存在，如果不存在的话，则创建这个目录
     struct stat st;
     if(stat(options.DirPath.c_str(), &st) != 0) {
+        isInitial = true;
         // 如果目录不存在，则创建目录
         if (mkdir(options.DirPath.c_str(), 0700) != 0) {
             perror("Error creating directory");
         }
+    }
+
+    auto entries = readDirectory(options.DirPath);
+    if(entries.size() == 2) {
+        isInitial = true;
     }
 
     // 初始化 DB 实体
@@ -31,10 +39,17 @@ DB::ptr Open(Options& options) {
     {
         db->setOptions(options);
         db->setIndex(NewIndexer(options.IndexType));
+        db->setIsInitial(isInitial);
     }
+
+    // 加载 merge 数据目录
+    db->loadMergeFiles();
 
     // 加载数据文件
     db->loadDataFiles();
+
+    // 从 hint 索引文件中加载索引
+    db->loadIndexFromHintFile();
 
     // 从数据文件中加载索引
     db->loadIndexFromDataFiles();
@@ -72,6 +87,25 @@ void DB::Sync() {
     lock.unlock();
 }
 
+// Stat 返回数据库的相关统计信息
+std::shared_ptr<Stat> DB::stat() {
+    alphaMin::RWMutex::ReadLock rlock(m_RWMutex);
+
+    auto dataFiles = (uint32_t)m_olderFiles.size();
+    if(m_activeFile.get() != nullptr) {
+        dataFiles++;
+    }
+
+    auto dirSize = DirSize(m_options.DirPath);    
+    std::shared_ptr<Stat> ret_stat(new Stat);
+    ret_stat->KeyNum = (uint32_t)getIndex()->Size();
+    ret_stat->DataFileNum = dataFiles;
+    ret_stat->ReclaimableSize = m_reclaimSize;
+
+    rlock.unlock();
+    return ret_stat;
+}
+
 // Put 写入 Key/Value 数据，key 不能为空
 void DB::Put(std::string key, std::string value) {
     // 判断 key 是否有效
@@ -87,7 +121,12 @@ void DB::Put(std::string key, std::string value) {
     LogRecordPos::ptr pos = appendLogRecordWithLock(logRecord);
 
     // 更新内存索引
-    m_index->Put(key, pos, nullptr);
+    auto oldPos = m_index->Put(key, pos, nullptr);
+    if(oldPos.get() != nullptr) {
+        m_reclaimSize += (int64_t)oldPos->size;
+    }
+
+    return;
 }
 
 // Delete 根据 key 删除对应的数据
@@ -111,10 +150,16 @@ void DB::Delete(std::string key) {
     // logRecord->Key = key;
     logRecord->Key = logRecordKeyWithSeq(key, nonTransactionSeqNo);
     logRecord->Type = LogRecordDeleted;
-    appendLogRecordWithLock(logRecord);
+    pos = appendLogRecordWithLock(logRecord);
+    m_reclaimSize += (int64_t)pos->size;
 
     // 从内存索引中将对应的 key 删除
-    m_index->Delete(key, nullptr);
+    auto oldPos = m_index->Delete(key, nullptr);
+    if(oldPos.get() != nullptr) {
+        m_reclaimSize += (int64_t)oldPos->size;
+    }
+
+    return;
 }
 
 // Get 根据 key 读取数据
@@ -232,13 +277,24 @@ LogRecordPos::ptr DB::appendLogRecord(LogRecord* logRecord) {
     int64_t writeOff = m_activeFile->getWriteOff();
     m_activeFile->Write(encRecord);
     
+    m_bytesWrite += (uint32_t)size;
     // 根据用户配置决定是否持久化
-    if(m_options.SyncWrites) {
+    auto needSync = m_options.SyncWrites;
+    if(!needSync && m_options.BytesPerSync > 0 && m_bytesWrite >= m_options.BytesPerSync) {
+        needSync = true;
+    }
+    if(needSync) {
         m_activeFile->Sync();
+
+        // 清空累计值
+        if(m_bytesWrite > 0) {
+            m_bytesWrite = 0;
+        }
     }
 
     // 构建内存索引信息
     LogRecordPos::ptr pos(new LogRecordPos(m_activeFile->getFileId(), writeOff));
+    pos->size = (uint32_t)size;
 
     return pos; 
 }
@@ -262,6 +318,7 @@ std::vector<std::string> readDirectory(const std::string& dirPath) {
     // 打开目录
     DIR* dir = opendir(dirPath.c_str());
     if(dir == nullptr) {
+        std::cout << "ErrOpenDirectoryFailed\n";
         throw MyErrors::ErrOpenDirectoryFailed;
         return dirEntries;
     }
@@ -344,14 +401,29 @@ void DB::loadIndexFromDataFiles() {
         return;
     }
 
+    // 查看是否发生过 merge
+    auto hasMerge = false;
+    auto nonMergeFileId = (uint32_t)0;
+    auto mergeFinFileName = m_options.DirPath + "/" + MergeFinishedFileName;
+    if(directoryExists(mergeFinFileName)) {
+        auto fid = getNonMergeFileId(m_options.DirPath);
+        hasMerge = true;
+        nonMergeFileId = fid;
+    }
+
     auto sharedPtr = shared_from_this();
 
     auto updateIndex = [sharedPtr](std::string key, LogRecordType typ, LogRecordPos::ptr pos){
         bool ok;
+        LogRecordPos::ptr oldPos;
         if(typ == LogRecordDeleted) {
-            sharedPtr->getIndex()->Delete(key, &ok);
+            oldPos = sharedPtr->getIndex()->Delete(key, &ok);
+            sharedPtr->m_reclaimSize += (int64_t)pos->size;
         } else {
-            sharedPtr->getIndex()->Put(key, pos, &ok);
+            oldPos = sharedPtr->getIndex()->Put(key, pos, &ok);
+        }
+        if(oldPos.get() != nullptr) {
+            sharedPtr->m_reclaimSize += (int64_t)oldPos->size;
         }
         if(!ok) {
             perror("failed to update index at startup");
@@ -365,6 +437,12 @@ void DB::loadIndexFromDataFiles() {
     // 遍历所有文件id，处理文件中的记录
     for(int i = 0; i < m_fileIds.size(); ++i) {
         uint32_t fileId = (uint32_t)m_fileIds[i];
+
+        // 如果比最近未参与 merge 的文件 id 更小，则说明已经从 Hint 文件中加载索引了
+        if(hasMerge && (fileId < nonMergeFileId)) {
+            continue;
+        }
+
         DataFile::ptr dataFile;
         if(fileId == m_activeFile->getFileId()) {
             dataFile = m_activeFile;
@@ -387,7 +465,7 @@ void DB::loadIndexFromDataFiles() {
             }
 
             // 构造内存索引并保存
-            LogRecordPos::ptr logRecordPos(new LogRecordPos(fileId, offset));
+            LogRecordPos::ptr logRecordPos(new LogRecordPos(fileId, offset, (uint32_t)size));
             // bool isOk = false;
             // if(logRecord->Type == LogRecordDeleted) {
             //     m_index->Delete(logRecord->Key, &isOk);
@@ -447,6 +525,30 @@ void checkOptions(Options options) {
     if(options.DataFileSize <= 0) {
         throw std::runtime_error("database data file size must be greater than 0");
     }
+    if(options.DataFileMergeRatio < 0 || options.DataFileMergeRatio > 1) {
+        throw std::runtime_error("invalid merge ratio, must between 0 and 1");
+    }
+}
+
+void DB::loadSeqNo() {
+    auto fileName = m_options.DirPath + "/" + SeqNoFileName;
+    if(!directoryExists(fileName)) {
+        return;
+    }
+
+    auto seqNoFile = OpenSeqNoFile(m_options.DirPath);
+    uint32_t size;
+    auto record = seqNoFile->ReadLogRecord(0, size, nullptr);
+
+    uint64_t seqNo = 0;
+    std::memcpy(&seqNo, &record->Value[0], sizeof(uint64_t));
+
+    m_seqNo = seqNo;
+    m_seqNoFileExists = true;
+
+    removeDirectory(fileName);
+
+    return;
 }
 
 }

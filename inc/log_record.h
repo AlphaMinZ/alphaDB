@@ -61,6 +61,8 @@ public:
     LogRecordPos(LogRecordPos* tmp); 
 
     LogRecordPos(uint32_t Fid, int64_t Offset); 
+
+    LogRecordPos(uint32_t Fid, int64_t Offset, uint32_t Size);
 }; 
 
 // TransactionRecord 暂存的事务相关的数据
@@ -74,6 +76,12 @@ public:
 
 // EncodeLogRecord 对 LogRecord 进行编码，返回字节数组及长度
 std::string EncodeLogRecord(LogRecord* logRecoed, int64_t& len_);
+
+// EncodeLogRecordPos 对位置信息进行编码
+std::string EncodeLogRecordPos(LogRecordPos::ptr pos);
+
+// DecodeLogRecordPos 解码 LogRecordPos
+LogRecordPos::ptr DecodeLogRecordPos(std::string buf);
 
 // 对字节数组中的 Header 信息进行解码
 LogRecordHeader* decodeLogRecordheader(std::string buf, int64_t& headerSize_);

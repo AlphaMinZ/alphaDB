@@ -12,12 +12,22 @@
 #include "data_file.h"
 #include "index.h"
 
-
-
 namespace alphaDB {
 
 class Iterator;
 class WriteBatch;
+
+class Stat {
+public:
+    typedef std::shared_ptr<Stat> ptr;
+
+    Stat() {}
+
+    uint32_t KeyNum;            // key 的总数量
+    uint32_t DataFileNum;       // 数据文件的数量
+    int64_t ReclaimableSize;    // 可以进行 merge 回收的数据量，字节为单位
+    int64_t DiskSize;           // 数据目录所占磁盘空间大小
+};
 
 class DB : public std::enable_shared_from_this<DB> {
 public:
@@ -40,6 +50,8 @@ public:
     void setActiveFile(DataFile::ptr activeFile) { m_activeFile = activeFile;}
 
     void setIndex(Indexer::ptr index) { m_index = index;}
+
+    void setIsInitial(bool isInitial) { m_isInitial = isInitial;}
 
     // Put 写入 Key/Value 数据，key 不能为空
     void Put(std::string key, std::string value);
@@ -87,9 +99,29 @@ public:
     // NewWriteBatch 初始化 WriteBatch
     std::shared_ptr<WriteBatch> NewWriteBatch(WriteBatchOptions opts);
 
+    // Merge 清理无效数据，生成 Hint 文件
+    void Merge();
+
+    std::string getMergePath();
+
+    // 加载 merge 数据目录
+    void loadMergeFiles();
+
+    uint32_t getNonMergeFileId(std::string dirPath);
+
+    // 从 hint 文件中加载索引
+    void loadIndexFromHintFile();
+
+    // Stat 返回数据库的相关统计信息
+    Stat::ptr stat();
+
+    void loadSeqNo();
+
     alphaMin::Mutex& getMutex() { return m_mutex;}
 
     std::atomic<uint64_t>& getSeqNo() { return m_seqNo;}
+
+    void addReclaimSize(int64_t cnt) { m_reclaimSize += cnt;}
 
 private:
     Options m_options;
@@ -100,11 +132,27 @@ private:
     std::map<uint32_t, DataFile::ptr> m_olderFiles; // 旧的数据文件 只能进行读
     Indexer::ptr m_index;                           // 内存索引
     std::atomic<uint64_t> m_seqNo;                                 // 事务序列号，全局递增
+    bool m_isMerging = false;                               // 是否正在 merge
+    bool m_seqNoFileExists;                           // 存储事务序列号的文件是否存在
+    bool m_isInitial;                                 // 是否是第一次初始化此数据目录
+    // 文件锁
+    uint32_t m_bytesWrite;                            // 累计写了多少个字节
+    int64_t m_reclaimSize;                            // 表示有多少数据是无效的
 };
 
 DB::ptr Open(Options& options);
 
 void checkOptions(Options options);
+
+std::vector<std::string> readDirectory(const std::string& dirPath);
+
+std::vector<int> extractFileIds(const std::vector<std::string>& dirEntries, const char* suffix);
+
+bool directoryExists(const std::string& path);
+
+bool createDirectory(const std::string& path);
+
+bool removeDirectory(const std::string& path);
 
 }
 

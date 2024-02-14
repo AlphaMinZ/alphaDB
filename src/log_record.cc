@@ -19,6 +19,12 @@ LogRecordPos::LogRecordPos(uint32_t Fid, int64_t Offset) {
     offset = Offset;
 }
 
+LogRecordPos::LogRecordPos(uint32_t Fid, int64_t Offset, uint32_t Size) {
+    fId = Fid;
+    offset = Offset;
+    size = Size;
+}
+
 // EncodeLogRecord 对 LogRecord 进行编码，返回字节数组及长度
 //
 //	+-------------+-------------+-------------+--------------+-------------+--------------+
@@ -59,6 +65,46 @@ std::string EncodeLogRecord(LogRecord* logRecoed, int64_t& len_) {
 
     std::cerr << "Before return, index: " << index << ", keyLength: " << keyLength << ", valueLength: " << valueLength << std::endl;
     return encBytes;
+}
+
+std::string EncodeLogRecordPos(LogRecordPos::ptr pos) {
+    std::string buf(sizeof(uint32_t) * 2 + sizeof(int64_t), '\0');
+    int32_t index = 0;
+    uint32_t fileId = pos->fId;
+    std::memcpy(&buf[index], &fileId, sizeof(uint32_t));
+    index += sizeof(uint32_t);
+    int64_t offset = pos->offset;
+    std::memcpy(&buf[index], &offset, sizeof(int64_t));
+    index += sizeof(int64_t);
+    auto size = pos->size;
+    std::memcpy(&buf[index], &size, sizeof(uint32_t));
+    index += sizeof(uint32_t);
+
+    std::string ret = buf.substr(0, index);
+    return ret;
+}
+
+LogRecordPos::ptr DecodeLogRecordPos(std::string buf) {
+    int64_t index = 0;
+
+    uint32_t fileId = 0;
+    std::memcpy(&fileId, &buf[index], sizeof(uint32_t));
+    index += sizeof(uint32_t);
+
+    int64_t offset = 0;
+    std::memcpy(&offset, &buf[index], sizeof(int64_t));
+    index += sizeof(int64_t);
+
+    uint32_t size = 0;
+    std::memcpy(&size, &buf[index], sizeof(uint32_t));
+
+    LogRecordPos::ptr ret(new LogRecordPos);
+
+    ret->fId = fileId;
+    ret->offset = offset;
+    ret->size = size;
+
+    return ret;
 }
 
 // 对字节数组中的 Header 信息进行解码

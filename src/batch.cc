@@ -105,11 +105,15 @@ void WriteBatch::Commit() {
     // 更新内存索引
     for(const auto& pair : m_pendingWrites) {
         LogRecordPos::ptr pos = positions[pair.first];
+        LogRecordPos::ptr oldPos;
         if(pair.second->Type == LogRecordNormal) {
-            getDB()->getIndex()->Put(pair.first, pos, nullptr);
+            oldPos = getDB()->getIndex()->Put(pair.first, pos, nullptr);
         }
         if(pair.second->Type == LogRecordDeleted) {
-            getDB()->getIndex()->Delete(pair.first, nullptr);
+            oldPos = getDB()->getIndex()->Delete(pair.first, nullptr);
+        }
+        if(oldPos.get() != nullptr) {
+            getDB()->addReclaimSize((int64_t)oldPos->size);
         }
     }
 

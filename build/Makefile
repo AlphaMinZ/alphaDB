@@ -128,17 +128,30 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named test_batch
+# Target rules for targets named test_flock
 
 # Build rule for target.
-test_batch: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 test_batch
-.PHONY : test_batch
+test_flock: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 test_flock
+.PHONY : test_flock
 
 # fast build rule for target.
-test_batch/fast:
-	$(MAKE) -f CMakeFiles/test_batch.dir/build.make CMakeFiles/test_batch.dir/build
-.PHONY : test_batch/fast
+test_flock/fast:
+	$(MAKE) -f CMakeFiles/test_flock.dir/build.make CMakeFiles/test_flock.dir/build
+.PHONY : test_flock/fast
+
+#=============================================================================
+# Target rules for targets named test_merge
+
+# Build rule for target.
+test_merge: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 test_merge
+.PHONY : test_merge
+
+# fast build rule for target.
+test_merge/fast:
+	$(MAKE) -f CMakeFiles/test_merge.dir/build.make CMakeFiles/test_merge.dir/build
+.PHONY : test_merge/fast
 
 src/batch.o: src/batch.cc.o
 
@@ -146,7 +159,8 @@ src/batch.o: src/batch.cc.o
 
 # target to build an object file
 src/batch.cc.o:
-	$(MAKE) -f CMakeFiles/test_batch.dir/build.make CMakeFiles/test_batch.dir/src/batch.cc.o
+	$(MAKE) -f CMakeFiles/test_flock.dir/build.make CMakeFiles/test_flock.dir/src/batch.cc.o
+	$(MAKE) -f CMakeFiles/test_merge.dir/build.make CMakeFiles/test_merge.dir/src/batch.cc.o
 .PHONY : src/batch.cc.o
 
 src/batch.i: src/batch.cc.i
@@ -155,7 +169,8 @@ src/batch.i: src/batch.cc.i
 
 # target to preprocess a source file
 src/batch.cc.i:
-	$(MAKE) -f CMakeFiles/test_batch.dir/build.make CMakeFiles/test_batch.dir/src/batch.cc.i
+	$(MAKE) -f CMakeFiles/test_flock.dir/build.make CMakeFiles/test_flock.dir/src/batch.cc.i
+	$(MAKE) -f CMakeFiles/test_merge.dir/build.make CMakeFiles/test_merge.dir/src/batch.cc.i
 .PHONY : src/batch.cc.i
 
 src/batch.s: src/batch.cc.s
@@ -164,7 +179,8 @@ src/batch.s: src/batch.cc.s
 
 # target to generate assembly for a file
 src/batch.cc.s:
-	$(MAKE) -f CMakeFiles/test_batch.dir/build.make CMakeFiles/test_batch.dir/src/batch.cc.s
+	$(MAKE) -f CMakeFiles/test_flock.dir/build.make CMakeFiles/test_flock.dir/src/batch.cc.s
+	$(MAKE) -f CMakeFiles/test_merge.dir/build.make CMakeFiles/test_merge.dir/src/batch.cc.s
 .PHONY : src/batch.cc.s
 
 src/data_file.o: src/data_file.cc.o
@@ -173,7 +189,8 @@ src/data_file.o: src/data_file.cc.o
 
 # target to build an object file
 src/data_file.cc.o:
-	$(MAKE) -f CMakeFiles/test_batch.dir/build.make CMakeFiles/test_batch.dir/src/data_file.cc.o
+	$(MAKE) -f CMakeFiles/test_flock.dir/build.make CMakeFiles/test_flock.dir/src/data_file.cc.o
+	$(MAKE) -f CMakeFiles/test_merge.dir/build.make CMakeFiles/test_merge.dir/src/data_file.cc.o
 .PHONY : src/data_file.cc.o
 
 src/data_file.i: src/data_file.cc.i
@@ -182,7 +199,8 @@ src/data_file.i: src/data_file.cc.i
 
 # target to preprocess a source file
 src/data_file.cc.i:
-	$(MAKE) -f CMakeFiles/test_batch.dir/build.make CMakeFiles/test_batch.dir/src/data_file.cc.i
+	$(MAKE) -f CMakeFiles/test_flock.dir/build.make CMakeFiles/test_flock.dir/src/data_file.cc.i
+	$(MAKE) -f CMakeFiles/test_merge.dir/build.make CMakeFiles/test_merge.dir/src/data_file.cc.i
 .PHONY : src/data_file.cc.i
 
 src/data_file.s: src/data_file.cc.s
@@ -191,7 +209,8 @@ src/data_file.s: src/data_file.cc.s
 
 # target to generate assembly for a file
 src/data_file.cc.s:
-	$(MAKE) -f CMakeFiles/test_batch.dir/build.make CMakeFiles/test_batch.dir/src/data_file.cc.s
+	$(MAKE) -f CMakeFiles/test_flock.dir/build.make CMakeFiles/test_flock.dir/src/data_file.cc.s
+	$(MAKE) -f CMakeFiles/test_merge.dir/build.make CMakeFiles/test_merge.dir/src/data_file.cc.s
 .PHONY : src/data_file.cc.s
 
 src/db.o: src/db.cc.o
@@ -200,7 +219,8 @@ src/db.o: src/db.cc.o
 
 # target to build an object file
 src/db.cc.o:
-	$(MAKE) -f CMakeFiles/test_batch.dir/build.make CMakeFiles/test_batch.dir/src/db.cc.o
+	$(MAKE) -f CMakeFiles/test_flock.dir/build.make CMakeFiles/test_flock.dir/src/db.cc.o
+	$(MAKE) -f CMakeFiles/test_merge.dir/build.make CMakeFiles/test_merge.dir/src/db.cc.o
 .PHONY : src/db.cc.o
 
 src/db.i: src/db.cc.i
@@ -209,7 +229,8 @@ src/db.i: src/db.cc.i
 
 # target to preprocess a source file
 src/db.cc.i:
-	$(MAKE) -f CMakeFiles/test_batch.dir/build.make CMakeFiles/test_batch.dir/src/db.cc.i
+	$(MAKE) -f CMakeFiles/test_flock.dir/build.make CMakeFiles/test_flock.dir/src/db.cc.i
+	$(MAKE) -f CMakeFiles/test_merge.dir/build.make CMakeFiles/test_merge.dir/src/db.cc.i
 .PHONY : src/db.cc.i
 
 src/db.s: src/db.cc.s
@@ -218,7 +239,8 @@ src/db.s: src/db.cc.s
 
 # target to generate assembly for a file
 src/db.cc.s:
-	$(MAKE) -f CMakeFiles/test_batch.dir/build.make CMakeFiles/test_batch.dir/src/db.cc.s
+	$(MAKE) -f CMakeFiles/test_flock.dir/build.make CMakeFiles/test_flock.dir/src/db.cc.s
+	$(MAKE) -f CMakeFiles/test_merge.dir/build.make CMakeFiles/test_merge.dir/src/db.cc.s
 .PHONY : src/db.cc.s
 
 src/errors.o: src/errors.cc.o
@@ -227,7 +249,8 @@ src/errors.o: src/errors.cc.o
 
 # target to build an object file
 src/errors.cc.o:
-	$(MAKE) -f CMakeFiles/test_batch.dir/build.make CMakeFiles/test_batch.dir/src/errors.cc.o
+	$(MAKE) -f CMakeFiles/test_flock.dir/build.make CMakeFiles/test_flock.dir/src/errors.cc.o
+	$(MAKE) -f CMakeFiles/test_merge.dir/build.make CMakeFiles/test_merge.dir/src/errors.cc.o
 .PHONY : src/errors.cc.o
 
 src/errors.i: src/errors.cc.i
@@ -236,7 +259,8 @@ src/errors.i: src/errors.cc.i
 
 # target to preprocess a source file
 src/errors.cc.i:
-	$(MAKE) -f CMakeFiles/test_batch.dir/build.make CMakeFiles/test_batch.dir/src/errors.cc.i
+	$(MAKE) -f CMakeFiles/test_flock.dir/build.make CMakeFiles/test_flock.dir/src/errors.cc.i
+	$(MAKE) -f CMakeFiles/test_merge.dir/build.make CMakeFiles/test_merge.dir/src/errors.cc.i
 .PHONY : src/errors.cc.i
 
 src/errors.s: src/errors.cc.s
@@ -245,7 +269,8 @@ src/errors.s: src/errors.cc.s
 
 # target to generate assembly for a file
 src/errors.cc.s:
-	$(MAKE) -f CMakeFiles/test_batch.dir/build.make CMakeFiles/test_batch.dir/src/errors.cc.s
+	$(MAKE) -f CMakeFiles/test_flock.dir/build.make CMakeFiles/test_flock.dir/src/errors.cc.s
+	$(MAKE) -f CMakeFiles/test_merge.dir/build.make CMakeFiles/test_merge.dir/src/errors.cc.s
 .PHONY : src/errors.cc.s
 
 src/file_io.o: src/file_io.cc.o
@@ -254,7 +279,8 @@ src/file_io.o: src/file_io.cc.o
 
 # target to build an object file
 src/file_io.cc.o:
-	$(MAKE) -f CMakeFiles/test_batch.dir/build.make CMakeFiles/test_batch.dir/src/file_io.cc.o
+	$(MAKE) -f CMakeFiles/test_flock.dir/build.make CMakeFiles/test_flock.dir/src/file_io.cc.o
+	$(MAKE) -f CMakeFiles/test_merge.dir/build.make CMakeFiles/test_merge.dir/src/file_io.cc.o
 .PHONY : src/file_io.cc.o
 
 src/file_io.i: src/file_io.cc.i
@@ -263,7 +289,8 @@ src/file_io.i: src/file_io.cc.i
 
 # target to preprocess a source file
 src/file_io.cc.i:
-	$(MAKE) -f CMakeFiles/test_batch.dir/build.make CMakeFiles/test_batch.dir/src/file_io.cc.i
+	$(MAKE) -f CMakeFiles/test_flock.dir/build.make CMakeFiles/test_flock.dir/src/file_io.cc.i
+	$(MAKE) -f CMakeFiles/test_merge.dir/build.make CMakeFiles/test_merge.dir/src/file_io.cc.i
 .PHONY : src/file_io.cc.i
 
 src/file_io.s: src/file_io.cc.s
@@ -272,7 +299,8 @@ src/file_io.s: src/file_io.cc.s
 
 # target to generate assembly for a file
 src/file_io.cc.s:
-	$(MAKE) -f CMakeFiles/test_batch.dir/build.make CMakeFiles/test_batch.dir/src/file_io.cc.s
+	$(MAKE) -f CMakeFiles/test_flock.dir/build.make CMakeFiles/test_flock.dir/src/file_io.cc.s
+	$(MAKE) -f CMakeFiles/test_merge.dir/build.make CMakeFiles/test_merge.dir/src/file_io.cc.s
 .PHONY : src/file_io.cc.s
 
 src/index.o: src/index.cc.o
@@ -281,7 +309,8 @@ src/index.o: src/index.cc.o
 
 # target to build an object file
 src/index.cc.o:
-	$(MAKE) -f CMakeFiles/test_batch.dir/build.make CMakeFiles/test_batch.dir/src/index.cc.o
+	$(MAKE) -f CMakeFiles/test_flock.dir/build.make CMakeFiles/test_flock.dir/src/index.cc.o
+	$(MAKE) -f CMakeFiles/test_merge.dir/build.make CMakeFiles/test_merge.dir/src/index.cc.o
 .PHONY : src/index.cc.o
 
 src/index.i: src/index.cc.i
@@ -290,7 +319,8 @@ src/index.i: src/index.cc.i
 
 # target to preprocess a source file
 src/index.cc.i:
-	$(MAKE) -f CMakeFiles/test_batch.dir/build.make CMakeFiles/test_batch.dir/src/index.cc.i
+	$(MAKE) -f CMakeFiles/test_flock.dir/build.make CMakeFiles/test_flock.dir/src/index.cc.i
+	$(MAKE) -f CMakeFiles/test_merge.dir/build.make CMakeFiles/test_merge.dir/src/index.cc.i
 .PHONY : src/index.cc.i
 
 src/index.s: src/index.cc.s
@@ -299,7 +329,8 @@ src/index.s: src/index.cc.s
 
 # target to generate assembly for a file
 src/index.cc.s:
-	$(MAKE) -f CMakeFiles/test_batch.dir/build.make CMakeFiles/test_batch.dir/src/index.cc.s
+	$(MAKE) -f CMakeFiles/test_flock.dir/build.make CMakeFiles/test_flock.dir/src/index.cc.s
+	$(MAKE) -f CMakeFiles/test_merge.dir/build.make CMakeFiles/test_merge.dir/src/index.cc.s
 .PHONY : src/index.cc.s
 
 src/iterator.o: src/iterator.cc.o
@@ -308,7 +339,8 @@ src/iterator.o: src/iterator.cc.o
 
 # target to build an object file
 src/iterator.cc.o:
-	$(MAKE) -f CMakeFiles/test_batch.dir/build.make CMakeFiles/test_batch.dir/src/iterator.cc.o
+	$(MAKE) -f CMakeFiles/test_flock.dir/build.make CMakeFiles/test_flock.dir/src/iterator.cc.o
+	$(MAKE) -f CMakeFiles/test_merge.dir/build.make CMakeFiles/test_merge.dir/src/iterator.cc.o
 .PHONY : src/iterator.cc.o
 
 src/iterator.i: src/iterator.cc.i
@@ -317,7 +349,8 @@ src/iterator.i: src/iterator.cc.i
 
 # target to preprocess a source file
 src/iterator.cc.i:
-	$(MAKE) -f CMakeFiles/test_batch.dir/build.make CMakeFiles/test_batch.dir/src/iterator.cc.i
+	$(MAKE) -f CMakeFiles/test_flock.dir/build.make CMakeFiles/test_flock.dir/src/iterator.cc.i
+	$(MAKE) -f CMakeFiles/test_merge.dir/build.make CMakeFiles/test_merge.dir/src/iterator.cc.i
 .PHONY : src/iterator.cc.i
 
 src/iterator.s: src/iterator.cc.s
@@ -326,7 +359,8 @@ src/iterator.s: src/iterator.cc.s
 
 # target to generate assembly for a file
 src/iterator.cc.s:
-	$(MAKE) -f CMakeFiles/test_batch.dir/build.make CMakeFiles/test_batch.dir/src/iterator.cc.s
+	$(MAKE) -f CMakeFiles/test_flock.dir/build.make CMakeFiles/test_flock.dir/src/iterator.cc.s
+	$(MAKE) -f CMakeFiles/test_merge.dir/build.make CMakeFiles/test_merge.dir/src/iterator.cc.s
 .PHONY : src/iterator.cc.s
 
 src/log_record.o: src/log_record.cc.o
@@ -335,7 +369,8 @@ src/log_record.o: src/log_record.cc.o
 
 # target to build an object file
 src/log_record.cc.o:
-	$(MAKE) -f CMakeFiles/test_batch.dir/build.make CMakeFiles/test_batch.dir/src/log_record.cc.o
+	$(MAKE) -f CMakeFiles/test_flock.dir/build.make CMakeFiles/test_flock.dir/src/log_record.cc.o
+	$(MAKE) -f CMakeFiles/test_merge.dir/build.make CMakeFiles/test_merge.dir/src/log_record.cc.o
 .PHONY : src/log_record.cc.o
 
 src/log_record.i: src/log_record.cc.i
@@ -344,7 +379,8 @@ src/log_record.i: src/log_record.cc.i
 
 # target to preprocess a source file
 src/log_record.cc.i:
-	$(MAKE) -f CMakeFiles/test_batch.dir/build.make CMakeFiles/test_batch.dir/src/log_record.cc.i
+	$(MAKE) -f CMakeFiles/test_flock.dir/build.make CMakeFiles/test_flock.dir/src/log_record.cc.i
+	$(MAKE) -f CMakeFiles/test_merge.dir/build.make CMakeFiles/test_merge.dir/src/log_record.cc.i
 .PHONY : src/log_record.cc.i
 
 src/log_record.s: src/log_record.cc.s
@@ -353,7 +389,8 @@ src/log_record.s: src/log_record.cc.s
 
 # target to generate assembly for a file
 src/log_record.cc.s:
-	$(MAKE) -f CMakeFiles/test_batch.dir/build.make CMakeFiles/test_batch.dir/src/log_record.cc.s
+	$(MAKE) -f CMakeFiles/test_flock.dir/build.make CMakeFiles/test_flock.dir/src/log_record.cc.s
+	$(MAKE) -f CMakeFiles/test_merge.dir/build.make CMakeFiles/test_merge.dir/src/log_record.cc.s
 .PHONY : src/log_record.cc.s
 
 src/map.o: src/map.cc.o
@@ -362,7 +399,8 @@ src/map.o: src/map.cc.o
 
 # target to build an object file
 src/map.cc.o:
-	$(MAKE) -f CMakeFiles/test_batch.dir/build.make CMakeFiles/test_batch.dir/src/map.cc.o
+	$(MAKE) -f CMakeFiles/test_flock.dir/build.make CMakeFiles/test_flock.dir/src/map.cc.o
+	$(MAKE) -f CMakeFiles/test_merge.dir/build.make CMakeFiles/test_merge.dir/src/map.cc.o
 .PHONY : src/map.cc.o
 
 src/map.i: src/map.cc.i
@@ -371,7 +409,8 @@ src/map.i: src/map.cc.i
 
 # target to preprocess a source file
 src/map.cc.i:
-	$(MAKE) -f CMakeFiles/test_batch.dir/build.make CMakeFiles/test_batch.dir/src/map.cc.i
+	$(MAKE) -f CMakeFiles/test_flock.dir/build.make CMakeFiles/test_flock.dir/src/map.cc.i
+	$(MAKE) -f CMakeFiles/test_merge.dir/build.make CMakeFiles/test_merge.dir/src/map.cc.i
 .PHONY : src/map.cc.i
 
 src/map.s: src/map.cc.s
@@ -380,8 +419,39 @@ src/map.s: src/map.cc.s
 
 # target to generate assembly for a file
 src/map.cc.s:
-	$(MAKE) -f CMakeFiles/test_batch.dir/build.make CMakeFiles/test_batch.dir/src/map.cc.s
+	$(MAKE) -f CMakeFiles/test_flock.dir/build.make CMakeFiles/test_flock.dir/src/map.cc.s
+	$(MAKE) -f CMakeFiles/test_merge.dir/build.make CMakeFiles/test_merge.dir/src/map.cc.s
 .PHONY : src/map.cc.s
+
+src/merge.o: src/merge.cc.o
+
+.PHONY : src/merge.o
+
+# target to build an object file
+src/merge.cc.o:
+	$(MAKE) -f CMakeFiles/test_flock.dir/build.make CMakeFiles/test_flock.dir/src/merge.cc.o
+	$(MAKE) -f CMakeFiles/test_merge.dir/build.make CMakeFiles/test_merge.dir/src/merge.cc.o
+.PHONY : src/merge.cc.o
+
+src/merge.i: src/merge.cc.i
+
+.PHONY : src/merge.i
+
+# target to preprocess a source file
+src/merge.cc.i:
+	$(MAKE) -f CMakeFiles/test_flock.dir/build.make CMakeFiles/test_flock.dir/src/merge.cc.i
+	$(MAKE) -f CMakeFiles/test_merge.dir/build.make CMakeFiles/test_merge.dir/src/merge.cc.i
+.PHONY : src/merge.cc.i
+
+src/merge.s: src/merge.cc.s
+
+.PHONY : src/merge.s
+
+# target to generate assembly for a file
+src/merge.cc.s:
+	$(MAKE) -f CMakeFiles/test_flock.dir/build.make CMakeFiles/test_flock.dir/src/merge.cc.s
+	$(MAKE) -f CMakeFiles/test_merge.dir/build.make CMakeFiles/test_merge.dir/src/merge.cc.s
+.PHONY : src/merge.cc.s
 
 src/options.o: src/options.cc.o
 
@@ -389,7 +459,8 @@ src/options.o: src/options.cc.o
 
 # target to build an object file
 src/options.cc.o:
-	$(MAKE) -f CMakeFiles/test_batch.dir/build.make CMakeFiles/test_batch.dir/src/options.cc.o
+	$(MAKE) -f CMakeFiles/test_flock.dir/build.make CMakeFiles/test_flock.dir/src/options.cc.o
+	$(MAKE) -f CMakeFiles/test_merge.dir/build.make CMakeFiles/test_merge.dir/src/options.cc.o
 .PHONY : src/options.cc.o
 
 src/options.i: src/options.cc.i
@@ -398,7 +469,8 @@ src/options.i: src/options.cc.i
 
 # target to preprocess a source file
 src/options.cc.i:
-	$(MAKE) -f CMakeFiles/test_batch.dir/build.make CMakeFiles/test_batch.dir/src/options.cc.i
+	$(MAKE) -f CMakeFiles/test_flock.dir/build.make CMakeFiles/test_flock.dir/src/options.cc.i
+	$(MAKE) -f CMakeFiles/test_merge.dir/build.make CMakeFiles/test_merge.dir/src/options.cc.i
 .PHONY : src/options.cc.i
 
 src/options.s: src/options.cc.s
@@ -407,35 +479,93 @@ src/options.s: src/options.cc.s
 
 # target to generate assembly for a file
 src/options.cc.s:
-	$(MAKE) -f CMakeFiles/test_batch.dir/build.make CMakeFiles/test_batch.dir/src/options.cc.s
+	$(MAKE) -f CMakeFiles/test_flock.dir/build.make CMakeFiles/test_flock.dir/src/options.cc.s
+	$(MAKE) -f CMakeFiles/test_merge.dir/build.make CMakeFiles/test_merge.dir/src/options.cc.s
 .PHONY : src/options.cc.s
 
-tests/test_batch.o: tests/test_batch.cc.o
+src/utils.o: src/utils.cc.o
 
-.PHONY : tests/test_batch.o
+.PHONY : src/utils.o
 
 # target to build an object file
-tests/test_batch.cc.o:
-	$(MAKE) -f CMakeFiles/test_batch.dir/build.make CMakeFiles/test_batch.dir/tests/test_batch.cc.o
-.PHONY : tests/test_batch.cc.o
+src/utils.cc.o:
+	$(MAKE) -f CMakeFiles/test_flock.dir/build.make CMakeFiles/test_flock.dir/src/utils.cc.o
+	$(MAKE) -f CMakeFiles/test_merge.dir/build.make CMakeFiles/test_merge.dir/src/utils.cc.o
+.PHONY : src/utils.cc.o
 
-tests/test_batch.i: tests/test_batch.cc.i
+src/utils.i: src/utils.cc.i
 
-.PHONY : tests/test_batch.i
+.PHONY : src/utils.i
 
 # target to preprocess a source file
-tests/test_batch.cc.i:
-	$(MAKE) -f CMakeFiles/test_batch.dir/build.make CMakeFiles/test_batch.dir/tests/test_batch.cc.i
-.PHONY : tests/test_batch.cc.i
+src/utils.cc.i:
+	$(MAKE) -f CMakeFiles/test_flock.dir/build.make CMakeFiles/test_flock.dir/src/utils.cc.i
+	$(MAKE) -f CMakeFiles/test_merge.dir/build.make CMakeFiles/test_merge.dir/src/utils.cc.i
+.PHONY : src/utils.cc.i
 
-tests/test_batch.s: tests/test_batch.cc.s
+src/utils.s: src/utils.cc.s
 
-.PHONY : tests/test_batch.s
+.PHONY : src/utils.s
 
 # target to generate assembly for a file
-tests/test_batch.cc.s:
-	$(MAKE) -f CMakeFiles/test_batch.dir/build.make CMakeFiles/test_batch.dir/tests/test_batch.cc.s
-.PHONY : tests/test_batch.cc.s
+src/utils.cc.s:
+	$(MAKE) -f CMakeFiles/test_flock.dir/build.make CMakeFiles/test_flock.dir/src/utils.cc.s
+	$(MAKE) -f CMakeFiles/test_merge.dir/build.make CMakeFiles/test_merge.dir/src/utils.cc.s
+.PHONY : src/utils.cc.s
+
+tests/test_flock.o: tests/test_flock.cc.o
+
+.PHONY : tests/test_flock.o
+
+# target to build an object file
+tests/test_flock.cc.o:
+	$(MAKE) -f CMakeFiles/test_flock.dir/build.make CMakeFiles/test_flock.dir/tests/test_flock.cc.o
+.PHONY : tests/test_flock.cc.o
+
+tests/test_flock.i: tests/test_flock.cc.i
+
+.PHONY : tests/test_flock.i
+
+# target to preprocess a source file
+tests/test_flock.cc.i:
+	$(MAKE) -f CMakeFiles/test_flock.dir/build.make CMakeFiles/test_flock.dir/tests/test_flock.cc.i
+.PHONY : tests/test_flock.cc.i
+
+tests/test_flock.s: tests/test_flock.cc.s
+
+.PHONY : tests/test_flock.s
+
+# target to generate assembly for a file
+tests/test_flock.cc.s:
+	$(MAKE) -f CMakeFiles/test_flock.dir/build.make CMakeFiles/test_flock.dir/tests/test_flock.cc.s
+.PHONY : tests/test_flock.cc.s
+
+tests/test_merge.o: tests/test_merge.cc.o
+
+.PHONY : tests/test_merge.o
+
+# target to build an object file
+tests/test_merge.cc.o:
+	$(MAKE) -f CMakeFiles/test_merge.dir/build.make CMakeFiles/test_merge.dir/tests/test_merge.cc.o
+.PHONY : tests/test_merge.cc.o
+
+tests/test_merge.i: tests/test_merge.cc.i
+
+.PHONY : tests/test_merge.i
+
+# target to preprocess a source file
+tests/test_merge.cc.i:
+	$(MAKE) -f CMakeFiles/test_merge.dir/build.make CMakeFiles/test_merge.dir/tests/test_merge.cc.i
+.PHONY : tests/test_merge.cc.i
+
+tests/test_merge.s: tests/test_merge.cc.s
+
+.PHONY : tests/test_merge.s
+
+# target to generate assembly for a file
+tests/test_merge.cc.s:
+	$(MAKE) -f CMakeFiles/test_merge.dir/build.make CMakeFiles/test_merge.dir/tests/test_merge.cc.s
+.PHONY : tests/test_merge.cc.s
 
 # Help Target
 help:
@@ -445,7 +575,8 @@ help:
 	@echo "... depend"
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
-	@echo "... test_batch"
+	@echo "... test_flock"
+	@echo "... test_merge"
 	@echo "... src/batch.o"
 	@echo "... src/batch.i"
 	@echo "... src/batch.s"
@@ -473,12 +604,21 @@ help:
 	@echo "... src/map.o"
 	@echo "... src/map.i"
 	@echo "... src/map.s"
+	@echo "... src/merge.o"
+	@echo "... src/merge.i"
+	@echo "... src/merge.s"
 	@echo "... src/options.o"
 	@echo "... src/options.i"
 	@echo "... src/options.s"
-	@echo "... tests/test_batch.o"
-	@echo "... tests/test_batch.i"
-	@echo "... tests/test_batch.s"
+	@echo "... src/utils.o"
+	@echo "... src/utils.i"
+	@echo "... src/utils.s"
+	@echo "... tests/test_flock.o"
+	@echo "... tests/test_flock.i"
+	@echo "... tests/test_flock.s"
+	@echo "... tests/test_merge.o"
+	@echo "... tests/test_merge.i"
+	@echo "... tests/test_merge.s"
 .PHONY : help
 
 

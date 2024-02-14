@@ -37,8 +37,14 @@ set(
 # add_executable(test_iterator tests/test_iterator.cc ${SRC})
 # target_link_libraries(test_iterator ${LIB_LIB}) 
 
-add_executable(test_batch tests/test_batch.cc ${SRC})
-target_link_libraries(test_batch ${LIB_LIB}) 
+# add_executable(test_batch tests/test_batch.cc ${SRC})
+# target_link_libraries(test_batch ${LIB_LIB}) 
+
+add_executable(test_merge tests/test_merge.cc ${SRC})
+target_link_libraries(test_merge ${LIB_LIB}) 
+
+add_executable(test_flock tests/test_flock.cc ${SRC})
+target_link_libraries(test_flock ${LIB_LIB}) 
 
 SET(EXECUTABLE_OUTPUT_PATH ${CMAKE_CURRENT_SOURCE_DIR}/bin)
 SET(CMAKE_BUILD_TYPE "Debug")  # 定义编译类型

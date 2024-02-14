@@ -10,9 +10,11 @@ namespace alphaDB {
 
 typedef struct _Options {
     std::string DirPath;    // 数据库数据目录
-    int64_t DataFileSize;   // 数据文件大小
+    int64_t DataFileSize;   // 数据文件大小 
     bool SyncWrites;        // 每次写数据是否持久化
     IndexerType IndexType;  // 索引类型
+    uint32_t BytesPerSync;  // 累计写到多少字节后进行持久化
+    float DataFileMergeRatio;   //	数据文件合并的阈值
 }Options;
 
 typedef struct _IteratorOption {

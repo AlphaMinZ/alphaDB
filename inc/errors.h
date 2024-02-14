@@ -18,6 +18,10 @@ public:
     static const std::runtime_error ErrInvalidCRC;
 
     static const std::runtime_error ErrExceedMaxBatchNum;
+    static const std::runtime_error ErrMergeIsProgress;
+
+    static const std::runtime_error ErrMergeRatioUnreached;
+    static const std::runtime_error ErrNoEnoughSpaceForMerge;
 };
 
 }

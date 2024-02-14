@@ -1,3 +1,4 @@
 /home/mz/workspace/alphaDB/build/CMakeFiles/rebuild_cache.dir
 /home/mz/workspace/alphaDB/build/CMakeFiles/edit_cache.dir
-/home/mz/workspace/alphaDB/build/CMakeFiles/test_batch.dir
+/home/mz/workspace/alphaDB/build/CMakeFiles/test_flock.dir
+/home/mz/workspace/alphaDB/build/CMakeFiles/test_merge.dir

@@ -6,6 +6,9 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#include <sys/stat.h>
+#include <unistd.h>
+#include <cstdlib>
 
 alphaMin::Logger::ptr g_logger = ALPHA_LOG_ROOT();
 
@@ -73,12 +76,39 @@ void Test_logRecordKeyWithSeq() {
     std::cout << valll << " " << cnt << "\n";
 }
 
+void Test() {
+    std::string path = "/home/mz/workspace/alphaDB/bin/data";
+    
+    std::string command = "rm -r " + path;
+
+    int result = std::system(command.c_str());
+}
+
+void Test_1() {
+    std::string path = "/home/mz/workspace/alphaDB/bin/data";
+    struct stat info;
+    if (stat(path.c_str(), &info) != 0)
+        // return;
+    // return (info.st_mode & S_IFDIR) != 0;
+    if((info.st_mode & S_IFDIR) != 0) {
+        std::cout << "true\n";
+    } else {
+        std::cout << "false\n";
+    }
+
+    if (mkdir(path.c_str(), S_IRWXU | S_IRWXG | S_IROTH | S_IXOTH) == -1) {
+        std::cerr << "Error creating directory" << std::endl;
+        return;
+    }
+}
+
 int main(int argc, char** argv) {
     try {
         
         // TestDB_WriteBatch1();
         // Test_logRecordKeyWithSeq();
-        TestDB_WriteBatch2();
+        // TestDB_WriteBatch2();
+        Test_1();
 
     } catch(const std::exception& e) {
         ALPHA_LOG_ERROR(g_logger) << "Error : " << e.what();

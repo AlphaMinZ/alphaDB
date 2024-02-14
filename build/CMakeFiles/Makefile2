@@ -70,7 +70,8 @@ CMAKE_BINARY_DIR = /home/mz/workspace/alphaDB/build
 # Directory level rules for the build root directory
 
 # The main recursive "all" target.
-all: CMakeFiles/test_batch.dir/all
+all: CMakeFiles/test_flock.dir/all
+all: CMakeFiles/test_merge.dir/all
 
 .PHONY : all
 
@@ -80,36 +81,64 @@ preinstall:
 .PHONY : preinstall
 
 # The main recursive "clean" target.
-clean: CMakeFiles/test_batch.dir/clean
+clean: CMakeFiles/test_flock.dir/clean
+clean: CMakeFiles/test_merge.dir/clean
 
 .PHONY : clean
 
 #=============================================================================
-# Target rules for target CMakeFiles/test_batch.dir
+# Target rules for target CMakeFiles/test_flock.dir
 
 # All Build rule for target.
-CMakeFiles/test_batch.dir/all:
-	$(MAKE) -f CMakeFiles/test_batch.dir/build.make CMakeFiles/test_batch.dir/depend
-	$(MAKE) -f CMakeFiles/test_batch.dir/build.make CMakeFiles/test_batch.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/mz/workspace/alphaDB/build/CMakeFiles --progress-num=1,2,3,4,5,6,7,8,9,10,11,12 "Built target test_batch"
-.PHONY : CMakeFiles/test_batch.dir/all
+CMakeFiles/test_flock.dir/all:
+	$(MAKE) -f CMakeFiles/test_flock.dir/build.make CMakeFiles/test_flock.dir/depend
+	$(MAKE) -f CMakeFiles/test_flock.dir/build.make CMakeFiles/test_flock.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/mz/workspace/alphaDB/build/CMakeFiles --progress-num=1,2,3,4,5,6,7,8,9,10,11,12,13,14 "Built target test_flock"
+.PHONY : CMakeFiles/test_flock.dir/all
 
 # Build rule for subdir invocation for target.
-CMakeFiles/test_batch.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/mz/workspace/alphaDB/build/CMakeFiles 12
-	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/test_batch.dir/all
+CMakeFiles/test_flock.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/mz/workspace/alphaDB/build/CMakeFiles 14
+	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/test_flock.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/mz/workspace/alphaDB/build/CMakeFiles 0
-.PHONY : CMakeFiles/test_batch.dir/rule
+.PHONY : CMakeFiles/test_flock.dir/rule
 
 # Convenience name for target.
-test_batch: CMakeFiles/test_batch.dir/rule
+test_flock: CMakeFiles/test_flock.dir/rule
 
-.PHONY : test_batch
+.PHONY : test_flock
 
 # clean rule for target.
-CMakeFiles/test_batch.dir/clean:
-	$(MAKE) -f CMakeFiles/test_batch.dir/build.make CMakeFiles/test_batch.dir/clean
-.PHONY : CMakeFiles/test_batch.dir/clean
+CMakeFiles/test_flock.dir/clean:
+	$(MAKE) -f CMakeFiles/test_flock.dir/build.make CMakeFiles/test_flock.dir/clean
+.PHONY : CMakeFiles/test_flock.dir/clean
+
+#=============================================================================
+# Target rules for target CMakeFiles/test_merge.dir
+
+# All Build rule for target.
+CMakeFiles/test_merge.dir/all:
+	$(MAKE) -f CMakeFiles/test_merge.dir/build.make CMakeFiles/test_merge.dir/depend
+	$(MAKE) -f CMakeFiles/test_merge.dir/build.make CMakeFiles/test_merge.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/mz/workspace/alphaDB/build/CMakeFiles --progress-num=15,16,17,18,19,20,21,22,23,24,25,26,27,28 "Built target test_merge"
+.PHONY : CMakeFiles/test_merge.dir/all
+
+# Build rule for subdir invocation for target.
+CMakeFiles/test_merge.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/mz/workspace/alphaDB/build/CMakeFiles 14
+	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/test_merge.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/mz/workspace/alphaDB/build/CMakeFiles 0
+.PHONY : CMakeFiles/test_merge.dir/rule
+
+# Convenience name for target.
+test_merge: CMakeFiles/test_merge.dir/rule
+
+.PHONY : test_merge
+
+# clean rule for target.
+CMakeFiles/test_merge.dir/clean:
+	$(MAKE) -f CMakeFiles/test_merge.dir/build.make CMakeFiles/test_merge.dir/clean
+.PHONY : CMakeFiles/test_merge.dir/clean
 
 #=============================================================================
 # Special targets to cleanup operation of make.

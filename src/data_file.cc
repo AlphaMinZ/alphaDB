@@ -4,11 +4,32 @@
 #include <iomanip>
 #include <sstream>
 
-#define DataFileNameSuffix          ".data"
-
 namespace alphaDB {
 
 DataFile::ptr OpenDataFile(std::string dirPath, uint32_t fileId) {
+    std::string fileName = GetDataFileName(dirPath, fileId);
+    return NewDataFile(fileName, fileId);
+}
+
+// OpenHintFile 打开 Hint 索引文件
+DataFile::ptr OpenHintFile(const std::string& dirPath) {
+    std::string fileName = dirPath + "/" + HintFileName;
+    return NewDataFile(fileName, 0);
+}
+
+// OpenMergeFinishedFile 打开标识 merge 完成的文件
+DataFile::ptr OpenMergeFinishedFile(const std::string& dirPath) {
+    std::string fileName = dirPath + "/" + MergeFinishedFileName;
+    return NewDataFile(fileName, 0);
+}
+
+// OpenSeqNoFile 存储事务序列号的文件
+DataFile::ptr OpenSeqNoFile(const std::string& dirPath) {
+    std::string fileName = dirPath + "/" + SeqNoFileName;
+    return NewDataFile(fileName, 0);
+}
+
+std::string GetDataFileName(const std::string& dirPath, uint32_t fileId) {
     // 格式化文件名
     std::ostringstream fileNameStream;
     fileNameStream << std::setw(9) << std::setfill('0') << fileId << DataFileNameSuffix;
@@ -16,6 +37,10 @@ DataFile::ptr OpenDataFile(std::string dirPath, uint32_t fileId) {
     // 构建完整的文件路径
     std::string fileName = dirPath + "/" + fileNameStream.str();
 
+    return fileName;
+}
+
+DataFile::ptr NewDataFile(std::string fileName, uint32_t fileId) {
     // 初始化 IOManager 管理器接口
     IOMgr::ptr ioManager = NewIOManager(fileName);
 
@@ -81,6 +106,16 @@ void DataFile::Write(std::string buf) {
     int n = m_ioManager->Write(buf.c_str(), buf.size());
     
     m_writeOff += (int64_t)buf.size();
+}
+
+void DataFile::WriteHintRecord(std::string key, LogRecordPos::ptr pos) {
+    LogRecord* record = new LogRecord;
+    record->Key = key;
+    record->Value = EncodeLogRecordPos(pos);
+
+    int64_t len;
+    std::string encRecord = EncodeLogRecord(record, len);
+    return Write(encRecord);
 }
 
 void DataFile::Sync() {
