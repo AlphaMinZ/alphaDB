@@ -235,6 +235,7 @@ std::string DB::getValueByPosition(LogRecordPos::ptr logRecordPos) {
     LogRecord* logRecord = dataFile->ReadLogRecord(logRecordPos->offset, size, nullptr);
 
     if(logRecord->Type == LogRecordDeleted) {
+        std::cout << "Type = Delete\n";
         throw MyErrors::ErrKeyNotFound;
     }
 

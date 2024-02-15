@@ -78,6 +78,7 @@ int64_t getFileSize(const std::string& filePath) {
     if (stat(filePath.c_str(), &fileStat) != 0) {
         throw std::runtime_error("Failed to get file size: " + filePath);
     }
+    std::cout << filePath << "的大小为 " << fileStat.st_size << "\n";
     return static_cast<int64_t>(fileStat.st_size);
 }
 
@@ -89,6 +90,7 @@ int64_t DirSize(const std::string& dirPath) {
     if ((dir = opendir(dirPath.c_str())) != NULL) {
         while ((ent = readdir(dir)) != NULL) {
             std::string fileName = ent->d_name;
+            std::cout << fileName << "\n";
             if (fileName != "." && fileName != "..") {
                 std::string filePath = dirPath + "/" + fileName;
                 size += getFileSize(filePath);

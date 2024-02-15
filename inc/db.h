@@ -137,7 +137,7 @@ private:
     bool m_isInitial;                                 // 是否是第一次初始化此数据目录
     // 文件锁
     uint32_t m_bytesWrite;                            // 累计写了多少个字节
-    int64_t m_reclaimSize;                            // 表示有多少数据是无效的
+    int64_t m_reclaimSize = 0;                            // 表示有多少数据是无效的
 };
 
 DB::ptr Open(Options& options);

@@ -96,18 +96,6 @@ stdint.h
 log_record.h
 /home/mz/workspace/alphaDB/inc/log_record.h
 
-/home/mz/workspace/alphaDB/inc/iterator.h
-memory
--
-log_record.h
-/home/mz/workspace/alphaDB/inc/log_record.h
-index.h
-/home/mz/workspace/alphaDB/inc/index.h
-db.h
-/home/mz/workspace/alphaDB/inc/db.h
-options.h
-/home/mz/workspace/alphaDB/inc/options.h
-
 /home/mz/workspace/alphaDB/inc/log_record.h
 stdint.h
 -
@@ -178,46 +166,6 @@ noncopyable.h
 
 /home/mz/workspace/alphaDB/lib/inc/noncopyable.h
 
-/home/mz/workspace/alphaDB/src/batch.cc
-../inc/batch.h
-/home/mz/workspace/alphaDB/inc/batch.h
-atomic
--
-iostream
--
-algorithm
--
-cstring
--
-
-/home/mz/workspace/alphaDB/src/db.cc
-stdio.h
--
-sys/stat.h
--
-dirent.h
--
-iostream
--
-cstring
--
-sstream
--
-algorithm
--
-../inc/db.h
-/home/mz/workspace/alphaDB/inc/db.h
-../inc/batch.h
-/home/mz/workspace/alphaDB/inc/batch.h
-../lib/inc/mutex.h
-/home/mz/workspace/alphaDB/lib/inc/mutex.h
-../inc/utils.h
-/home/mz/workspace/alphaDB/inc/utils.h
-
-/home/mz/workspace/alphaDB/src/iterator.cc
-../inc/iterator.h
-/home/mz/workspace/alphaDB/inc/iterator.h
-
 /home/mz/workspace/alphaDB/src/merge.cc
 ../inc/db.h
 /home/mz/workspace/alphaDB/inc/db.h
@@ -239,8 +187,4 @@ cstdlib
 -
 cstdio
 -
-
-/home/mz/workspace/alphaDB/src/options.cc
-../inc/options.h
-/home/mz/workspace/alphaDB/inc/options.h
 

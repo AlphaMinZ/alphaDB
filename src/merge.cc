@@ -19,7 +19,7 @@ bool directoryExists(const std::string& path) {
     struct stat info;
     if (stat(path.c_str(), &info) != 0)
         return false;
-    return (info.st_mode & S_IFDIR) != 0;
+    return (info.st_mode & S_IFDIR) != 0 || (info.st_mode & S_IFREG) != 0;
 }
 
 bool createDirectory(const std::string& path) {
@@ -63,11 +63,13 @@ void DB::Merge() {
         throw MyErrors::ErrMergeRatioUnreached;
     }
 
-    auto availableDiskSize = AvailableDiskSize();
-    if((uint64_t)(totalSize - m_reclaimSize) >= availableDiskSize) {
-        lock.unlock();
-        throw MyErrors::ErrNoEnoughSpaceForMerge;
-    }
+    // 有点问题 在删除数据之后读取的文件大小会为0 描述的不清楚
+    // auto availableDiskSize = AvailableDiskSize();
+    // if((uint64_t)(totalSize - m_reclaimSize) >= availableDiskSize) {
+    //     std::cout << totalSize << " " << m_reclaimSize << " " << totalSize - m_reclaimSize << " " << availableDiskSize << "\n";
+    //     lock.unlock();
+    //     throw MyErrors::ErrNoEnoughSpaceForMerge;
+    // }
 
     m_isMerging = true;
     
@@ -165,7 +167,7 @@ void DB::Merge() {
 }
 
 std::string DB::getMergePath() {
-    return "/home/mz/workspace/alphaDB/bin/merge";
+    return m_options.DirPath + "/" + mergeDirName;
 }
 
 // 加载 merge 数据目录
@@ -221,11 +223,13 @@ void DB::loadMergeFiles() {
         std::string srcPath = mergePath + "/" + fileName;
         std::string destPath = m_options.DirPath + "/" + fileName;
 
-        if (std::rename(srcPath.c_str(), destPath.c_str()) != 0) {
-            std::cerr << "移动文件 " << fileName << " 出错" << std::endl;
-            removeDirectory(mergePath);
-            return;
-        }
+        if(fileName != "." && fileName != "..") {
+            if (std::rename(srcPath.c_str(), destPath.c_str()) != 0) {
+                std::cerr << "移动文件 " << fileName << " 出错" << std::endl;
+                removeDirectory(mergePath);
+                return;
+            }
+        } 
     }
 
     removeDirectory(mergePath);
@@ -247,6 +251,7 @@ void DB::loadIndexFromHintFile() {
     // 查看 hint 索引文件是否存在
     auto hintFileName = m_options.DirPath + "/" + HintFileName;
     if(!directoryExists(hintFileName)) {
+        std::cout << "Hint 文件不存在\n";
         return;
     }
 
@@ -269,6 +274,7 @@ void DB::loadIndexFromHintFile() {
         offset += size;
     }
 
+    std::cout << "index.size() = " << getIndex()->Size() << "\n";
     return;
 }
 
