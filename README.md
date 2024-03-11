@@ -1,6 +1,6 @@
 基于 Bitcask 模型，兼容 Redis 数据结构和协议的高性能 KV 存储引擎
 部分测试代码在 tests 目录下，有一些是之前做测试的废代码，还没有做清理
-
+```c
 void Test() {
     auto opts = alphaDB::DefaultOptions;  // 获得默认配置
     opts.DirPath = "/home/mz/workspace/alphaDB/bin/data_2";  // 自定义位置
@@ -32,5 +32,5 @@ void Test() {
     }
 
 }
-
+```
 以上是一个简单的使用案例，打开 DB 实例，写入数据和数据 merge
