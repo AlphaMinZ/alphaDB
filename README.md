@@ -1,5 +1,10 @@
 基于 Bitcask 模型，兼容 Redis 数据结构和协议的高性能 KV 存储引擎
 部分测试代码在 tests 目录下，有一些是之前做测试的废代码，还没有做清理
+
+使用之前请先进入 build 目录，删除所有文件，执行 cmake ..
+然后执行 make
+最后可执行文件生成在 bin 文件夹下面
+
 ```c
 void Test() {
     auto opts = alphaDB::DefaultOptions;  // 获得默认配置
